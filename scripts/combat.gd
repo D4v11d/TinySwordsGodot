@@ -1,9 +1,7 @@
 class_name Combat extends Node
 
-# body could be either a Player or Enemy
-var body_inside_attack_area = false
 var attacking := false
-var body_to_attack: GameCharacter # Player or Enemy 
+var bodies_to_attack: Array[GameCharacter] # Player or Enemy 
 
 @onready var character: CharacterBody2D = $".."
 @onready var attack_area: Area2D = $"../AttackArea"
@@ -20,7 +18,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	if body_inside_attack_area:
+	if target_exists():
 		attack()
 
 func attack() -> void:
@@ -31,21 +29,24 @@ func attack() -> void:
 		animated_sprite.play("attack") # damage on animation end
 
 
+func target_exists() -> int:
+	return bodies_to_attack.size() > 0
+
+
 func on_attack_area_body_entered(body: GameCharacter) -> void:
 	if body.entity_type != character.entity_type: # Avoids friendly fire
-		body_to_attack = body
-		body_inside_attack_area = true
+		bodies_to_attack.append(body)
 
 
 func on_attack_area_body_exited(body: Node2D) -> void:
 	if body:
-		body_to_attack = null
-		body_inside_attack_area = false
+		bodies_to_attack.erase(body)
 
 
 func _on_attack_animation_finished() -> void:
 	attacking = false 
 	
 	# only damages enemy when it's inside the attack area at the animation end
-	if body_to_attack:
-		body_to_attack.health.recieve_damage(body_to_attack.attack_damage)
+	if target_exists():
+		#for index in bodies_to_attack.size(): # attacks groups of enemies
+		bodies_to_attack[0].health.recieve_damage(character.attack_damage) # attack one by one
