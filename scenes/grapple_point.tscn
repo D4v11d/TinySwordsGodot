@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://vs8jknxcnulq"]
+
+[ext_resource type="Script" path="res://scripts/grapple_point.gd" id="1_fub5o"]
+[ext_resource type="Texture2D" uid="uid://cp2q1e12wbnpv" path="res://assets/flag animation.png" id="1_nop14"]
+[ext_resource type="Texture2D" uid="uid://d068nf64vx0ke" path="res://assets/UI/02.png" id="3_qri4a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g1r7"]
+atlas = ExtResource("1_nop14")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10dkd"]
+atlas = ExtResource("1_nop14")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5xae"]
+atlas = ExtResource("1_nop14")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h17u7"]
+atlas = ExtResource("1_nop14")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehsc8"]
+atlas = ExtResource("1_nop14")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bmhby"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g1r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10dkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5xae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h17u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehsc8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsn5i"]
+radius = 1.5
+height = 13.0
+
+[node name="GrapplePoint" type="AnimatableBody2D" groups=["grapple_points"]]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+script = ExtResource("1_fub5o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(21.5, -25.5)
+sprite_frames = SubResource("SpriteFrames_bmhby")
+autoplay = "default"
+frame_progress = 0.339732
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_tsn5i")
+
+[node name="GrappleCursor" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+position = Vector2(0.5, -5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qri4a")

@@ -22,4 +22,5 @@ func update_progress_bar() -> void:
 
 func verify_death() -> void:
 	if current_health <= 0:
+		CameraPosition.remove_target_lock()
 		character.queue_free()

@@ -48,5 +48,6 @@ func _on_attack_animation_finished() -> void:
 	
 	# only damages enemy when it's inside the attack area at the animation end
 	if target_exists():
+		var current_target = bodies_to_attack[0]
 		#for index in bodies_to_attack.size(): # attacks groups of enemies
-		bodies_to_attack[0].health.recieve_damage(character.attack_damage) # attack one by one
+		current_target.health.recieve_damage(character.attack_damage) # attack one by one

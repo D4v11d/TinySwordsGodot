@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://ws2faqxapar3"]
+
+[ext_resource type="Texture2D" uid="uid://d261lu6ga4w8v" path="res://assets/Retro Impact Effect Pack 2 C.png" id="1_abj1t"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gy1f5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqv0w"]
+atlas = ExtResource("1_abj1t")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fre1j"]
+atlas = ExtResource("1_abj1t")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfu3o"]
+atlas = ExtResource("1_abj1t")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohanc"]
+atlas = ExtResource("1_abj1t")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb8wg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqv0w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fre1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfu3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohanc")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ppmjx"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvqch"]
+radius = 8.06226
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_gy1f5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nb8wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_ppmjx")
+disabled = true
+
+[node name="BulletArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
+shape = SubResource("CircleShape2D_dvqch")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="BulletArea" to="." method="_on_bullet_area_body_entered"]
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

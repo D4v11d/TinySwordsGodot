@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb6ybosj7bead"]
+
+[ext_resource type="Texture2D" uid="uid://dhtngesj4yiix" path="res://assets/Rope-Sprite.png" id="1_55g4c"]
+[ext_resource type="Script" path="res://scripts/GrapplingHook/rope.gd" id="2_leo0t"]
+
+[node name="Rope" type="Sprite2D"]
+texture_filter = 1
+texture_repeat = 2
+rotation = -1.5708
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_55g4c")
+offset = Vector2(0, 5)
+region_enabled = true
+region_rect = Rect2(0, 0, 3, 10)
+script = ExtResource("2_leo0t")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://2vwpe0qqls5k"]
+
+[ext_resource type="Texture2D" uid="uid://875o67ft5t2e" path="res://assets/Factions/Knights/Troops/Warrior/Blue/Shadow.png" id="1_8ulc0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lbv34"]
+radius = 6.00002
+height = 32.0
+
+[node name="PlayerShadow" type="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(167, 148)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -32)
+texture = ExtResource("1_8ulc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lbv34")
+disabled = true
