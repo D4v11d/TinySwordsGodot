@@ -45,7 +45,6 @@ func _on_test_sprite_animation_finished() -> void:
 			test_sprite.play("attack2")
 		else:
 			second_attack_window.start()
-		#is_attacking = false
 		return
 	
 	if test_sprite.animation == "attack2":
