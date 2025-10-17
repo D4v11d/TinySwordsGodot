@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Tiny Swords"
+config/name="Scrapborn"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -23,6 +23,7 @@ DamageNumbers="*res://scripts/Autoload/damage_numbers_display.gd"
 [global_group]
 
 grapple_points=""
+Player=""
 
 [input]
 

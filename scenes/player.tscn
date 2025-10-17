@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bm8rf6dty5bjs"]
+[gd_scene load_steps=106 format=3 uid="uid://bm8rf6dty5bjs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_axm6i"]
 [ext_resource type="Texture2D" uid="uid://bx7eyv7dvg1dh" path="res://assets/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="1_mpikw"]
@@ -20,6 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://butg16srvw0p" path="res://assets/LuneBlade/Fall.png" id="16_h6gpo"]
 [ext_resource type="Texture2D" uid="uid://bkln05vj1o6or" path="res://assets/LuneBlade/Jump.png" id="18_bhu3i"]
 [ext_resource type="Script" path="res://scripts/melee_attack.gd" id="20_st474"]
+[ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="21_tef7b"]
+[ext_resource type="Script" path="res://scripts/States/Player/player_idle.gd" id="22_bdtpt"]
+[ext_resource type="Script" path="res://scripts/States/Player/player_move.gd" id="23_pi514"]
+[ext_resource type="Script" path="res://scripts/States/Player/player_attack.gd" id="24_ok86q"]
+[ext_resource type="Script" path="res://scripts/States/Player/player_stagger.gd" id="25_rrffe"]
+[ext_resource type="Script" path="res://scripts/Effects/hitstop.gd" id="26_17b8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v3it6"]
 atlas = ExtResource("1_mpikw")
@@ -164,12 +170,6 @@ animations = [{
 "name": &"run_side",
 "speed": 10.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ml1y0"]
-radius = 8.06226
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gw0v"]
-size = Vector2(132, 51)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_piafr"]
 atlas = ExtResource("10_74380")
@@ -742,10 +742,22 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ml1y0"]
+radius = 8.06226
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gw0v"]
+size = Vector2(132, 51)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxqlv"]
+radius = 15.0
+height = 32.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_axm6i")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
 visible = false
 texture_filter = 1
 position = Vector2(-1, -25)
@@ -753,7 +765,26 @@ sprite_frames = SubResource("SpriteFrames_igasq")
 animation = &"idle"
 autoplay = "idle"
 
+[node name="RobotSprite" type="AnimatedSprite2D" parent="Sprites"]
+visible = false
+texture_filter = 1
+position = Vector2(-2, -35)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_egd4d")
+animation = &"run_side"
+autoplay = "idle"
+frame_progress = 0.89743
+
+[node name="TestSprite" type="AnimatedSprite2D" parent="Sprites"]
+texture_filter = 1
+position = Vector2(-1, -13)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_jg5b6")
+animation = &"idle_side"
+autoplay = "idle_front"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_ml1y0")
 
 [node name="AttackChargeTimer" type="Timer" parent="."]
@@ -792,24 +823,6 @@ script = ExtResource("8_wxegl")
 [node name="EnemyAimingManager" type="Node2D" parent="."]
 script = ExtResource("9_xppqe")
 
-[node name="RobotSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(-2, -35)
-scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_egd4d")
-animation = &"run_side"
-autoplay = "idle"
-frame_progress = 0.89743
-
-[node name="TestSprite" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-1, -13)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_jg5b6")
-animation = &"attack2"
-autoplay = "idle_front"
-
 [node name="MeleeAttack" type="Node2D" parent="."]
 script = ExtResource("20_st474")
 
@@ -817,8 +830,41 @@ script = ExtResource("20_st474")
 wait_time = 0.25
 one_shot = true
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="AttackArea" to="MeleeAttack" method="_on_attack_area_area_entered"]
-[connection signal="area_exited" from="AttackArea" to="MeleeAttack" method="_on_attack_area_area_exited"]
-[connection signal="animation_finished" from="TestSprite" to="MeleeAttack" method="_on_test_sprite_animation_finished"]
-[connection signal="timeout" from="SecondAttackWindow" to="MeleeAttack" method="_on_second_attack_window_timeout"]
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="StaggerTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("21_tef7b")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine"]
+script = ExtResource("22_bdtpt")
+
+[node name="PlayerMove" type="Node" parent="StateMachine"]
+script = ExtResource("23_pi514")
+
+[node name="PlayerAttack" type="Node" parent="StateMachine"]
+script = ExtResource("24_ok86q")
+
+[node name="PlayerStagger" type="Node" parent="StateMachine"]
+script = ExtResource("25_rrffe")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-2, -11)
+shape = SubResource("CapsuleShape2D_qxqlv")
+
+[node name="Hitstop" type="Node" parent="."]
+script = ExtResource("26_17b8v")
+
+[connection signal="animation_finished" from="Sprites/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprites/TestSprite" to="StateMachine/PlayerAttack" method="_on_test_sprite_animation_finished"]
+[connection signal="area_entered" from="AttackArea" to="StateMachine/PlayerAttack" method="_on_attack_area_area_entered"]
+[connection signal="area_exited" from="AttackArea" to="StateMachine/PlayerAttack" method="_on_attack_area_area_exited"]
+[connection signal="timeout" from="SecondAttackWindow" to="StateMachine/PlayerAttack" method="_on_second_attack_window_timeout"]
+[connection signal="timeout" from="StaggerTimer" to="StateMachine/PlayerStagger" method="_on_stagger_timer_timeout"]

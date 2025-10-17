@@ -14,6 +14,9 @@ var should_collide := false
 
 var player_direction := Vector2()
 var last_direction := Vector2()
+
+var knockback_direction := Vector2()
+var can_move := true
  
 var is_jumping : bool = false:
 	set(value):
@@ -53,7 +56,7 @@ var current_elevation: int = 0:
 
 #@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 #@onready var animated_sprite_2d: AnimatedSprite2D = $RobotSprite
-@onready var animated_sprite_2d: AnimatedSprite2D = $TestSprite
+@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/TestSprite
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_charge_timer: Timer = $AttackChargeTimer
@@ -64,6 +67,9 @@ var current_elevation: int = 0:
 @onready var layer_switch_manager: LayerSwitchManager = $"../LayerSwitchManager"
 
 @onready var melee_attack_manager: MeleeAttack = $MeleeAttack
+@onready var state_machine: StateMachine = $StateMachine
+
+@onready var hitstop: Hitstop = $Hitstop
 
 # Offsets for skipping walls when falling & climbing
 # Instead of offsets we should look for the closest floor tile
@@ -155,54 +161,27 @@ func handle_water_tile(tiledata):
 	
 
 func handle_movement(delta: float) -> void:
+	
+	move_and_slide()
+	
+	# Handle attack area flipping for side movement
+	if abs(velocity.x) > 0:
+		attack_area.scale.x = 1 if velocity.x > 0 else -1
+		
+	if not can_move:
+		return
 		
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player_direction = input_direction
 
 	if player_direction != Vector2.ZERO:
 		last_direction = player_direction
-
-	if input_direction != Vector2.ZERO:
 		velocity = input_direction.normalized() * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 
-	# Update animations based on current and last direction
-	update_animation()
-
-	# Handle attack area flipping for side movement
-	if abs(velocity.x) > 0:
-		attack_area.scale.x = 1 if velocity.x > 0 else -1
-
-	move_and_slide()
-
-func update_animation():
 	
-	# can move while attacking, but don't interrupt animation
-	if melee_attack_manager.is_attacking:
-		return
-	
-	if is_jumping or is_falling:
-		return
-		
-	if player_direction != Vector2.ZERO:
-		# Running animations based on direction
-		if abs(player_direction.x) > abs(player_direction.y):
-			animated_sprite_2d.play("run_side")
-			animated_sprite_2d.flip_h = player_direction.x < 0
-		elif player_direction.y < 0:
-			animated_sprite_2d.play("run_back")
-		else:
-			animated_sprite_2d.play("run_front")
-	else:
-		# Idle animations based on last direction
-		if abs(last_direction.x) > abs(last_direction.y):
-			animated_sprite_2d.play("idle_side")
-			animated_sprite_2d.flip_h = last_direction.x < 0
-		elif last_direction.y < 0:
-			animated_sprite_2d.play("idle_back")
-		else:
-			animated_sprite_2d.play("idle_front")
+
 
 func handle_jump() -> void:
 	
@@ -218,12 +197,6 @@ func handle_jump() -> void:
 
 func handle_jump_physics(delta: float) -> void:
 	var shadow_pos = player_shadow.global_position + Vector2(0, SHADOW_OFFSET_Y)
-
-	#if layer_switch_manager.is_wall_blocking_jump(shadow_pos):
-		#print("blocked by too-high elevation wall")
-		#player_shadow.position.y += SHADOW_MOVE_STEP # -> shadow moves down
-		#is_falling = true
-		#return
 	
 	if is_jumping or is_falling:
 		z_velocity += GRAVITY * delta
@@ -255,3 +228,8 @@ func handle_jump_physics(delta: float) -> void:
 			global_position.y = landing_y  # Snap to ground
 			player_shadow.position.y = 0   # Reset shadow offset
 			camera.position.y = 0
+
+func recieve_damage(damage_source: CharacterBody2D):
+	knockback_direction = global_position - damage_source.global_position
+	state_machine._on_state_transition(state_machine.current_state, "PlayerStagger")
+	hitstop.freeze_frame(0.08, 0.25)
