@@ -13,9 +13,7 @@ func update(delta: float):
 	if player.is_jumping or player.is_falling:
 		return
 	
-	print("on player move state")
 	if player_direction != Vector2.ZERO:
-		print("animating move")
 		# Running animations based on direction
 		if abs(player_direction.x) > abs(player_direction.y):
 			sprite.play("run_side")

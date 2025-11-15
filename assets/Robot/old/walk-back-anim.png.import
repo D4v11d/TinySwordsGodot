@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ih2vv0cqqchr"
-path="res://.godot/imported/walk-back-anim.png-15527bb8d294750f9751879575435088.ctex"
+path="res://.godot/imported/walk-back-anim.png-84228a4d264436ad9255624727ab5289.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Robot/walk-back-anim.png"
-dest_files=["res://.godot/imported/walk-back-anim.png-15527bb8d294750f9751879575435088.ctex"]
+source_file="res://assets/Robot/old/walk-back-anim.png"
+dest_files=["res://.godot/imported/walk-back-anim.png-84228a4d264436ad9255624727ab5289.ctex"]
 
 [params]
 

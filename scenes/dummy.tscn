@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://cv8ohxpbogrkh"]
+[gd_scene load_steps=27 format=3 uid="uid://cv8ohxpbogrkh"]
 
+[ext_resource type="Script" path="res://scripts/Enemies/dummy.gd" id="1_4d34s"]
 [ext_resource type="Texture2D" uid="uid://sgbkmmnel0ye" path="res://assets/Dummy/Training Dummy Sprite Sheet.png" id="1_a0h0f"]
 [ext_resource type="Shader" uid="uid://qclbbv2g10qa" path="res://shaders/hit_flash.tres" id="1_tf4gv"]
 [ext_resource type="Script" path="res://scripts/Enemies/hurtbox.gd" id="2_qcy4h"]
@@ -168,12 +169,13 @@ radius = 4.0
 height = 20.0
 
 [node name="Dummy" type="StaticBody2D"]
+script = ExtResource("1_4d34s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_yepqy")
 sprite_frames = SubResource("SpriteFrames_r1sml")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -17,7 +17,8 @@ var last_direction := Vector2()
 
 var knockback_direction := Vector2()
 var can_move := true
- 
+var is_invincible := false 
+
 var is_jumping : bool = false:
 	set(value):
 		is_jumping = value
@@ -51,6 +52,9 @@ var current_elevation: int = 0:
 @export var tilemaps: Array[TileMapLayer] = []
 @export var grapple_point: GrapplePoint
 
+@export var player_base_speed: float
+@export var player_speed_while_charging: float
+
 @onready var next_grapple_point: AnimatableBody2D = $""
 @onready var respawn_position: Marker2D = $"../RespawnPosition"
 
@@ -70,6 +74,8 @@ var current_elevation: int = 0:
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var hitstop: Hitstop = $Hitstop
+@onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Offsets for skipping walls when falling & climbing
 # Instead of offsets we should look for the closest floor tile
@@ -84,7 +90,7 @@ func _ready() -> void:
 	camera.position = Vector2()
 	
 	# Game character variables
-	speed = 300.0
+	speed = player_base_speed
 	entity_type = "player"
 	attack_damage = 30
 	health = $Health
@@ -147,6 +153,7 @@ func update_tile():
 			tiledata = map.get_cell_tile_data(map.local_to_map(player_shadow.global_position))
 			if tiledata and tiledata.get_custom_data("is_water"):
 				global_position = respawn_position.global_position
+				recieve_damage(null)
 
 func check_current_floor():
 	if !is_jumping and !is_falling:
@@ -230,6 +237,17 @@ func handle_jump_physics(delta: float) -> void:
 			camera.position.y = 0
 
 func recieve_damage(damage_source: CharacterBody2D):
-	knockback_direction = global_position - damage_source.global_position
+	if damage_source:
+		knockback_direction = global_position - damage_source.global_position
 	state_machine._on_state_transition(state_machine.current_state, "PlayerStagger")
 	hitstop.freeze_frame(0.08, 0.25)
+	
+	# Activate invincibilty frames
+	is_invincible = true
+	animation_player.play("hurt_blink")
+	invincibility_timer.start()
+
+
+func _on_invincibility_timer_timeout() -> void:
+	is_invincible = false
+	animation_player.stop()

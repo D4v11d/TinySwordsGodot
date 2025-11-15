@@ -6,6 +6,9 @@ class_name EnemyDino
 @onready var state_machine: StateMachine = $StateMachine
 @onready var knockback_timer: Timer = $KnockbackTimer
 @onready var hitstop: Hitstop = $Hitstop
+@onready var health: Health = $Health
+
+var immune_to_knockback: bool = false
 
 func _ready():
 	# Connect the signal from the hurtbox
@@ -20,14 +23,16 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_collide(velocity * delta)
 
-func on_damage_received():
-	print("Enemy takes damage!")
-	
+func on_damage_received():	
 	# Manually transition to knockback state when hit
-	state_machine._on_state_transition(state_machine.current_state, "EnemyKnockback")
-	knockback_timer.start()
 	
+	if not immune_to_knockback:
+		state_machine._on_state_transition(state_machine.current_state, "EnemyKnockback")
+		knockback_timer.start()
+		immune_to_knockback = true
+		
+	health.recieve_damage(20)
 
 
 func _on_knockback_timer_timeout() -> void:
-	state_machine._on_state_transition(state_machine.current_state, "EnemyIdle")
+	state_machine._on_state_transition(state_machine.current_state, "EnemyCharge")

@@ -3,7 +3,7 @@ class_name Health extends ProgressBar
 var max_health := 0.0
 var current_health := 0.0
 
-@onready var character: GameCharacter = $".."
+@onready var character: CharacterBody2D = $".."
 
 func _ready() -> void:
 	max_health = max_value
@@ -11,7 +11,6 @@ func _ready() -> void:
 	update_progress_bar()
 	
 func recieve_damage(damage: int) -> void:
-	print("recieved damage")
 	current_health = clamp(current_health - damage, 0, max_health)
 	update_progress_bar()
 	verify_death()

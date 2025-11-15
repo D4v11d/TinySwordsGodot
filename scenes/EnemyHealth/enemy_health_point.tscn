@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://2a8o1jd4h1u5"]
+
+[ext_resource type="Texture2D" uid="uid://byw7t6tpheutu" path="res://assets/Health/EnemyHPPointFull.png" id="1_7fcuf"]
+[ext_resource type="Texture2D" uid="uid://bqw63ngl65qkt" path="res://assets/Health/EnemyHPPointEmpty.png" id="2_ob866"]
+
+[node name="EnemyHealthPoint" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="EnemyHpFull" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 1)
+texture = ExtResource("1_7fcuf")
+centered = false
+
+[node name="EnemyHpEmpty" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(2, 1)
+texture = ExtResource("2_ob866")
+offset = Vector2(1.5, 1.5)

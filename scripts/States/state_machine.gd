@@ -11,7 +11,9 @@ func _ready() -> void:
 		if state is State:
 			states[state.name.to_lower()] = state
 			state.Transitioned.connect(_on_state_transition)
-	
+	call_deferred("_set_initial_state")
+
+func _set_initial_state() -> void:
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ckoyufyci8cv5"]
+[gd_scene load_steps=40 format=3 uid="uid://ckoyufyci8cv5"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
 [ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
@@ -39,6 +39,14 @@ region = Rect2(528, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u1h53"]
 atlas = ExtResource("1_ccebb")
 region = Rect2(552, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb46a"]
+atlas = ExtResource("1_ccebb")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx5fe"]
+atlas = ExtResource("1_ccebb")
+region = Rect2(336, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gs3fy"]
 atlas = ExtResource("1_ccebb")
@@ -130,13 +138,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_sb46a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_bx5fe")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gs3fy")
@@ -215,14 +220,14 @@ height = 10.0
 
 [node name="EnemyDino" type="CharacterBody2D"]
 scale = Vector2(3, 3)
-collision_mask = 0
 script = ExtResource("1_0q518")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qw3q4")
-animation = &"hit"
+animation = &"charge"
 autoplay = "idle"
+frame_progress = 0.0588736
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -263,7 +268,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ChargeTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 2.0
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="."]
