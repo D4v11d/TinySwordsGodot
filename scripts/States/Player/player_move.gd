@@ -24,6 +24,7 @@ func update(delta: float):
 			sprite.play("run_front")
 
 func physics_update(delta: float):
+
 	if player.player_direction == Vector2.ZERO:
 		Transitioned.emit(self, "PlayerIdle")
 	

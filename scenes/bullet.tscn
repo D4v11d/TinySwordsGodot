@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ws2faqxapar3"]
 
-[ext_resource type="Texture2D" uid="uid://d261lu6ga4w8v" path="res://assets/Retro Impact Effect Pack 2 C.png" id="1_abj1t"]
+[ext_resource type="Texture2D" uid="uid://d261lu6ga4w8v" path="res://assets/Other/Retro Impact Effect Pack 2 C.png" id="1_abj1t"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_gy1f5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqv0w"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://vs8jknxcnulq"]
 
 [ext_resource type="Script" path="res://scripts/grapple_point.gd" id="1_fub5o"]
-[ext_resource type="Texture2D" uid="uid://cp2q1e12wbnpv" path="res://assets/flag animation.png" id="1_nop14"]
+[ext_resource type="Texture2D" uid="uid://cp2q1e12wbnpv" path="res://assets/Other/flag animation.png" id="1_nop14"]
 [ext_resource type="Texture2D" uid="uid://d068nf64vx0ke" path="res://assets/UI/02.png" id="3_qri4a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4g1r7"]

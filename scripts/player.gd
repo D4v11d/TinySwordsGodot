@@ -58,9 +58,9 @@ var current_elevation: int = 0:
 @onready var next_grapple_point: AnimatableBody2D = $""
 @onready var respawn_position: Marker2D = $"../RespawnPosition"
 
-#@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-#@onready var animated_sprite_2d: AnimatedSprite2D = $RobotSprite
-@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/TestSprite
+@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/AnimatedSprite2D
+#@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/RobotSprite
+#@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/TestSprite
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_charge_timer: Timer = $AttackChargeTimer
@@ -97,7 +97,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_hooked:
-		# potentially add a hooked animation
+		# potentially add a hooked animation and state
 		return
 		
 	handle_movement(delta)
@@ -175,20 +175,14 @@ func handle_movement(delta: float) -> void:
 	if abs(velocity.x) > 0:
 		attack_area.scale.x = 1 if velocity.x > 0 else -1
 		
-	if not can_move:
-		return
-		
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player_direction = input_direction
-
+	
 	if player_direction != Vector2.ZERO:
 		last_direction = player_direction
 		velocity = input_direction.normalized() * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
-
-	
-
 
 func handle_jump() -> void:
 	
@@ -199,7 +193,8 @@ func handle_jump() -> void:
 	is_jumping = true
 	z_velocity = JUMP_FORCE
 	z_position = 0.0
-	if not melee_attack_manager.is_attacking:
+	
+	if state_machine.current_state is not PlayerAttack:
 		animated_sprite_2d.play("jump")
 
 func handle_jump_physics(delta: float) -> void:
@@ -213,7 +208,7 @@ func handle_jump_physics(delta: float) -> void:
 		if z_velocity >= 0 and not is_falling:
 			# start falling
 			is_falling = true
-			if not melee_attack_manager.is_attacking:
+			if state_machine.current_state is not PlayerAttack:
 				animated_sprite_2d.play("fall")
 			
 

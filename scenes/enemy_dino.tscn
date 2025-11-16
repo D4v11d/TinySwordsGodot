@@ -1,7 +1,7 @@
 [gd_scene load_steps=38 format=3 uid="uid://ckoyufyci8cv5"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
-[ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
+[ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Characters/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
 [ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="2_guxbk"]
 [ext_resource type="Script" path="res://scripts/States/Enemy/enemy_idle.gd" id="3_p2b42"]
 [ext_resource type="Script" path="res://scripts/States/Enemy/enemy_follow.gd" id="5_38b8y"]

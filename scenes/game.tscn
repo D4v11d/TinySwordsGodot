@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cv8ohxpbogrkh" path="res://scenes/dummy.tscn" id="12_bjpus"]
 [ext_resource type="PackedScene" uid="uid://0rap805edowx" path="res://scenes/player_health.tscn" id="12_g8je4"]
 [ext_resource type="PackedScene" uid="uid://ckoyufyci8cv5" path="res://scenes/enemy_dino.tscn" id="13_3anlc"]
-[ext_resource type="Texture2D" uid="uid://cdr7wayalhrbx" path="res://assets/Robot/Unit-0-front.png" id="15_axbmf"]
+[ext_resource type="Texture2D" uid="uid://cdr7wayalhrbx" path="res://assets/Characters/Robot/Unit-0-front.png" id="15_axbmf"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="15_pan3i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhqsk"]

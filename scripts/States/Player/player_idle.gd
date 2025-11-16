@@ -11,7 +11,6 @@ func update(delta: float):
 	var last_direction =  player.last_direction
 	var sprite = player.animated_sprite_2d
 	
-	
 	if player.is_jumping or player.is_falling:
 		return
 		
@@ -24,6 +23,7 @@ func update(delta: float):
 		sprite.play("idle_front")
 
 func physics_update(delta: float):
+	
 	if player.player_direction != Vector2.ZERO:
 		Transitioned.emit(self, "PlayerMove")
 	
