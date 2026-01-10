@@ -1,5 +1,4 @@
 extends Node
-class_name Hitstop
 
 func freeze_frame(time_scale: float, duration: float) -> void:
 	Engine.time_scale = time_scale

@@ -18,8 +18,8 @@ func recieve_damage(damage: int) -> void:
 func update_progress_bar() -> void:
 	value = current_health
 
-
 func verify_death() -> void:
 	if current_health <= 0:
 		CameraPosition.remove_target_lock()
+		TargetManager.unregister_enemy(character)
 		character.queue_free()

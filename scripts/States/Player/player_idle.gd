@@ -7,7 +7,7 @@ func enter():
 	player.velocity = Vector2.ZERO
 	print("idle state entered")
 
-func update(delta: float):
+func update(_delta: float):
 	var last_direction =  player.last_direction
 	var sprite = player.animated_sprite_2d
 	
@@ -22,7 +22,7 @@ func update(delta: float):
 	else:
 		sprite.play("idle_front")
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	
 	if player.player_direction != Vector2.ZERO:
 		Transitioned.emit(self, "PlayerMove")

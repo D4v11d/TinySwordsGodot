@@ -59,8 +59,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func toggle_target():
 	target.visible = !target.visible
 
-func receive_damage(damage: float, knockback_force: Vector2):
-	health.recieve_damage(damage)
+func receive_damage(recieved_damage: float, knockback_force: Vector2):
+	health.recieve_damage(recieved_damage)
 	velocity = knockback_force
 	knockback_timer.start()
 	is_knocked_back = true

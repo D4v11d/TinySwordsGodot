@@ -23,12 +23,12 @@ func update(delta: float):
 	else:
 		randomize_wander()
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if enemy:
 		enemy.velocity = move_direction * move_speed
 	
 	var direction = player.global_position - enemy.global_position
 	
-	if direction.length() < 300:
+	if enemy.should_follow and direction.length() < 2000:
 		Transitioned.emit(self, "EnemyFollow")
 	

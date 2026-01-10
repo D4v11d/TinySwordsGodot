@@ -3,7 +3,7 @@ class_name Player extends GameCharacter
 #Grappling hook:
 var is_hooked: bool = false
 
-# Fake Z-axis jump variables
+# -- Jumping --
 var is_falling := false
 var z_position := 0.0
 var z_velocity := 0.0
@@ -12,13 +12,14 @@ const JUMP_FORCE := -600.0  # initial jump force
 
 var should_collide := false
 
+# -- Movement --
 var player_direction := Vector2()
-var last_direction := Vector2()
+var last_direction := Vector2(0,1)
 
 var knockback_direction := Vector2()
 var can_move := true
-var is_invincible := false 
 
+# -- Jump variables --
 var is_jumping : bool = false:
 	set(value):
 		is_jumping = value
@@ -48,34 +49,40 @@ var current_elevation: int = 0:
 		current_elevation = value
 		%elevation.text = str("Current elevation:" + str(value))
 
-
+# --- Exports ---
+@export var is_invincible := true 
 @export var tilemaps: Array[TileMapLayer] = []
 @export var grapple_point: GrapplePoint
 
 @export var player_base_speed: float
 @export var player_speed_while_charging: float
 
-@onready var next_grapple_point: AnimatableBody2D = $""
+@onready var next_grapple_point: AnimatableBody2D = null
 @onready var respawn_position: Marker2D = $"../RespawnPosition"
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/AnimatedSprite2D
 #@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/RobotSprite
 #@onready var animated_sprite_2d: AnimatedSprite2D = $Sprites/TestSprite
 
-@onready var attack_area: Area2D = $AttackArea
-@onready var attack_charge_timer: Timer = $AttackChargeTimer
+@onready var horizontal_attack_area: Area2D = $Melee/HorizontalAttackArea
+@onready var vertical_attack_area: Area2D = $Melee/VerticalAttackArea
+
 @onready var player_shadow: CharacterBody2D = $PlayerShadow
 
 @onready var camera: Camera2D = $Camera2D
 
 @onready var layer_switch_manager: LayerSwitchManager = $"../LayerSwitchManager"
 
-@onready var melee_attack_manager: MeleeAttack = $MeleeAttack
+@onready var melee_attack_manager: MeleeAttack = $Melee/MeleeAttack
 @onready var state_machine: StateMachine = $StateMachine
 
-@onready var hitstop: Hitstop = $Hitstop
 @onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+@onready var bullet_meter: BulletMeter = $"../CanvasLayer/BoxContainer/BulletMeter"
+@onready var magnet_manager: MagnetManager = $MagnetManager
+
+var current_active_hitbox: Area2D
 
 # Offsets for skipping walls when falling & climbing
 # Instead of offsets we should look for the closest floor tile
@@ -94,6 +101,7 @@ func _ready() -> void:
 	entity_type = "player"
 	attack_damage = 30
 	health = $Health
+	current_active_hitbox = vertical_attack_area
 
 func _physics_process(delta: float) -> void:
 	if is_hooked:
@@ -119,8 +127,8 @@ func _physics_process(delta: float) -> void:
 			player_shadow.position.y -= SHADOW_MOVE_STEP # -> shadow moves up
 		is_falling = true
 
-	if Input.is_action_just_pressed("jump"):
-		handle_jump()
+	# if Input.is_action_just_pressed("jump"): # commented for now
+		# handle_jump() -- commented for now
 
 func update_tile():
 	
@@ -162,27 +170,45 @@ func check_current_floor():
 			
 		current_elevation = height
 
-func handle_water_tile(tiledata):
+func handle_water_tile(_tiledata):
 	CameraPosition.remove_target_lock()
 	global_position = respawn_position.position
 	
 
-func handle_movement(delta: float) -> void:
+func handle_movement(_delta: float) -> void:
 	
 	move_and_slide()
 	
+	if not can_move:
+		return
+	
 	# Handle attack area flipping for side movement
 	if abs(velocity.x) > 0:
-		attack_area.scale.x = 1 if velocity.x > 0 else -1
+		current_active_hitbox = horizontal_attack_area
+		horizontal_attack_area.scale.x = 1 if velocity.x > 0 else -1
+		
+	
+	if abs(velocity.y) > 0:
+		current_active_hitbox = vertical_attack_area
+		if velocity.y > 0:
+			vertical_attack_area.position.y = 50
+		else:
+			vertical_attack_area.position.y = -15
+		
 		
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player_direction = input_direction
+	
+	# sets player_direction before
+	if state_machine.current_state is PlayerAttack:
+		return
 	
 	if player_direction != Vector2.ZERO:
 		last_direction = player_direction
 		velocity = input_direction.normalized() * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
+	
 
 func handle_jump() -> void:
 	
@@ -210,7 +236,6 @@ func handle_jump_physics(delta: float) -> void:
 			is_falling = true
 			if state_machine.current_state is not PlayerAttack:
 				animated_sprite_2d.play("fall")
-			
 
 		# Apply jump vertical offset
 		global_position.y += z_velocity * delta
@@ -232,10 +257,13 @@ func handle_jump_physics(delta: float) -> void:
 			camera.position.y = 0
 
 func recieve_damage(damage_source: CharacterBody2D):
+	if is_invincible:
+		return
+		
 	if damage_source:
 		knockback_direction = global_position - damage_source.global_position
 	state_machine._on_state_transition(state_machine.current_state, "PlayerStagger")
-	hitstop.freeze_frame(0.08, 0.25)
+	Hitstop.freeze_frame(0.08, 0.25)
 	
 	# Activate invincibilty frames
 	is_invincible = true

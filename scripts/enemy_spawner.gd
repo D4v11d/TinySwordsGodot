@@ -6,10 +6,10 @@ extends Node
 @onready var enemy_dino_scene: PackedScene = preload("res://scenes/enemy_dino.tscn")
 @onready var enemies_container: Node2D = $"../Enemies"
 
-
 func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
+	print("enemy spawner ready")
 
 
 func _on_spawn_timer_timeout() -> void:

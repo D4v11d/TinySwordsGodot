@@ -11,3 +11,4 @@ func lock_on_target(target_position: Vector2):
 
 func remove_target_lock():
 	player.camera.global_position = player.camera.global_position.lerp(player.global_position, camera_lerp_speed)
+ 

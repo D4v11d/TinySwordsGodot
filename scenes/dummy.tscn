@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://cv8ohxpbogrkh"]
+[gd_scene load_steps=28 format=3 uid="uid://cv8ohxpbogrkh"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/dummy.gd" id="1_4d34s"]
 [ext_resource type="Texture2D" uid="uid://sgbkmmnel0ye" path="res://assets/Characters/Enemies/Dummy/Training Dummy Sprite Sheet.png" id="1_a0h0f"]
 [ext_resource type="Shader" uid="uid://qclbbv2g10qa" path="res://shaders/hit_flash.tres" id="1_tf4gv"]
 [ext_resource type="Script" path="res://scripts/Enemies/hurtbox.gd" id="2_qcy4h"]
+[ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="5_h12g8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yepqy"]
 shader = ExtResource("1_tf4gv")
@@ -189,3 +190,12 @@ script = ExtResource("2_qcy4h")
 position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_s15fp")
 debug_color = Color(0.826264, 0.350728, 0.493137, 0.42)
+
+[node name="WarpStrikeIndicator" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -17)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_h12g8")
+region_enabled = true
+region_rect = Rect2(305, 33, 13, 14)

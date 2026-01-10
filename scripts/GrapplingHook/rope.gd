@@ -1,6 +1,6 @@
 class_name Rope extends Sprite2D
 
-@onready var player: Player = $"../.."
+@onready var player: Player = $"../../.."
 
 var current_length: float = 0.0
 
@@ -12,7 +12,7 @@ var retract_speed: float = 1600.0
 
 var target_position = Vector2.ZERO
 var target_distance = 0
-var max_length := 0
+var max_length := 0.0
 
 const ROPE_WIDTH = 3
 

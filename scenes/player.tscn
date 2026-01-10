@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=3 uid="uid://bm8rf6dty5bjs"]
+[gd_scene load_steps=220 format=3 uid="uid://bm8rf6dty5bjs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_axm6i"]
 [ext_resource type="Texture2D" uid="uid://4dye1mag2h88" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_up.png" id="3_ed1jx"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bul5nvolrhnoy" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_down.png" id="7_llb7l"]
 [ext_resource type="PackedScene" uid="uid://cb6ybosj7bead" path="res://scenes/rope.tscn" id="7_p3m4f"]
 [ext_resource type="Texture2D" uid="uid://jpj5pk5hs7v3" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_right.png" id="8_21r6j"]
-[ext_resource type="Script" path="res://scripts/shooting_manager.gd" id="8_wxegl"]
+[ext_resource type="Script" path="res://scripts/Player/Shooting/shooting_manager.gd" id="8_wxegl"]
 [ext_resource type="Script" path="res://scripts/aiming_manager.gd" id="9_xppqe"]
 [ext_resource type="Texture2D" uid="uid://b515savot62fp" path="res://assets/Characters/Robot/old/idle-sheet.png" id="10_74380"]
 [ext_resource type="Texture2D" uid="uid://f6bdka0t5fp8" path="res://assets/Characters/Robot/old/walk-side-anim.png" id="11_8woxi"]
@@ -31,18 +31,18 @@
 [ext_resource type="Script" path="res://scripts/melee_attack.gd" id="20_st474"]
 [ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="21_tef7b"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_idle.gd" id="22_bdtpt"]
+[ext_resource type="Texture2D" uid="uid://c61o8g3nm6b24" path="res://assets/Characters/Robot/idle-front-new.png" id="22_d6e3p"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_move.gd" id="23_pi514"]
+[ext_resource type="Texture2D" uid="uid://col5mqrsieuv5" path="res://assets/FX/Impact.png" id="23_xcrjh"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_attack.gd" id="24_ok86q"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_parry.gd" id="25_07tmn"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_stagger.gd" id="25_rrffe"]
-[ext_resource type="Script" path="res://scripts/Effects/hitstop.gd" id="26_17b8v"]
 [ext_resource type="Texture2D" uid="uid://fdmeqabrng0q" path="res://assets/Characters/Robot/circle.png" id="27_0rkln"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e0jo1"]
-
-[sub_resource type="Curve" id="Curve_lgkte"]
-_data = [Vector2(0.014652, 0.951128), 0.0, 0.0, 0, 0, Vector2(0.263736, 0.609023), 0.0, 0.0, 0, 0, Vector2(0.78022, 0.110526), -1.3492, 0.0, 0, 0]
-point_count = 3
+[ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/hit2.wav" id="27_rms8l"]
+[ext_resource type="AudioStream" uid="uid://bbdb3samhfubd" path="res://assets/SFX/swing.wav" id="28_hwqbj"]
+[ext_resource type="Script" path="res://scripts/Player/teleport_manager.gd" id="37_23mjt"]
+[ext_resource type="Script" path="res://scripts/Player/magnet_manager.gd" id="38_fspfn"]
+[ext_resource type="Texture2D" uid="uid://cgu6hy0e15pq" path="res://assets/UI/crosshair_color_c.png" id="40_1hbr5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr38x"]
 atlas = ExtResource("4_d6hqa")
@@ -403,7 +403,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1_back",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -426,7 +426,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1_front",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -449,7 +449,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1_side",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -472,7 +472,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack2_back",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -495,7 +495,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack2_front",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -518,7 +518,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack2_side",
-"speed": 16.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -925,37 +925,45 @@ region = Rect2(0, 0, 16, 32)
 atlas = ExtResource("13_1u8y5")
 region = Rect2(32, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_urlad"]
-atlas = ExtResource("12_c8h62")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1v86m"]
-atlas = ExtResource("12_c8h62")
-region = Rect2(64, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihjjf"]
-atlas = ExtResource("12_c8h62")
-region = Rect2(80, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yhqb6"]
-atlas = ExtResource("12_c8h62")
-region = Rect2(96, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3vew"]
-atlas = ExtResource("12_c8h62")
-region = Rect2(112, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvxox"]
-atlas = ExtResource("12_c8h62")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa0pc"]
+atlas = ExtResource("22_d6e3p")
 region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_00g05"]
-atlas = ExtResource("12_c8h62")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieyqj"]
+atlas = ExtResource("22_d6e3p")
 region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrfpq"]
-atlas = ExtResource("12_c8h62")
+[sub_resource type="AtlasTexture" id="AtlasTexture_02kt5"]
+atlas = ExtResource("22_d6e3p")
 region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l0c0"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxcjw"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xldtn"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jkqx"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hato"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi1k3"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp0gd"]
+atlas = ExtResource("22_d6e3p")
+region = Rect2(144, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iddak"]
 atlas = ExtResource("13_1u8y5")
@@ -1136,28 +1144,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_urlad")
+"texture": SubResource("AtlasTexture_fa0pc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1v86m")
+"texture": SubResource("AtlasTexture_ieyqj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ihjjf")
+"texture": SubResource("AtlasTexture_02kt5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yhqb6")
+"texture": SubResource("AtlasTexture_8l0c0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y3vew")
+"texture": SubResource("AtlasTexture_fxcjw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qvxox")
+"texture": SubResource("AtlasTexture_xldtn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_00g05")
+"texture": SubResource("AtlasTexture_4jkqx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vrfpq")
+"texture": SubResource("AtlasTexture_5hato")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi1k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp0gd")
 }],
 "loop": true,
 "name": &"idle_front",
@@ -1267,15 +1281,77 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_utk1i"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyb4k"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egqw8"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf8g4"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuspa"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a31ox"]
+atlas = ExtResource("23_xcrjh")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g14yx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utk1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyb4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egqw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf8g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuspa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a31ox")
+}],
+"loop": false,
+"name": &"push",
+"speed": 12.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ml1y0"]
 radius = 8.06226
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gw0v"]
-size = Vector2(132, 51)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxqlv"]
 radius = 15.0
 height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gw0v"]
+size = Vector2(79, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gikdr"]
+size = Vector2(107, 67)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_100e3"]
+radius = 47.4342
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e0jo1"]
+
+[sub_resource type="Curve" id="Curve_lgkte"]
+_data = [Vector2(0.014652, 0.951128), 0.0, 0.0, 0, 0, Vector2(0.263736, 0.609023), 0.0, 0.0, 0, 0, Vector2(0.78022, 0.110526), -1.3492, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_3et7m"]
 length = 0.001
@@ -1334,12 +1410,150 @@ _data = {
 "hurt_blink": SubResource("Animation_hiqbc")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
-script = ExtResource("1_axm6i")
-player_base_speed = 230.0
-player_speed_while_charging = 150.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26p7f"]
+size = Vector2(115, 87)
 
-[node name="ChargingParticles" type="CPUParticles2D" parent="."]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_axm6i")
+is_invincible = false
+player_base_speed = 260.0
+player_speed_while_charging = 175.0
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-1, -25)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_igasq")
+animation = &"idle_front"
+autoplay = "idle_front"
+
+[node name="RobotSprite" type="AnimatedSprite2D" parent="Sprites"]
+visible = false
+texture_filter = 1
+position = Vector2(-2, -35)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_egd4d")
+animation = &"idle_left"
+autoplay = "idle"
+
+[node name="TestSprite" type="AnimatedSprite2D" parent="Sprites"]
+visible = false
+texture_filter = 1
+position = Vector2(-1, -13)
+scale = Vector2(3.25, 3.25)
+sprite_frames = SubResource("SpriteFrames_jg5b6")
+animation = &"idle_front"
+autoplay = "idle_front"
+frame_progress = 0.973276
+
+[node name="Effects" type="AnimatedSprite2D" parent="Sprites"]
+texture_filter = 1
+position = Vector2(45, -18)
+rotation = 1.57086
+scale = Vector2(1.31002, 1.22325)
+sprite_frames = SubResource("SpriteFrames_g14yx")
+animation = &"push"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_ml1y0")
+
+[node name="Health" parent="." instance=ExtResource("3_pcddi")]
+visible = false
+offset_left = -33.0
+offset_top = -100.0
+offset_right = 29.0
+offset_bottom = -88.0
+max_value = 500.0
+value = 100.0
+
+[node name="PlayerShadow" parent="." instance=ExtResource("5_3fc1v")]
+position = Vector2(-2, 11)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-2, -7)
+shape = SubResource("CapsuleShape2D_qxqlv")
+
+[node name="Melee" type="Node2D" parent="."]
+
+[node name="HorizontalAttackArea" type="Area2D" parent="Melee"]
+position = Vector2(2, -28)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/HorizontalAttackArea"]
+position = Vector2(44.5, 7)
+shape = SubResource("RectangleShape2D_2gw0v")
+debug_color = Color(0.914006, 0.268884, 0.296006, 0.42)
+
+[node name="VerticalAttackArea" type="Area2D" parent="Melee"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/VerticalAttackArea"]
+position = Vector2(-5.5, -37.5)
+shape = SubResource("RectangleShape2D_gikdr")
+debug_color = Color(0.709534, 0.478916, 0.23942, 0.42)
+
+[node name="Timers" type="Node2D" parent="Melee"]
+
+[node name="MeleeAttack" type="Node2D" parent="Melee"]
+script = ExtResource("20_st474")
+
+[node name="Parry" type="Node2D" parent="Melee"]
+
+[node name="ParryArea" type="Area2D" parent="Melee/Parry"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee/Parry/ParryArea"]
+position = Vector2(4, -29)
+shape = SubResource("CircleShape2D_100e3")
+debug_color = Color(0.732112, 0.37248, 0.74607, 0.42)
+
+[node name="ParryTimer" type="Timer" parent="Melee/Parry"]
+wait_time = 0.2
+one_shot = true
+
+[node name="EnemyHitAudioPlayer" type="AudioStreamPlayer2D" parent="Melee"]
+stream = ExtResource("27_rms8l")
+
+[node name="SwordSwingAudioPlayer" type="AudioStreamPlayer2D" parent="Melee"]
+stream = ExtResource("28_hwqbj")
+
+[node name="ShootingManager" type="Node2D" parent="."]
+script = ExtResource("8_wxegl")
+
+[node name="Crosshair" type="Sprite2D" parent="ShootingManager"]
+texture_filter = 1
+position = Vector2(789, 439)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("40_1hbr5")
+
+[node name="Timers" type="Node2D" parent="ShootingManager"]
+
+[node name="DestroyTimer" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 3.0
+
+[node name="StartCharging" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Charging" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.75
+one_shot = true
+
+[node name="ShootingFrequency" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.12
+one_shot = true
+
+[node name="ChargingParticles" type="CPUParticles2D" parent="ShootingManager"]
 z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_e0jo1")
@@ -1359,89 +1573,8 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_lgkte")
 color = Color(0, 0, 0, 1)
 
-[node name="Sprites" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
-texture_filter = 1
-position = Vector2(-1, -25)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_igasq")
-animation = &"attack2_back"
-autoplay = "idle_front"
-
-[node name="RobotSprite" type="AnimatedSprite2D" parent="Sprites"]
-visible = false
-texture_filter = 1
-position = Vector2(-2, -35)
-scale = Vector2(3.5, 3.5)
-sprite_frames = SubResource("SpriteFrames_egd4d")
-animation = &"idle_left"
-autoplay = "idle"
-
-[node name="TestSprite" type="AnimatedSprite2D" parent="Sprites"]
-visible = false
-texture_filter = 1
-position = Vector2(-1, -13)
-scale = Vector2(3.25, 3.25)
-sprite_frames = SubResource("SpriteFrames_jg5b6")
-animation = &"attack1"
-autoplay = "idle_front"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_ml1y0")
-
-[node name="AttackChargeTimer" type="Timer" parent="."]
-
-[node name="Health" parent="." instance=ExtResource("3_pcddi")]
-visible = false
-offset_left = -33.0
-offset_top = -100.0
-offset_right = 29.0
-offset_bottom = -88.0
-max_value = 500.0
-value = 100.0
-
-[node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(2, -28)
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(32, 12.5)
-shape = SubResource("RectangleShape2D_2gw0v")
-debug_color = Color(0.914006, 0.268884, 0.296006, 0.42)
-
-[node name="PlayerShadow" parent="." instance=ExtResource("5_3fc1v")]
-visible = false
-position = Vector2(0, 6)
-
-[node name="RopePivot" type="Node2D" parent="."]
-script = ExtResource("5_cl87l")
-
-[node name="Rope" parent="RopePivot" instance=ExtResource("7_p3m4f")]
-
-[node name="RopeManager" type="Node2D" parent="."]
-script = ExtResource("7_dcrsq")
-
-[node name="ShootingManager" type="Node2D" parent="."]
-script = ExtResource("8_wxegl")
-
 [node name="EnemyAimingManager" type="Node2D" parent="."]
 script = ExtResource("9_xppqe")
-
-[node name="MeleeAttack" type="Node2D" parent="."]
-script = ExtResource("20_st474")
-
-[node name="SecondAttackWindow" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
-
-[node name="DestroyTimer" type="Timer" parent="."]
-wait_time = 3.0
-
-[node name="StaggerTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("21_tef7b")
@@ -1456,32 +1589,29 @@ script = ExtResource("23_pi514")
 [node name="PlayerAttack" type="Node" parent="StateMachine"]
 script = ExtResource("24_ok86q")
 
+[node name="Timers" type="Node2D" parent="StateMachine/PlayerAttack"]
+
+[node name="SecondAttackWindow" type="Timer" parent="StateMachine/PlayerAttack/Timers"]
+wait_time = 0.4
+one_shot = true
+
+[node name="AttackMovementTimer" type="Timer" parent="StateMachine/PlayerAttack/Timers"]
+wait_time = 0.05
+one_shot = true
+
 [node name="PlayerStagger" type="Node" parent="StateMachine"]
 script = ExtResource("25_rrffe")
+
+[node name="StaggerTimer" type="Timer" parent="StateMachine/PlayerStagger"]
+wait_time = 0.2
+one_shot = true
 
 [node name="PlayerParry" type="Node" parent="StateMachine"]
 script = ExtResource("25_07tmn")
 
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-2, -11)
-shape = SubResource("CapsuleShape2D_qxqlv")
-
-[node name="Hitstop" type="Node" parent="."]
-script = ExtResource("26_17b8v")
-
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="InvincibilityTimer" type="Timer" parent="Timers"]
-one_shot = true
-
-[node name="StartCharging" type="Timer" parent="Timers"]
-wait_time = 0.2
-one_shot = true
-
-[node name="Charging" type="Timer" parent="Timers"]
-wait_time = 0.75
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1489,10 +1619,41 @@ libraries = {
 "": SubResource("AnimationLibrary_23n6o")
 }
 
-[connection signal="area_entered" from="AttackArea" to="StateMachine/PlayerAttack" method="_on_attack_area_area_entered"]
-[connection signal="area_exited" from="AttackArea" to="StateMachine/PlayerAttack" method="_on_attack_area_area_exited"]
-[connection signal="timeout" from="SecondAttackWindow" to="StateMachine/PlayerAttack" method="_on_second_attack_window_timeout"]
-[connection signal="timeout" from="StaggerTimer" to="StateMachine/PlayerStagger" method="_on_stagger_timer_timeout"]
+[node name="TeleportManager" type="Node2D" parent="."]
+script = ExtResource("37_23mjt")
+
+[node name="MagnetManager" type="Node2D" parent="."]
+script = ExtResource("38_fspfn")
+
+[node name="PushArea" type="Area2D" parent="MagnetManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetManager/PushArea"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_26p7f")
+debug_color = Color(0.690196, 0.890196, 0.129412, 0.356863)
+
+[node name="GrapplingHook" type="Node2D" parent="."]
+visible = false
+
+[node name="RopePivot" type="Node2D" parent="GrapplingHook"]
+script = ExtResource("5_cl87l")
+
+[node name="Rope" parent="GrapplingHook/RopePivot" instance=ExtResource("7_p3m4f")]
+
+[node name="RopeManager" type="Node2D" parent="GrapplingHook"]
+script = ExtResource("7_dcrsq")
+
+[connection signal="area_entered" from="Melee/HorizontalAttackArea" to="StateMachine/PlayerAttack" method="_on_horizontal_attack_area_area_entered"]
+[connection signal="area_entered" from="Melee/VerticalAttackArea" to="StateMachine/PlayerAttack" method="_on_vertical_attack_area_area_entered"]
+[connection signal="area_entered" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_entered"]
+[connection signal="area_exited" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_exited"]
+[connection signal="timeout" from="Melee/Parry/ParryTimer" to="Melee/MeleeAttack" method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/StartCharging" to="ShootingManager" method="_on_start_charging_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/Charging" to="ShootingManager" method="_on_charging_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/ShootingFrequency" to="ShootingManager" method="_on_shooting_frequency_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerAttack/Timers/SecondAttackWindow" to="StateMachine/PlayerAttack" method="_on_second_attack_window_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerAttack/Timers/AttackMovementTimer" to="StateMachine/PlayerAttack" method="_on_attack_movement_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerStagger/StaggerTimer" to="StateMachine/PlayerStagger" method="_on_stagger_timer_timeout"]
 [connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
-[connection signal="timeout" from="Timers/StartCharging" to="ShootingManager" method="_on_start_charging_timeout"]
-[connection signal="timeout" from="Timers/Charging" to="ShootingManager" method="_on_charging_timeout"]
+[connection signal="area_entered" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_entered"]
+[connection signal="area_exited" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_exited"]

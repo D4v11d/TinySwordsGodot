@@ -6,7 +6,7 @@ class_name PlayerMove
 func enter():
 	pass
 
-func update(delta: float):
+func update(_delta: float):
 	var player_direction =  player.player_direction
 	var sprite = player.animated_sprite_2d
 	
@@ -18,17 +18,21 @@ func update(delta: float):
 		if abs(player_direction.x) > abs(player_direction.y):
 			sprite.play("run_side")
 			sprite.flip_h = player_direction.x < 0
+
+			if player_direction.x < 0:
+				player.magnet_manager.change_area_positions("left")
+			else:
+				player.magnet_manager.change_area_positions("right")
+
 		elif player_direction.y < 0:
 			sprite.play("run_back")
+			player.magnet_manager.change_area_positions("top")
+
 		else:
 			sprite.play("run_front")
+			player.magnet_manager.change_area_positions("down")
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 
 	if player.player_direction == Vector2.ZERO:
 		Transitioned.emit(self, "PlayerIdle")
-	
-
-
-func _on_test_sprite_animation_finished() -> void:
-	pass # Replace with function body.

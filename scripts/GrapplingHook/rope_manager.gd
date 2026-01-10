@@ -1,7 +1,7 @@
 class_name RopeManager extends Node2D
 
-@onready var player: Player = $".."
 @onready var rope: Rope = $"../RopePivot/Rope"
+@onready var player: Player = $"../.."
 
 # Handles player movement when hooked
 func _physics_process(delta: float) -> void:

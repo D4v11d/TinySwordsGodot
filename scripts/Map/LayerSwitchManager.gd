@@ -12,10 +12,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func get_elevation_at_position(pos: Vector2) -> void:	
+func get_elevation_at_position(_pos: Vector2) -> void:	
 	if player.height >= 2:
 		elevation_1.disable_layer_collisions()
 		elevation_2.disable_layer_collisions()

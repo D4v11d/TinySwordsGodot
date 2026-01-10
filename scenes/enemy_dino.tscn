@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://ckoyufyci8cv5"]
+[gd_scene load_steps=46 format=3 uid="uid://ckoyufyci8cv5"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
 [ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Characters/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
 [ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="2_guxbk"]
+[ext_resource type="Shader" uid="uid://qclbbv2g10qa" path="res://shaders/hit_flash.tres" id="2_v512t"]
 [ext_resource type="Script" path="res://scripts/States/Enemy/enemy_idle.gd" id="3_p2b42"]
 [ext_resource type="Script" path="res://scripts/States/Enemy/enemy_follow.gd" id="5_38b8y"]
 [ext_resource type="Script" path="res://scripts/States/Enemy/enemy_knockback.gd" id="6_b3xtx"]
@@ -11,6 +12,14 @@
 [ext_resource type="Script" path="res://scripts/Enemies/enemy_hitbox.gd" id="8_2gind"]
 [ext_resource type="Script" path="res://scripts/Effects/hitstop.gd" id="9_c78xm"]
 [ext_resource type="PackedScene" uid="uid://yfsfw562cn1s" path="res://scenes/shared_components/health_bar.tscn" id="10_jwwg1"]
+[ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="12_i6xh3"]
+[ext_resource type="Texture2D" uid="uid://cwak2kurm4qmj" path="res://assets/UI/ArrowUP.png" id="13_pt122"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p107t"]
+resource_local_to_scene = true
+shader = ExtResource("2_v512t")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxm4y"]
 atlas = ExtResource("1_ccebb")
@@ -40,11 +49,15 @@ region = Rect2(528, 0, 24, 24)
 atlas = ExtResource("1_ccebb")
 region = Rect2(552, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gs3fy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j780u"]
 atlas = ExtResource("1_ccebb")
-region = Rect2(360, 0, 24, 24)
+region = Rect2(312, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d6lot"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sp2j"]
+atlas = ExtResource("1_ccebb")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heogm"]
 atlas = ExtResource("1_ccebb")
 region = Rect2(384, 0, 24, 24)
 
@@ -130,19 +143,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_j780u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_2sp2j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_2sp2j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gs3fy")
+"texture": SubResource("AtlasTexture_heogm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d6lot")
+"texture": SubResource("AtlasTexture_heogm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heogm")
 }],
 "loop": false,
 "name": &"hit",
@@ -213,16 +229,57 @@ radius = 9.05539
 radius = 5.0
 height = 10.0
 
-[node name="EnemyDino" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_yb1u5"]
+resource_name = "flash"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_v8kyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixqv5"]
+_data = {
+"RESET": SubResource("Animation_v8kyc"),
+"flash": SubResource("Animation_yb1u5")
+}
+
+[node name="EnemyDino" type="CharacterBody2D" groups=["enemies"]]
+y_sort_enabled = true
 scale = Vector2(3, 3)
-collision_mask = 0
 script = ExtResource("1_0q518")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
+material = SubResource("ShaderMaterial_p107t")
 sprite_frames = SubResource("SpriteFrames_qw3q4")
 animation = &"hit"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -240,11 +297,11 @@ move_speed = 25.0
 [node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_38b8y")
 enemy = NodePath("../..")
+move_speed = 130.0
 
 [node name="EnemyKnockback" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_b3xtx")
 enemy = NodePath("../..")
-knockback_speed = 250.0
 
 [node name="EnemyCharge" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_v6aoy")
@@ -267,6 +324,7 @@ wait_time = 0.6
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="."]
+monitoring = false
 script = ExtResource("8_2gind")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox"]
@@ -283,7 +341,39 @@ offset_top = -15.0
 offset_right = 13.0
 offset_bottom = -11.0
 
-[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
+[node name="ChargeFrequency" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="ParryStaggerTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WarpStrikeIndicator" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(1.33333, -15.3333)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_i6xh3")
+region_enabled = true
+region_rect = Rect2(305, 33, 13, 14)
+
+[node name="Target" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.85098, 0, 0.192157, 1)
+texture_filter = 1
+position = Vector2(0, -12)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("13_pt122")
+flip_v = true
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ixqv5")
+}
+
+[connection signal="timeout" from="KnockbackTimer" to="StateMachine/EnemyKnockback" method="_on_knockback_timer_timeout"]
 [connection signal="timeout" from="ChargeTimer" to="StateMachine/EnemyCharge" method="_on_charge_timer_timeout"]
 [connection signal="body_entered" from="ContactHitbox" to="ContactHitbox" method="_on_body_entered"]
 [connection signal="body_exited" from="ContactHitbox" to="ContactHitbox" method="_on_body_exited"]
+[connection signal="timeout" from="ChargeFrequency" to="StateMachine/EnemyFollow" method="_on_charge_frequency_timeout"]
+[connection signal="timeout" from="ParryStaggerTimer" to="." method="_on_parry_stagger_timer_timeout"]

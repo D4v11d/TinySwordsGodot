@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://by45eeove0f6b"]
+
+[ext_resource type="Script" path="res://scripts/PlayerHUD/bullet_point.gd" id="1_46pt4"]
+[ext_resource type="Texture2D" uid="uid://btdybvpm4r6fd" path="res://assets/UI/UIv2-Sheet.png" id="1_m4hmh"]
+
+[node name="BulletPoint" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_46pt4")
+
+[node name="FullBulletSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_m4hmh")
+region_enabled = true
+region_rect = Rect2(93, 112, 5, 10)
+
+[node name="EmptyBulletSprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("1_m4hmh")
+region_enabled = true
+region_rect = Rect2(93, 349, 5, 10)

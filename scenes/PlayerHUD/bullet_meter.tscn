@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cav3e0qx2vkso"]
+
+[ext_resource type="PackedScene" uid="uid://by45eeove0f6b" path="res://scenes/PlayerHUD/bullet_point.tscn" id="1_p3tlh"]
+[ext_resource type="Script" path="res://scripts/PlayerHUD/bullet_meter.gd" id="1_vhr8d"]
+
+[node name="BulletMeter" type="Node2D" node_paths=PackedStringArray("bullet_points")]
+script = ExtResource("1_vhr8d")
+bullet_points = [NodePath("BulletPoint"), NodePath("BulletPoint2"), NodePath("BulletPoint3"), NodePath("BulletPoint4"), NodePath("BulletPoint5")]
+
+[node name="BulletPoint" parent="." instance=ExtResource("1_p3tlh")]
+
+[node name="BulletPoint2" parent="." instance=ExtResource("1_p3tlh")]
+position = Vector2(6, 0)
+
+[node name="BulletPoint3" parent="." instance=ExtResource("1_p3tlh")]
+position = Vector2(12, 0)
+
+[node name="BulletPoint4" parent="." instance=ExtResource("1_p3tlh")]
+position = Vector2(18, 0)
+
+[node name="BulletPoint5" parent="." instance=ExtResource("1_p3tlh")]
+position = Vector2(24, 0)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://v71j4ehmglmu"]
+
+[ext_resource type="Texture2D" uid="uid://cntv4w5vkqlkk" path="res://assets/UI/bars/bar_shadow_square_large.png" id="1_16ult"]
+[ext_resource type="Texture2D" uid="uid://k8g6oloac6cw" path="res://assets/UI/bars/bar_square_gloss_large.png" id="2_1ye48"]
+[ext_resource type="Script" path="res://scripts/PlayerHUD/magnet_meter.gd" id="3_gho2g"]
+
+[node name="MagnetMeter" type="TextureProgressBar"]
+texture_filter = 1
+offset_left = 7.0
+offset_top = 82.0
+offset_right = 154.0
+offset_bottom = 103.0
+value = 55.0
+nine_patch_stretch = true
+stretch_margin_left = 25
+stretch_margin_right = 25
+texture_under = ExtResource("1_16ult")
+texture_progress = ExtResource("2_1ye48")
+script = ExtResource("3_gho2g")
