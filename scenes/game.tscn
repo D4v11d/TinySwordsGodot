@@ -802,13 +802,8 @@ tile_set = SubResource("TileSet_cv36t")
 tile_map_data = PackedByteArray("AACO/woAAQAGAAcAAACP/woAAQAGAAIAAACQ/woAAQAHAAIAAACE/woAAQAFAAIAAACF/woAAQAGAAIAAACG/woAAQAGAAcAAACH/woAAQAHAAIAAACI/woAAQAGAAIAAACM/woAAQAFAAIAAACN/woAAQAGAAIAAACO/wkAAQAGAAYAAACP/wkAAQAGAAEAAACQ/wkAAQAHAAEAAACM/wkAAQAFAAEAAACN/wkAAQAGAAEAAACE/wkAAQAFAAEAAACF/wkAAQAGAAEAAACG/wkAAQAGAAYAAACH/wkAAQAGAAEAAACI/wkAAQAHAAEAAACR/wkAAQAIAAEAAACR/woAAQAIAAIAAACR/wsAAQAIAAIAAACR/wwAAQAIAAMAAACR/w0AAQAIAAIAAACR/w4AAQAIAAIAAACR/w8AAQAIAAIAAACR/xAAAQAIAAIAAACD/xEAAQAEAAMAAACD/wkAAQAEAAEAAACD/woAAQAEAAIAAACD/wsAAQAEAAMAAACD/wwAAQAEAAIAAACD/w0AAQAEAAMAAACD/w4AAQAEAAIAAACD/w8AAQAEAAMAAACD/xAAAQAEAAIAAACD/xIAAQAEAAIAAACD/xMAAQAEAAMAAACD/xUAAQAEAAQAAACD/xQAAQAEAAMAAACE/xUAAQAFAAQAAACF/xUAAQAGAAQAAACG/xUAAQAHAAQAAACI/xUAAQAGAAQAAACJ/xUAAQAHAAQAAACK/xUAAQAHAAQAAACH/xUAAQAFAAQAAACL/xUAAQAFAAQAAACM/xUAAQAGAAQAAACN/xUAAQAHAAQAAACO/xUAAQAFAAQAAACP/xUAAQAGAAQAAACQ/xUAAQAHAAQAAACR/xUAAQAIAAQAAACR/xIAAQAIAAIAAACR/xMAAQAIAAIAAACR/xQAAQAIAAIAAACR/xEAAQAIAAIAAAA=")
 tile_set = SubResource("TileSet_jbnim")
 
-[node name="Dummy" parent="." instance=ExtResource("12_bjpus")]
-y_sort_enabled = true
-position = Vector2(-365, -237)
-scale = Vector2(2.5, 2.5)
-
 [node name="Player" parent="." node_paths=PackedStringArray("tilemaps") instance=ExtResource("1_emstv")]
-position = Vector2(-4751, -1212)
+position = Vector2(-332, -78)
 tilemaps = [NodePath("../Map/Elevation0/Water"), NodePath("../Map/Elevation0/Tilemap"), NodePath("../Map/Elevation1/Tilemap"), NodePath("../Map/Elevation2/Tilemap")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -912,14 +907,10 @@ position = Vector2(-662, -242)
 is_invincible = true
 should_follow = true
 
-[node name="EnemyDino2" parent="Enemies" instance=ExtResource("13_3anlc")]
-position = Vector2(-470, 81)
-
-[node name="EnemyDino3" parent="Enemies" instance=ExtResource("13_3anlc")]
-position = Vector2(193, 92)
-
-[node name="EnemyDino4" parent="Enemies" instance=ExtResource("13_3anlc")]
-position = Vector2(198, -305)
+[node name="Dummy" parent="Enemies" instance=ExtResource("12_bjpus")]
+y_sort_enabled = true
+position = Vector2(4154, 883)
+scale = Vector2(2.5, 2.5)
 
 [node name="Unit-0-front" type="Sprite2D" parent="."]
 visible = false

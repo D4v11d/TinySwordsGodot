@@ -173,42 +173,59 @@ func check_current_floor():
 func handle_water_tile(_tiledata):
 	CameraPosition.remove_target_lock()
 	global_position = respawn_position.position
-	
 
-func handle_movement(_delta: float) -> void:
-	
+func handle_movement(delta: float) -> void:
 	move_and_slide()
-	
+
 	if not can_move:
 		return
-	
-	# Handle attack area flipping for side movement
-	if abs(velocity.x) > 0:
-		current_active_hitbox = horizontal_attack_area
-		horizontal_attack_area.scale.x = 1 if velocity.x > 0 else -1
-		
-	
-	if abs(velocity.y) > 0:
-		current_active_hitbox = vertical_attack_area
-		if velocity.y > 0:
-			vertical_attack_area.position.y = 50
-		else:
-			vertical_attack_area.position.y = -15
-		
-		
-	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	player_direction = input_direction
-	
-	# sets player_direction before
+
+	update_attack_hitbox_orientation()
+	update_input_direction()
+
 	if state_machine.current_state is PlayerAttack:
 		return
+
+	apply_movement(delta)
+
+func update_attack_hitbox_orientation() -> void:
+	update_horizontal_attack_area()
+	update_vertical_attack_area()
+
+func update_horizontal_attack_area() -> void:
+	if abs(velocity.x) == 0:
+		return
+
+	current_active_hitbox = horizontal_attack_area
+	horizontal_attack_area.scale.x = 1 if velocity.x > 0 else -1
+
+func update_vertical_attack_area() -> void:
+	if abs(velocity.y) == 0:
+		return
+
+	current_active_hitbox = vertical_attack_area
+	vertical_attack_area.position.y = 50 if velocity.y > 0 else -15
+
+func update_input_direction() -> void:
+	var input_direction := Input.get_vector(
+		"move_left",
+		"move_right",
+		"move_up",
+		"move_down"
+	)
+
+	player_direction = input_direction
+
+	if input_direction != Vector2.ZERO:
+		last_direction = input_direction
+
+func apply_movement(delta) -> void:
+	var friction = 2750
 	
 	if player_direction != Vector2.ZERO:
-		last_direction = player_direction
-		velocity = input_direction.normalized() * speed
+		velocity = player_direction.normalized() * speed
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, speed)
-	
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 func handle_jump() -> void:
 	
@@ -259,7 +276,7 @@ func handle_jump_physics(delta: float) -> void:
 func recieve_damage(damage_source: CharacterBody2D):
 	if is_invincible:
 		return
-		
+		 
 	if damage_source:
 		knockback_direction = global_position - damage_source.global_position
 	state_machine._on_state_transition(state_machine.current_state, "PlayerStagger")
@@ -268,6 +285,7 @@ func recieve_damage(damage_source: CharacterBody2D):
 	# Activate invincibilty frames
 	is_invincible = true
 	animation_player.play("hurt_blink")
+	ScreenShake.screen_shake(8, 0.3)
 	invincibility_timer.start()
 
 

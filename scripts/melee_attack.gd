@@ -5,6 +5,7 @@ class_name MeleeAttack extends Node2D
 # Parry
 @onready var parry_area: Area2D = $"../Parry/ParryArea"
 @onready var parry_timer: Timer = $"../Parry/ParryTimer"
+@onready var parry_sound: AudioStreamPlayer2D = $"../Parry/ParrySound"
 
 # Pending: set a cooldown after combo finish to attack again
 var is_attack_ready := true
@@ -27,7 +28,6 @@ func _physics_process(_delta: float) -> void:
 		handleActivateParry()
 	
 	if is_parry_activated and enemy_in_area:
-		ScreenShake.screen_shake(4, 0.25)
 		enemy_in_area.handle_parry_stagger()
 	
 

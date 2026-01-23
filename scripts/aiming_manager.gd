@@ -48,8 +48,8 @@ func handle_auto_unlock() -> void:
 	if dist_sq > UNLOCK_TARGET_MAX_DISTANCE * UNLOCK_TARGET_MAX_DISTANCE:
 		remove_target()
 
-func get_closest_enemy(exclude: EnemyDino = null) -> EnemyDino:
-	var closest: EnemyDino = null
+func get_closest_enemy(exclude: CharacterBody2D = null) -> CharacterBody2D:
+	var closest: CharacterBody2D = null
 	var min_distance := INF
 	var player_pos := player.global_position
 	var max_dist_sq := SWITCH_TARGET_MAX_DISTANCE * SWITCH_TARGET_MAX_DISTANCE
@@ -68,7 +68,7 @@ func get_closest_enemy(exclude: EnemyDino = null) -> EnemyDino:
 
 	return closest
 
-func apply_target(new_target: EnemyDino) -> void:
+func apply_target(new_target: CharacterBody2D) -> void:
 	if TargetManager.current_target:
 		TargetManager.current_target.toggle_target()
 

@@ -19,7 +19,8 @@ func _physics_process(_delta: float) -> void:
 		on_hit()
 
 		for enemy in enemies_touching:
-			enemy.recieve_damage()
+			var push_force = 50.0
+			enemy.recieve_damage(push_force)
 			
 			# makes sure to hit only once
 			enemies_touching.erase(enemy)

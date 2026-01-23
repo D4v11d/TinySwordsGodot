@@ -41,7 +41,7 @@ func hit_something(enemy) -> void:
 func on_enemy_hit(enemy):
 	var knockback_direction = (enemy.position - self.global_position).normalized()
 	var knockback_force = knockback_direction * knockback_power
-	enemy.recieve_damage() #knockback_force
+	enemy.recieve_damage(50) #knockback_force
 
 # process ends when bullet stops exploding.
 func _on_animated_sprite_2d_animation_finished() -> void:

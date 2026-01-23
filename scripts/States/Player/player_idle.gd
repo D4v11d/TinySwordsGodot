@@ -3,10 +3,6 @@ class_name PlayerIdle
 
 @onready var player: Player = $"../.."
 
-func enter():
-	player.velocity = Vector2.ZERO
-	print("idle state entered")
-
 func update(_delta: float):
 	var last_direction =  player.last_direction
 	var sprite = player.animated_sprite_2d

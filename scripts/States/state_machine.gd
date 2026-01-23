@@ -1,7 +1,8 @@
-extends Node
+extends Node2D
 class_name StateMachine
 
 var current_state: State
+var last_state: State
 var states: Dictionary = {}
 
 @export var initial_state : State
@@ -27,6 +28,7 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 func _on_state_transition(state: State, new_state_name: String):
+	
 	if state != current_state:
 		return
 	
@@ -39,3 +41,4 @@ func _on_state_transition(state: State, new_state_name: String):
 	
 	new_state.enter()
 	current_state = new_state
+	last_state = state

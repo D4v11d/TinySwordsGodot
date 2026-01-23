@@ -7,8 +7,8 @@ signal push_received
 
 @export var id: int
 
-func recieve_damage():
-	damage_received.emit()
+func recieve_damage(push_force: float):
+	damage_received.emit(push_force)
 
 func handle_parry_stagger():
 	parry_stagger.emit()
