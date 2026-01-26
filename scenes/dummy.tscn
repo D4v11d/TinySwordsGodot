@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cv8ohxpbogrkh"]
+[gd_scene load_steps=31 format=3 uid="uid://cv8ohxpbogrkh"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/dummy.gd" id="1_4d34s"]
 [ext_resource type="Texture2D" uid="uid://sgbkmmnel0ye" path="res://assets/Characters/Enemies/Dummy/Training Dummy Sprite Sheet.png" id="1_a0h0f"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/Enemies/hurtbox.gd" id="2_qcy4h"]
 [ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="5_h12g8"]
 [ext_resource type="Texture2D" uid="uid://cwak2kurm4qmj" path="res://assets/UI/ArrowUP.png" id="6_1el4l"]
+[ext_resource type="Script" path="res://scripts/Effects/enemy_target_animation.gd" id="7_g5vwi"]
+[ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/melee/hit2.wav" id="7_vo7v0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yepqy"]
 shader = ExtResource("1_tf4gv")
@@ -204,11 +206,19 @@ region_rect = Rect2(305, 33, 13, 14)
 [node name="Target" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.85098, 0, 0.192157, 1)
+z_index = 1
 texture_filter = 1
 position = Vector2(0, -15)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("6_1el4l")
 flip_v = true
+script = ExtResource("7_g5vwi")
+levitation_height = 2.5
+levitation_duration = 1.0
 
 [node name="DamageNumbersPosition" type="Node2D" parent="."]
 position = Vector2(-1, -19)
+
+[node name="EnemyHitAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vo7v0")
+volume_db = 10.0

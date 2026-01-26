@@ -16,7 +16,6 @@ var current_attack_phase = AttackPhase.NONE
 #Timers
 @onready var attack_movement_timer: Timer = $Timers/AttackMovementTimer
 @onready var second_attack_window: Timer = $Timers/SecondAttackWindow #Input buffer
-@onready var enemy_hit_audio: AudioStreamPlayer2D = $"../../Melee/EnemyHitAudioPlayer"
 @onready var sword_swing_audio: AudioStreamPlayer2D = $"../../Melee/SwordSwingAudioPlayer"
 @onready var sword_swing_heavy_audio: AudioStreamPlayer2D = $"../../Melee/SwordSwingHeavy"
 
@@ -92,7 +91,7 @@ func handle_attack(animation: String):
 		sword_swing_heavy_audio.play()
 		move_distance = 600
 	else:
-		play_random_sound_pitch(sword_swing_audio)
+		RandomizePitch.play(sword_swing_audio)
 		move_distance = 500
 		
 	player.velocity = target_direction.normalized() * move_distance
@@ -195,16 +194,9 @@ func on_hitbox_area_entered(enemy: Area2D) -> void:
 		
 		enemy.recieve_damage(attack_push_force)
 		player.bullet_meter.win_bullet()
-
-		play_random_sound_pitch(enemy_hit_audio)
 	
 	if enemy is Breakable:
 		enemy.on_hit()
-
-func play_random_sound_pitch(audio_player: AudioStreamPlayer2D):
-	var pitches := [0.9, 1.0, 1.1]
-	audio_player.pitch_scale = pitches.pick_random()
-	audio_player.play()
 
 func exit_state():
 	Transitioned.emit(self, "PlayerIdle")
@@ -217,3 +209,6 @@ func _on_vertical_attack_area_area_entered(area: Area2D) -> void:
 
 func _on_horizontal_attack_area_area_entered(area: Area2D) -> void:
 	on_hitbox_area_entered(area)
+
+func can_shoot() -> bool:
+	return false

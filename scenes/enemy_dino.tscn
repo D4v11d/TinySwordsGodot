@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ckoyufyci8cv5"]
+[gd_scene load_steps=66 format=3 uid="uid://ckoyufyci8cv5"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
 [ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Characters/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
@@ -17,8 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="12_i6xh3"]
 [ext_resource type="Texture2D" uid="uid://cwak2kurm4qmj" path="res://assets/UI/ArrowUP.png" id="13_pt122"]
 [ext_resource type="Texture2D" uid="uid://dyou5f1uy5hhy" path="res://assets/FX/ImpactMedium1.png" id="15_7mwqu"]
-[ext_resource type="AudioStream" uid="uid://bs33ylaxnq6i8" path="res://assets/SFX/snd_ShieldHit_v2.wav" id="16_evhrq"]
+[ext_resource type="AudioStream" uid="uid://bs33ylaxnq6i8" path="res://assets/SFX/melee/snd_ShieldHit_v2.wav" id="16_evhrq"]
 [ext_resource type="Texture2D" uid="uid://fbwd3r3oqr35" path="res://assets/FX/stun-animation.png" id="17_hupej"]
+[ext_resource type="Script" path="res://scripts/Effects/enemy_target_animation.gd" id="17_ppm41"]
+[ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/melee/hit2.wav" id="20_5ehnm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p107t"]
 resource_local_to_scene = true
@@ -408,9 +410,8 @@ y_sort_enabled = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_p107t")
 sprite_frames = SubResource("SpriteFrames_qw3q4")
-animation = &"charging"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.745822
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -473,11 +474,11 @@ shape = SubResource("CapsuleShape2D_uwtrq")
 script = ExtResource("9_c78xm")
 
 [node name="Health" parent="." instance=ExtResource("10_jwwg1")]
-texture_filter = 1
-offset_left = -12.0
-offset_top = -15.0
-offset_right = 13.0
+offset_left = -8.33333
+offset_top = -14.0
+offset_right = 7.66667
 offset_bottom = -11.0
+scale = Vector2(1.2, 1.2)
 
 [node name="ChargeFrequency" type="Timer" parent="."]
 wait_time = 3.0
@@ -489,7 +490,7 @@ one_shot = true
 [node name="WarpStrikeIndicator" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
-position = Vector2(1.33333, -15.3333)
+position = Vector2(0.666667, -19)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("12_i6xh3")
 region_enabled = true
@@ -499,10 +500,13 @@ region_rect = Rect2(305, 33, 13, 14)
 visible = false
 modulate = Color(0.85098, 0, 0.192157, 1)
 texture_filter = 1
-position = Vector2(0, -12)
+position = Vector2(0.333333, -17.3333)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("13_pt122")
 flip_v = true
+script = ExtResource("17_ppm41")
+levitation_height = 2.5
+levitation_duration = 1.0
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -531,9 +535,13 @@ texture_filter = 1
 position = Vector2(2.33333, -14)
 sprite_frames = SubResource("SpriteFrames_1jgai")
 animation = &"stun"
-frame_progress = 0.239675
+frame_progress = 0.298787
 
 [node name="WaitBeforeChargeTimer" type="Timer" parent="."]
+
+[node name="EnemyHitAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_5ehnm")
+volume_db = 10.0
 
 [connection signal="timeout" from="KnockbackTimer" to="StateMachine/EnemyKnockback" method="_on_knockback_timer_timeout"]
 [connection signal="timeout" from="ChargeTimer" to="StateMachine/EnemyCharge" method="_on_charge_timer_timeout"]

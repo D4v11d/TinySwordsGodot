@@ -53,9 +53,9 @@ var current_elevation: int = 0:
 @export var is_invincible := true 
 @export var tilemaps: Array[TileMapLayer] = []
 @export var grapple_point: GrapplePoint
-
 @export var player_base_speed: float
 @export var player_speed_while_charging: float
+@export var infinite_bullets := false
 
 @onready var next_grapple_point: AnimatableBody2D = null
 @onready var respawn_position: Marker2D = $"../RespawnPosition"
@@ -216,8 +216,8 @@ func update_input_direction() -> void:
 
 	player_direction = input_direction
 
-	if input_direction != Vector2.ZERO:
-		last_direction = input_direction
+	if player_direction != Vector2.ZERO:
+		last_direction = player_direction
 
 func apply_movement(delta) -> void:
 	var friction = 2750

@@ -2,10 +2,11 @@ class_name Bullet extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var explode_area: Area2D = $ExplodeArea
+@onready var destroy_timer: Timer = $DestroyTimer
 
 var is_moving := false
 var direction = Vector2.ZERO
-var speed := 800
+var speed := 1000
 var damage := 20
 
 var is_charged := false
@@ -19,6 +20,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 
 func shoot(target_position: Vector2):
+	destroy_timer.start()
 	direction = (target_position - global_position).normalized()
 	is_moving = true
 

@@ -17,9 +17,12 @@ func _ready():
 	pass
 
 func _physics_process(_delta: float) -> void:
-	var current_state = state_machine.current_state
+	var current_state := state_machine.current_state
+	if current_state == null:
+		return
 	
-	var can_enter_attack = current_state is not PlayerAttack and current_state is not PlayerStagger
+	var can_enter_attack = current_state.can_attack()
+	
 	# enters attack state for the first time
 	if can_enter_attack and Input.is_action_just_pressed("attack") and is_attack_ready:
 		state_machine._on_state_transition(state_machine.current_state, "PlayerAttack")

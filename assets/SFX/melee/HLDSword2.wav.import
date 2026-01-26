@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://qclbx5x65vvc"
-path="res://.godot/imported/HLDSword2.wav-d57014a26e9b38f66543f40ab38b69dc.sample"
+path="res://.godot/imported/HLDSword2.wav-2a7f85ec455b6f3576d380ac91fba4c7.sample"
 
 [deps]
 
-source_file="res://assets/SFX/HLDSword2.wav"
-dest_files=["res://.godot/imported/HLDSword2.wav-d57014a26e9b38f66543f40ab38b69dc.sample"]
+source_file="res://assets/SFX/melee/HLDSword2.wav"
+dest_files=["res://.godot/imported/HLDSword2.wav-2a7f85ec455b6f3576d380ac91fba4c7.sample"]
 
 [params]
 

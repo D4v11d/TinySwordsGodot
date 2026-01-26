@@ -803,8 +803,9 @@ tile_map_data = PackedByteArray("AACO/woAAQAGAAcAAACP/woAAQAGAAIAAACQ/woAAQAHAAI
 tile_set = SubResource("TileSet_jbnim")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tilemaps") instance=ExtResource("1_emstv")]
-position = Vector2(-332, -78)
+position = Vector2(-4706, -1101)
 tilemaps = [NodePath("../Map/Elevation0/Water"), NodePath("../Map/Elevation0/Tilemap"), NodePath("../Map/Elevation1/Tilemap"), NodePath("../Map/Elevation2/Tilemap")]
+infinite_bullets = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-20, -15)
@@ -850,10 +851,11 @@ offset_right = 282.0
 offset_bottom = 150.0
 
 [node name="BulletMeter" parent="CanvasLayer/BoxContainer" instance=ExtResource("13_tfe3k")]
-position = Vector2(21, 42)
-scale = Vector2(5, 5)
+position = Vector2(36, 57)
+scale = Vector2(6, 6)
 
 [node name="MagnetMeter" parent="CanvasLayer" instance=ExtResource("13_m85j5")]
+visible = false
 
 [node name="LayerSwitchManager" type="Node2D" parent="."]
 script = ExtResource("6_lpd67")
@@ -904,7 +906,6 @@ position = Vector2(-4519, -1120)
 
 [node name="EnemyDino" parent="Enemies" instance=ExtResource("13_3anlc")]
 position = Vector2(-662, -242)
-is_invincible = true
 should_follow = true
 
 [node name="Dummy" parent="Enemies" instance=ExtResource("12_bjpus")]

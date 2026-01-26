@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://yfsfw562cn1s"]
+[gd_scene load_steps=4 format=3 uid="uid://yfsfw562cn1s"]
 
 [ext_resource type="Script" path="res://scripts/Common/health_bar.gd" id="1_3aonx"]
+[ext_resource type="Texture2D" uid="uid://d3d3incayrn7n" path="res://assets/FX/enemy-health-bar.png" id="1_hn4bh"]
+[ext_resource type="Texture2D" uid="uid://brfcogoqi4xj4" path="res://assets/FX/enemy-health-bar-progress.png" id="2_v37q0"]
 
-[node name="Health" type="ProgressBar"]
-modulate = Color(0, 0.94902, 0, 1)
-offset_right = 52.0
-offset_bottom = 7.0
+[node name="Health" type="TextureProgressBar"]
+texture_filter = 1
+offset_right = 16.0
+offset_bottom = 3.0
 value = 50.0
-show_percentage = false
+texture_under = ExtResource("1_hn4bh")
+texture_progress = ExtResource("2_v37q0")
 script = ExtResource("1_3aonx")

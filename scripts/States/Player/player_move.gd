@@ -36,3 +36,9 @@ func physics_update(_delta: float):
 
 	if player.player_direction == Vector2.ZERO:
 		Transitioned.emit(self, "PlayerIdle")
+
+func can_attack() -> bool:
+	return true
+
+func can_shoot() -> bool:
+	return true

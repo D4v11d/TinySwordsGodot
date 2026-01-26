@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://bm8rf6dty5bjs"]
+[gd_scene load_steps=221 format=3 uid="uid://bm8rf6dty5bjs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_axm6i"]
 [ext_resource type="Texture2D" uid="uid://4dye1mag2h88" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_up.png" id="3_ed1jx"]
@@ -37,18 +37,13 @@
 [ext_resource type="Script" path="res://scripts/States/Player/player_attack.gd" id="24_ok86q"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_stagger.gd" id="25_rrffe"]
 [ext_resource type="Texture2D" uid="uid://fdmeqabrng0q" path="res://assets/Characters/Robot/circle.png" id="27_0rkln"]
-[ext_resource type="AudioStream" uid="uid://ccyx0q7wwso27" path="res://assets/SFX/melee/cut.wav" id="27_7ww4y"]
-[ext_resource type="AudioStream" uid="uid://bd5b7t33w0ji" path="res://assets/SFX/melee/HLDSword1.wav" id="28_cvrkp"]
-[ext_resource type="AudioStream" uid="uid://dqtceko73ib3w" path="res://assets/SFX/shoot/snd_DiamondsChangeDirection.wav" id="33_5du46"]
-[ext_resource type="AudioStream" uid="uid://w6dkgrkti10l" path="res://assets/SFX/shoot/snd_ZeliskaFire2.wav" id="33_tcdu6"]
-[ext_resource type="AudioStream" uid="uid://tk108xfy0rwb" path="res://assets/SFX/shoot/laser-charging.wav" id="34_1aror"]
-[ext_resource type="PackedScene" uid="uid://ct5reg7vm3qir" path="res://scenes/PlayerHUD/shooting_bar.tscn" id="35_2wdpw"]
-[ext_resource type="AudioStream" uid="uid://dh2wi6eulhbq7" path="res://assets/SFX/shoot/snd_GenericError.wav" id="35_lq6mr"]
+[ext_resource type="AudioStream" uid="uid://ccyx0q7wwso27" path="res://assets/SFX/cut.wav" id="27_7ww4y"]
+[ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/hit2.wav" id="27_rms8l"]
+[ext_resource type="AudioStream" uid="uid://bd5b7t33w0ji" path="res://assets/SFX/HLDSword1.wav" id="28_cvrkp"]
+[ext_resource type="AudioStream" uid="uid://w6dkgrkti10l" path="res://assets/SFX/snd_ZeliskaFire2.wav" id="33_tcdu6"]
 [ext_resource type="Script" path="res://scripts/Player/teleport_manager.gd" id="37_23mjt"]
 [ext_resource type="Script" path="res://scripts/Player/magnet_manager.gd" id="38_fspfn"]
 [ext_resource type="Texture2D" uid="uid://cgu6hy0e15pq" path="res://assets/UI/crosshair_color_c.png" id="40_1hbr5"]
-[ext_resource type="Script" path="res://scripts/States/Player/player_shoot.gd" id="42_xr3rj"]
-[ext_resource type="Script" path="res://scripts/States/Player/player_shoot_recoil.gd" id="43_08oqh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr38x"]
 atlas = ExtResource("4_d6hqa")
@@ -1496,7 +1491,6 @@ script = ExtResource("1_axm6i")
 is_invincible = false
 player_base_speed = 275.0
 player_speed_while_charging = 175.0
-infinite_bullets = true
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -1529,7 +1523,6 @@ autoplay = "idle_front"
 frame_progress = 0.973276
 
 [node name="Effects" type="AnimatedSprite2D" parent="Sprites"]
-visible = false
 texture_filter = 1
 position = Vector2(45, -18)
 rotation = 1.57086
@@ -1599,7 +1592,11 @@ debug_color = Color(0.732112, 0.37248, 0.74607, 0.42)
 wait_time = 0.2
 one_shot = true
 
-[node name="ParrySound" type="AudioStreamPlayer2D" parent="Melee/Parry"]
+[node name="Parry" type="AudioStreamPlayer2D" parent="Melee/Parry"]
+
+[node name="EnemyHitAudioPlayer" type="AudioStreamPlayer2D" parent="Melee"]
+stream = ExtResource("27_rms8l")
+volume_db = 10.0
 
 [node name="SwordSwingAudioPlayer" type="AudioStreamPlayer2D" parent="Melee"]
 stream = ExtResource("27_7ww4y")
@@ -1609,6 +1606,7 @@ stream = ExtResource("28_cvrkp")
 
 [node name="ShootingManager" type="Node2D" parent="."]
 script = ExtResource("8_wxegl")
+infinite_bullets = true
 
 [node name="Crosshair" type="Sprite2D" parent="ShootingManager"]
 visible = false
@@ -1616,6 +1614,23 @@ texture_filter = 1
 position = Vector2(789, 439)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("40_1hbr5")
+
+[node name="Timers" type="Node2D" parent="ShootingManager"]
+
+[node name="DestroyTimer" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 3.0
+
+[node name="StartCharging" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Charging" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ShootingFrequency" type="Timer" parent="ShootingManager/Timers"]
+wait_time = 0.12
+one_shot = true
 
 [node name="ChargingParticles" type="CPUParticles2D" parent="ShootingManager"]
 z_index = 1
@@ -1639,26 +1654,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="ShootingManager"]
 stream = ExtResource("33_tcdu6")
-
-[node name="ShootReadySound" type="AudioStreamPlayer2D" parent="ShootingManager"]
-stream = ExtResource("33_5du46")
-volume_db = 6.0
-
-[node name="ShootChargingSound" type="AudioStreamPlayer2D" parent="ShootingManager"]
-stream = ExtResource("34_1aror")
-volume_db = -5.0
-pitch_scale = 1.45
-
-[node name="NoBulletsSound" type="AudioStreamPlayer2D" parent="ShootingManager"]
-stream = ExtResource("35_lq6mr")
-
-[node name="ShootingBar" parent="ShootingManager" instance=ExtResource("35_2wdpw")]
-visible = false
-offset_left = 19.0
-offset_top = -38.0
-offset_right = 24.0
-offset_bottom = -20.0
-scale = Vector2(1.75, 2.3)
 
 [node name="EnemyAimingManager" type="Node2D" parent="."]
 script = ExtResource("9_xppqe")
@@ -1691,16 +1686,6 @@ script = ExtResource("25_rrffe")
 
 [node name="StaggerTimer" type="Timer" parent="StateMachine/PlayerStagger"]
 wait_time = 0.2
-one_shot = true
-
-[node name="PlayerShoot" type="Node2D" parent="StateMachine"]
-script = ExtResource("42_xr3rj")
-
-[node name="PlayerShootRecoil" type="Node2D" parent="StateMachine"]
-script = ExtResource("43_08oqh")
-
-[node name="ShootRecoilTimer" type="Timer" parent="StateMachine/PlayerShootRecoil"]
-wait_time = 0.15
 one_shot = true
 
 [node name="Timers" type="Node2D" parent="."]
@@ -1743,10 +1728,12 @@ script = ExtResource("7_dcrsq")
 [connection signal="area_entered" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_entered"]
 [connection signal="area_exited" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_exited"]
 [connection signal="timeout" from="Melee/Parry/ParryTimer" to="Melee/MeleeAttack" method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/StartCharging" to="ShootingManager" method="_on_start_charging_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/Charging" to="ShootingManager" method="_on_charging_timeout"]
+[connection signal="timeout" from="ShootingManager/Timers/ShootingFrequency" to="ShootingManager" method="_on_shooting_frequency_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerAttack/Timers/SecondAttackWindow" to="StateMachine/PlayerAttack" method="_on_second_attack_window_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerAttack/Timers/AttackMovementTimer" to="StateMachine/PlayerAttack" method="_on_attack_movement_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerStagger/StaggerTimer" to="StateMachine/PlayerStagger" method="_on_stagger_timer_timeout"]
-[connection signal="timeout" from="StateMachine/PlayerShootRecoil/ShootRecoilTimer" to="StateMachine/PlayerShootRecoil" method="_on_shoot_recoil_timer_timeout"]
 [connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="area_entered" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_entered"]
 [connection signal="area_exited" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_exited"]

@@ -14,6 +14,7 @@ class_name EnemyDino
 @onready var target: Sprite2D = $Target
 @onready var flash_animation: AnimationPlayer = $FlashAnimation
 @onready var parry_sound: AudioStreamPlayer2D = $ParrySound
+@onready var enemy_hit_audio_player: AudioStreamPlayer2D = $EnemyHitAudioPlayer
 
 @export var is_invincible := false
 @export var should_follow := false
@@ -56,6 +57,7 @@ func on_damage_received(player_push_force: float):
 	if not is_invincible:
 		#DamageNumbers.display_text("20", health.global_position)
 		health.recieve_damage(20)
+		RandomizePitch.play(enemy_hit_audio_player)
 
 func on_parry_stagger():
 	# can only parry if enemy is charging

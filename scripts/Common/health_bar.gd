@@ -1,4 +1,4 @@
-class_name Health extends ProgressBar
+class_name Health extends TextureProgressBar
 
 var max_health := 0.0
 var current_health := 0.0

@@ -22,6 +22,7 @@ DamageNumbers="*res://scripts/Autoload/damage_numbers_display.gd"
 Hitstop="*res://scripts/Effects/hitstop.gd"
 TargetManager="*res://scripts/Autoload/TargetManager.gd"
 ScreenShake="*res://scripts/Autoload/screen_shake.gd"
+RandomizePitch="*res://scripts/Autoload/randomize_pitch.gd"
 
 [global_group]
 

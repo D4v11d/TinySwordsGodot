@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct5reg7vm3qir"]
+
+[ext_resource type="Texture2D" uid="uid://dogp2pxvwalpr" path="res://assets/FX/progress-bar-shoot-background.png" id="1_0dhde"]
+[ext_resource type="Texture2D" uid="uid://uski3k84y5g4" path="res://assets/FX/progress-bar-shoot-full.png" id="2_gbbec"]
+
+[node name="ShootingBar" type="TextureProgressBar"]
+texture_filter = 1
+offset_right = 3.0
+offset_bottom = 16.0
+scale = Vector2(1.72, 1.96)
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("1_0dhde")
+texture_progress = ExtResource("2_gbbec")

@@ -14,3 +14,10 @@ func update(delta: float):
 
 func physics_update(delta: float):
 	pass
+
+# States cannot transition to Attack or Shoot by default
+func can_attack() -> bool:
+	return false
+ 
+func can_shoot() -> bool:
+	return false

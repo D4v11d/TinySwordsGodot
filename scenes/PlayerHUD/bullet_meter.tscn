@@ -6,6 +6,8 @@
 [node name="BulletMeter" type="Node2D" node_paths=PackedStringArray("bullet_points")]
 script = ExtResource("1_vhr8d")
 bullet_points = [NodePath("BulletPoint"), NodePath("BulletPoint2"), NodePath("BulletPoint3"), NodePath("BulletPoint4"), NodePath("BulletPoint5")]
+shake_distance = 8.0
+shake_duration = 0.15
 
 [node name="BulletPoint" parent="." instance=ExtResource("1_p3tlh")]
 

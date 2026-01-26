@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bjwxlqtrt48xk"
-path="res://.godot/imported/snd_CritStrike.wav-e5556bd5ad8987530ca5cc26e271a49c.sample"
+path="res://.godot/imported/snd_CritStrike.wav-5bab46950082d70ddfc0831dc4a9d520.sample"
 
 [deps]
 
-source_file="res://assets/SFX/snd_CritStrike.wav"
-dest_files=["res://.godot/imported/snd_CritStrike.wav-e5556bd5ad8987530ca5cc26e271a49c.sample"]
+source_file="res://assets/SFX/melee/snd_CritStrike.wav"
+dest_files=["res://.godot/imported/snd_CritStrike.wav-5bab46950082d70ddfc0831dc4a9d520.sample"]
 
 [params]
 
