@@ -27,6 +27,7 @@ enum AttackPhase {
 }
 
 var target_direction
+var attack_damage = 20
 
 func _ready():
 	sprite.connect("frame_changed", self.on_frame_changed)
@@ -56,18 +57,31 @@ func start_next_attack():
 			current_attack_phase = AttackPhase.NONE
 
 func start_attack1():
+	attack_damage = 20
 	current_attack_phase = AttackPhase.ATTACK1
 	ignore_input_this_frame = true
 	handle_attack("attack1")
 
 func set_attack_direction():
+	# Target always has priority
 	if TargetManager.current_target:
-		target_direction = (TargetManager.current_target.collider.global_position - player.global_position)
+		target_direction = (
+			TargetManager.current_target.collider.global_position
+			- player.global_position
+		)
 		player.last_direction = target_direction
+		return
+
+	# No target
+	if JoystickDetector.using_controller:
+		target_direction = player.last_direction
+		if target_direction == Vector2.ZERO:
+			target_direction = Vector2.DOWN
 	else:
 		target_direction = get_global_mouse_position() - player.global_position
 
 func start_attack2():
+	attack_damage = 20
 	current_attack_phase = AttackPhase.ATTACK2
 	next_attack_queued = false
 	combo_window_open = false
@@ -75,6 +89,7 @@ func start_attack2():
 	
 
 func start_attack3():
+	attack_damage = 30
 	current_attack_phase = AttackPhase.ATTACK3
 	next_attack_queued = false
 	combo_window_open = false
@@ -192,8 +207,8 @@ func on_hitbox_area_entered(enemy: Area2D) -> void:
 			
 		ScreenShake.screen_shake(shake_intensity, 0.5)
 		
-		enemy.recieve_damage(attack_push_force)
-		player.bullet_meter.win_bullet()
+		enemy.recieve_damage(attack_push_force, attack_damage)
+		player.bullet_meter.win_point()
 	
 	if enemy is Breakable:
 		enemy.on_hit()

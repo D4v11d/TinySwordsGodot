@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://mxwypmotc072"]
+
+[ext_resource type="Texture2D" uid="uid://cgji52s280367" path="res://assets/UI/controls/PC/mouse-move.png" id="1_oh2gm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0ymp"]
+atlas = ExtResource("1_oh2gm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3grm"]
+atlas = ExtResource("1_oh2gm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir1rf"]
+atlas = ExtResource("1_oh2gm")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtk1w"]
+atlas = ExtResource("1_oh2gm")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lubpe"]
+atlas = ExtResource("1_oh2gm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w68sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3grm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir1rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtk1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0ymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lubpe")
+}],
+"loop": true,
+"name": &"mouse_animation",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="ButtonAnimation" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_w68sv")
+animation = &"mouse_animation"

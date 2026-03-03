@@ -1,19 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://by45eeove0f6b"]
+[gd_scene load_steps=5 format=3 uid="uid://by45eeove0f6b"]
 
-[ext_resource type="Script" path="res://scripts/PlayerHUD/bullet_point.gd" id="1_46pt4"]
-[ext_resource type="Texture2D" uid="uid://btdybvpm4r6fd" path="res://assets/UI/UIv2-Sheet.png" id="1_m4hmh"]
+[ext_resource type="Texture2D" uid="uid://btdybvpm4r6fd" path="res://assets/UI/bars/UIv2-Sheet.png" id="1_m4hmh"]
+[ext_resource type="Script" path="res://scripts/PlayerHUD/resource_point.gd" id="1_xg0mh"]
 
-[node name="BulletPoint" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvbtt"]
+atlas = ExtResource("1_m4hmh")
+region = Rect2(92, 270, 7, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gpvlh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvbtt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ResourcePoint" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_46pt4")
+script = ExtResource("1_xg0mh")
 
-[node name="FullBulletSprite" type="Sprite2D" parent="."]
+[node name="FullSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_m4hmh")
-region_enabled = true
-region_rect = Rect2(93, 112, 5, 10)
+sprite_frames = SubResource("SpriteFrames_gpvlh")
+autoplay = "default"
 
-[node name="EmptyBulletSprite" type="Sprite2D" parent="."]
+[node name="EmptySprite" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 texture = ExtResource("1_m4hmh")

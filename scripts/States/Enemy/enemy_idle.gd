@@ -27,6 +27,9 @@ func physics_update(_delta: float):
 	if enemy:
 		enemy.velocity = move_direction * move_speed
 	
+	if not is_instance_valid(player):
+		return
+	
 	var direction = player.global_position - enemy.global_position
 	
 	if enemy.should_follow and direction.length() < 2000:

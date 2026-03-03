@@ -16,7 +16,7 @@ func on_grapple_from_area_body_entered(body: Node2D):
 		body.grapple_point = self
 		#if body.current_elevation == height
 		grapple_cursor.visible = true
-		CameraPosition.lock_on_target(global_position)
+		CameraPosition.lock_on_target()
 
 func on_grapple_from_area_body_exited(body: Node2D):
 	if body is Player:

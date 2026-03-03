@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var player: Player = $".."
 
-const SWITCH_TARGET_MAX_DISTANCE := 500.0
+const SWITCH_TARGET_MAX_DISTANCE := 800.0
 const UNLOCK_TARGET_MAX_DISTANCE := 650.0
 
 func _physics_process(_delta: float) -> void:
@@ -74,7 +74,7 @@ func apply_target(new_target: CharacterBody2D) -> void:
 
 	new_target.toggle_target()
 	TargetManager.current_target = new_target
-	CameraPosition.lock_on_target(new_target.global_position)
+	CameraPosition.lock_on_target()
 
 func remove_target() -> void:
 	if not TargetManager.current_target:

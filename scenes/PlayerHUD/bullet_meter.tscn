@@ -1,24 +1,25 @@
 [gd_scene load_steps=3 format=3 uid="uid://cav3e0qx2vkso"]
 
 [ext_resource type="PackedScene" uid="uid://by45eeove0f6b" path="res://scenes/PlayerHUD/bullet_point.tscn" id="1_p3tlh"]
-[ext_resource type="Script" path="res://scripts/PlayerHUD/bullet_meter.gd" id="1_vhr8d"]
+[ext_resource type="Script" path="res://scripts/PlayerHUD/resource_meter.gd" id="1_vhr8d"]
 
-[node name="BulletMeter" type="Node2D" node_paths=PackedStringArray("bullet_points")]
+[node name="BulletMeter" type="Node2D" node_paths=PackedStringArray("resource_points")]
 script = ExtResource("1_vhr8d")
-bullet_points = [NodePath("BulletPoint"), NodePath("BulletPoint2"), NodePath("BulletPoint3"), NodePath("BulletPoint4"), NodePath("BulletPoint5")]
+resource_points = [NodePath("BulletPoint"), NodePath("BulletPoint2"), NodePath("BulletPoint3"), NodePath("BulletPoint4"), NodePath("BulletPoint5")]
 shake_distance = 8.0
 shake_duration = 0.15
 
 [node name="BulletPoint" parent="." instance=ExtResource("1_p3tlh")]
+position = Vector2(1, 0)
 
 [node name="BulletPoint2" parent="." instance=ExtResource("1_p3tlh")]
-position = Vector2(6, 0)
+position = Vector2(7, 0)
 
 [node name="BulletPoint3" parent="." instance=ExtResource("1_p3tlh")]
-position = Vector2(12, 0)
+position = Vector2(13, 0)
 
 [node name="BulletPoint4" parent="." instance=ExtResource("1_p3tlh")]
-position = Vector2(18, 0)
+position = Vector2(19, 0)
 
 [node name="BulletPoint5" parent="." instance=ExtResource("1_p3tlh")]
-position = Vector2(24, 0)
+position = Vector2(25, 0)

@@ -5,7 +5,6 @@ class_name EnemyKnockback
 @onready var hitstop: Hitstop = $"../../Hitstop"
 @onready var knockback_timer: Timer = $"../../KnockbackTimer"
 @onready var flash_animation: AnimationPlayer = $"../../FlashAnimation"
-@onready var vfx_animation: AnimatedSprite2D = $"../../VFXAnimation"
 @onready var state_machine: StateMachine = $".."
 
 var player: CharacterBody2D
@@ -18,7 +17,6 @@ func enter():
 	enemy.sprite.stop()
 	enemy.sprite.play("hit")
 	flash_animation.play("flash")
-	play_impact_animation()
 	is_slowing_down = false
 
 func physics_update(_delta: float) -> void:
@@ -58,11 +56,3 @@ func stop_knockback():
 
 func _on_knockback_timer_timeout() -> void:
 	is_slowing_down = true
-
-func play_impact_animation():
-	vfx_animation.stop()
-	vfx_animation.visible = true
-	vfx_animation.play("impact")
-
-func _on_vfx_animation_animation_finished() -> void:
-	vfx_animation.visible = false

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ch2gqle3fbx"]
+
+[ext_resource type="Script" path="res://scripts/PlayerHUD/resource_meter.gd" id="1_a2xgl"]
+[ext_resource type="PackedScene" uid="uid://cy22jul5g4ggj" path="res://scenes/PlayerHUD/health_point.tscn" id="2_45jmp"]
+
+[node name="PlayerHealth" type="Node2D" node_paths=PackedStringArray("resource_points")]
+script = ExtResource("1_a2xgl")
+resource_points = [NodePath("HealthPoint"), NodePath("HealthPoint2"), NodePath("HealthPoint3"), NodePath("HealthPoint4")]
+resource_number = 4
+
+[node name="HealthPoint" parent="." instance=ExtResource("2_45jmp")]
+
+[node name="HealthPoint2" parent="." instance=ExtResource("2_45jmp")]
+position = Vector2(7, 0)
+
+[node name="HealthPoint3" parent="." instance=ExtResource("2_45jmp")]
+position = Vector2(14, 0)
+
+[node name="HealthPoint4" parent="." instance=ExtResource("2_45jmp")]
+position = Vector2(21, 0)

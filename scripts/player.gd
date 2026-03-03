@@ -69,7 +69,7 @@ var current_elevation: int = 0:
 
 @onready var player_shadow: CharacterBody2D = $PlayerShadow
 
-@onready var camera: Camera2D = $Camera2D
+@onready var camera: Camera2D = $"../Camera2D"
 
 @onready var layer_switch_manager: LayerSwitchManager = $"../LayerSwitchManager"
 
@@ -79,8 +79,13 @@ var current_elevation: int = 0:
 @onready var invincibility_timer: Timer = $Timers/InvincibilityTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var bullet_meter: BulletMeter = $"../CanvasLayer/BoxContainer/BulletMeter"
+@onready var bullet_meter: ResourceMeter = $"../CanvasLayer/PlayerHUDContainer/BulletMeter"
+@onready var player_health: ResourceMeter = $"../CanvasLayer/PlayerHUDContainer/PlayerHealth"
+
 @onready var magnet_manager: MagnetManager = $MagnetManager
+@onready var received_damage_sound: AudioStreamPlayer2D = $ReceivedDamageSound
+
+@onready var player_death: PlayerDeath = $StateMachine/PlayerDeath
 
 var current_active_hitbox: Area2D
 
@@ -92,9 +97,11 @@ const MAX_Z_POSITION = 0
 const SHADOW_OFFSET_Y := 25
 const SHADOW_MOVE_STEP := 12
 
+signal show_death_menu()
+
 func _ready() -> void:
 	
-	camera.position = Vector2()
+	# camera.position = Vector2()
 	
 	# Game character variables
 	speed = player_base_speed
@@ -102,6 +109,9 @@ func _ready() -> void:
 	attack_damage = 30
 	health = $Health
 	current_active_hitbox = vertical_attack_area
+	
+	player_health.connect("health_is_zero", handle_player_death)
+	player_death.connect("player_death", handle_show_death_menu)
 
 func _physics_process(delta: float) -> void:
 	if is_hooked:
@@ -118,14 +128,14 @@ func _physics_process(delta: float) -> void:
 	layer_switch_manager.get_elevation_at_position(shadow_border_position)
 	
 
-	if(layer_switch_manager.is_currently_over_wall(shadow_border_position)):
-		# falling
-		if last_direction == Vector2.DOWN:
-			player_shadow.position.y += SHADOW_MOVE_STEP # -> shadow moves down
-		# climbing
-		else: #includes vertical movement
-			player_shadow.position.y -= SHADOW_MOVE_STEP # -> shadow moves up
-		is_falling = true
+	#if(layer_switch_manager.is_currently_over_wall(shadow_border_position)):
+		## falling
+		#if last_direction == Vector2.DOWN:
+			#player_shadow.position.y += SHADOW_MOVE_STEP # -> shadow moves down
+		## climbing
+		#else: #includes vertical movement
+			#player_shadow.position.y -= SHADOW_MOVE_STEP # -> shadow moves up
+		#is_falling = true
 
 	# if Input.is_action_just_pressed("jump"): # commented for now
 		# handle_jump() -- commented for now
@@ -161,7 +171,7 @@ func update_tile():
 			tiledata = map.get_cell_tile_data(map.local_to_map(player_shadow.global_position))
 			if tiledata and tiledata.get_custom_data("is_water"):
 				global_position = respawn_position.global_position
-				recieve_damage(null)
+				receive_damage(null)
 
 func check_current_floor():
 	if !is_jumping and !is_falling:
@@ -273,22 +283,44 @@ func handle_jump_physics(delta: float) -> void:
 			player_shadow.position.y = 0   # Reset shadow offset
 			camera.position.y = 0
 
-func recieve_damage(damage_source: CharacterBody2D):
+func receive_damage(damage_source: CharacterBody2D):
+	
 	if is_invincible:
 		return
 		 
 	if damage_source:
 		knockback_direction = global_position - damage_source.global_position
+		ScreenShake.screen_shake(8, 0.3)
+		player_health.lose_point()
+		Hitstop.freeze_frame(0.08, 0.25)
+		if player_health.resource_number <= 0:
+			# signal will call handle_player_death
+			return
+	
+	received_damage_sound.play()
 	state_machine._on_state_transition(state_machine.current_state, "PlayerStagger")
-	Hitstop.freeze_frame(0.08, 0.25)
 	
 	# Activate invincibilty frames
 	is_invincible = true
 	animation_player.play("hurt_blink")
-	ScreenShake.screen_shake(8, 0.3)
 	invincibility_timer.start()
+	
 
+func handle_player_death():
+	state_machine._on_state_transition(state_machine.current_state, "PlayerDeath")
 
 func _on_invincibility_timer_timeout() -> void:
 	is_invincible = false
 	animation_player.stop()
+
+func handle_show_death_menu():
+	show_death_menu.emit()
+	
+func respawn():
+	state_machine._on_state_transition(state_machine.current_state, "PlayerIdle")
+	set_physics_process(true)
+	set_process(true)
+	collision_layer = 3
+	visible = true
+	can_move = true
+	player_health.restore_full_health()

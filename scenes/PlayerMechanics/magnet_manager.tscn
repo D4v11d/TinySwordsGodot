@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ovf4m6soghq"]
+
+[ext_resource type="Script" path="res://scripts/Player/magnet_manager.gd" id="1_eldrd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26p7f"]
+size = Vector2(115, 87)
+
+[node name="MagnetManager" type="Node2D"]
+script = ExtResource("1_eldrd")
+
+[node name="PushArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushArea"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_26p7f")
+debug_color = Color(0.690196, 0.890196, 0.129412, 0.356863)
+
+[connection signal="area_entered" from="PushArea" to="." method="_on_push_area_area_entered"]
+[connection signal="area_exited" from="PushArea" to="." method="_on_push_area_area_exited"]

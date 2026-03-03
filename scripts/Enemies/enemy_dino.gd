@@ -15,10 +15,11 @@ class_name EnemyDino
 @onready var flash_animation: AnimationPlayer = $FlashAnimation
 @onready var parry_sound: AudioStreamPlayer2D = $ParrySound
 @onready var enemy_hit_audio_player: AudioStreamPlayer2D = $EnemyHitAudioPlayer
+@onready var vfx_animation: AnimatedSprite2D = $VFXAnimation
 
 @export var is_invincible := false
 @export var should_follow := false
-@export var base_speed := 130
+@export var base_speed := 100
 
 var knockback_speed = 50;
 var original_knockback_speed = 50
@@ -30,6 +31,8 @@ func _ready():
 	hurtbox.connect("damage_received", on_damage_received)
 	hurtbox.connect("parry_stagger", on_parry_stagger)
 	hurtbox.connect("push_received", on_push_received)
+	
+	health.connect("on_death", handle_on_death)
 	charge_frequency.timeout.connect(_on_charge_frequency_timeout)
 	
 	TargetManager.register_enemy(self)
@@ -44,19 +47,20 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(velocity * delta)
 	
 
-func on_damage_received(player_push_force: float):	
+func on_damage_received(player_push_force: float, damage: float):	
 	# Manually transition to knockback state when hit
 	var current_state = state_machine.current_state
 	if current_state is not EnemyCharge:
 		knockback_speed = player_push_force
 		state_machine._on_state_transition(state_machine.current_state, "EnemyKnockback")
 		knockback_timer.start()
+		play_impact_animation()
 	else:
 		flash_animation.play("flash")
 	
 	if not is_invincible:
 		#DamageNumbers.display_text("20", health.global_position)
-		health.recieve_damage(20)
+		health.recieve_damage(damage)
 		RandomizePitch.play(enemy_hit_audio_player)
 
 func on_parry_stagger():
@@ -92,3 +96,29 @@ func hide_warp_strike_indicator():
 
 func toggle_target():
 	target.visible = !target.visible
+
+func play_impact_animation():
+	vfx_animation.stop()
+	vfx_animation.visible = true
+	vfx_animation.play("impact")
+
+func _on_vfx_animation_animation_finished() -> void:
+	vfx_animation.visible = false
+
+func handle_on_death() -> void:
+	CameraPosition.remove_target_lock()
+	
+	# Immediate unregister to avoid stage delay
+	if self in TargetManager.enemies:
+		TargetManager.unregister_enemy(self)
+	
+	state_machine._on_state_transition(
+		state_machine.current_state,
+		"EnemyDeath"
+	)
+
+
+func _exit_tree() -> void:
+	# Safety fallback in case enemy was freed unexpectedly
+	if self in TargetManager.enemies:
+		TargetManager.unregister_enemy(self)

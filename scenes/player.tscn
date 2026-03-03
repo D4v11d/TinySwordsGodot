@@ -1,4 +1,4 @@
-[gd_scene load_steps=226 format=3 uid="uid://bm8rf6dty5bjs"]
+[gd_scene load_steps=234 format=3 uid="uid://bm8rf6dty5bjs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_axm6i"]
 [ext_resource type="Texture2D" uid="uid://4dye1mag2h88" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_up.png" id="3_ed1jx"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cb6ybosj7bead" path="res://scenes/rope.tscn" id="7_p3m4f"]
 [ext_resource type="Texture2D" uid="uid://jpj5pk5hs7v3" path="res://assets/Characters/AdventurerTopDown/ATTACK 2/attack2_right.png" id="8_21r6j"]
 [ext_resource type="Script" path="res://scripts/Player/Shooting/shooting_manager.gd" id="8_wxegl"]
+[ext_resource type="Texture2D" uid="uid://6emhdr1cmkl" path="res://assets/Characters/AdventurerTopDown/death.png" id="8_yie2b"]
 [ext_resource type="Script" path="res://scripts/aiming_manager.gd" id="9_xppqe"]
 [ext_resource type="Texture2D" uid="uid://b515savot62fp" path="res://assets/Characters/Robot/old/idle-sheet.png" id="10_74380"]
 [ext_resource type="Texture2D" uid="uid://f6bdka0t5fp8" path="res://assets/Characters/Robot/old/walk-side-anim.png" id="11_8woxi"]
@@ -44,11 +45,13 @@
 [ext_resource type="AudioStream" uid="uid://tk108xfy0rwb" path="res://assets/SFX/shoot/laser-charging.wav" id="34_1aror"]
 [ext_resource type="PackedScene" uid="uid://ct5reg7vm3qir" path="res://scenes/PlayerHUD/shooting_bar.tscn" id="35_2wdpw"]
 [ext_resource type="AudioStream" uid="uid://dh2wi6eulhbq7" path="res://assets/SFX/shoot/snd_GenericError.wav" id="35_lq6mr"]
-[ext_resource type="Script" path="res://scripts/Player/teleport_manager.gd" id="37_23mjt"]
-[ext_resource type="Script" path="res://scripts/Player/magnet_manager.gd" id="38_fspfn"]
 [ext_resource type="Texture2D" uid="uid://cgu6hy0e15pq" path="res://assets/UI/crosshair_color_c.png" id="40_1hbr5"]
+[ext_resource type="AudioStream" uid="uid://d313hpyajdhe2" path="res://assets/SFX/Walk.wav" id="42_42bim"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_shoot.gd" id="42_xr3rj"]
 [ext_resource type="Script" path="res://scripts/States/Player/player_shoot_recoil.gd" id="43_08oqh"]
+[ext_resource type="Script" path="res://scripts/States/Player/player_death.gd" id="46_aerop"]
+[ext_resource type="AudioStream" uid="uid://5jikp74jf1bp" path="res://assets/SFX/snd_badass_jingle.wav" id="47_lruhn"]
+[ext_resource type="AudioStream" uid="uid://vtj5b7gldaga" path="res://assets/SFX/snd_DrifterHurt1Dmg.wav" id="50_2pdc4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dr38x"]
 atlas = ExtResource("4_d6hqa")
@@ -193,6 +196,30 @@ region = Rect2(384, 0, 96, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyrlp"]
 atlas = ExtResource("8_21r6j")
 region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2ruv"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iowk8"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1utd"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq24e"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7yut"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kosua"]
+atlas = ExtResource("8_yie2b")
+region = Rect2(480, 0, 96, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cf0im"]
 atlas = ExtResource("3_kttfm")
@@ -594,6 +621,29 @@ animations = [{
 "loop": false,
 "name": &"attack3_side",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2ruv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iowk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1utd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq24e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7yut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kosua")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1485,12 +1535,11 @@ _data = {
 "hurt_blink": SubResource("Animation_hiqbc")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_26p7f"]
-size = Vector2(115, 87)
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_axm6i")
 is_invincible = false
@@ -1506,8 +1555,10 @@ texture_filter = 1
 position = Vector2(-1, -25)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_igasq")
-animation = &"attack1_back"
+animation = &"death"
 autoplay = "idle_front"
+frame = 5
+frame_progress = 1.0
 
 [node name="RobotSprite" type="AnimatedSprite2D" parent="Sprites"]
 visible = false
@@ -1600,6 +1651,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ParrySound" type="AudioStreamPlayer2D" parent="Melee/Parry"]
+volume_db = 2.0
 
 [node name="SwordSwingAudioPlayer" type="AudioStreamPlayer2D" parent="Melee"]
 stream = ExtResource("27_7ww4y")
@@ -1611,7 +1663,7 @@ stream = ExtResource("28_cvrkp")
 script = ExtResource("8_wxegl")
 
 [node name="Crosshair" type="Sprite2D" parent="ShootingManager"]
-visible = false
+z_index = 2
 texture_filter = 1
 position = Vector2(789, 439)
 scale = Vector2(0.75, 0.75)
@@ -1646,7 +1698,7 @@ volume_db = 6.0
 
 [node name="ShootChargingSound" type="AudioStreamPlayer2D" parent="ShootingManager"]
 stream = ExtResource("34_1aror")
-volume_db = -5.0
+volume_db = -2.0
 pitch_scale = 1.45
 
 [node name="NoBulletsSound" type="AudioStreamPlayer2D" parent="ShootingManager"]
@@ -1672,6 +1724,14 @@ script = ExtResource("22_bdtpt")
 
 [node name="PlayerMove" type="Node2D" parent="StateMachine"]
 script = ExtResource("23_pi514")
+
+[node name="WalkSoundTimer" type="Timer" parent="StateMachine/PlayerMove"]
+wait_time = 0.4
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="StateMachine/PlayerMove"]
+stream = ExtResource("42_42bim")
+volume_db = 5.0
+pitch_scale = 2.0
 
 [node name="PlayerAttack" type="Node2D" parent="StateMachine"]
 script = ExtResource("24_ok86q")
@@ -1703,6 +1763,12 @@ script = ExtResource("43_08oqh")
 wait_time = 0.15
 one_shot = true
 
+[node name="PlayerDeath" type="Node2D" parent="StateMachine"]
+script = ExtResource("46_aerop")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="StateMachine/PlayerDeath"]
+stream = ExtResource("47_lruhn")
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="InvincibilityTimer" type="Timer" parent="Timers"]
@@ -1712,20 +1778,6 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_23n6o")
 }
-
-[node name="TeleportManager" type="Node2D" parent="."]
-script = ExtResource("37_23mjt")
-
-[node name="MagnetManager" type="Node2D" parent="."]
-script = ExtResource("38_fspfn")
-
-[node name="PushArea" type="Area2D" parent="MagnetManager"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetManager/PushArea"]
-position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_26p7f")
-debug_color = Color(0.690196, 0.890196, 0.129412, 0.356863)
 
 [node name="GrapplingHook" type="Node2D" parent="."]
 visible = false
@@ -1738,15 +1790,19 @@ script = ExtResource("5_cl87l")
 [node name="RopeManager" type="Node2D" parent="GrapplingHook"]
 script = ExtResource("7_dcrsq")
 
+[node name="ReceivedDamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("50_2pdc4")
+pitch_scale = 0.8
+
+[connection signal="animation_finished" from="Sprites/AnimatedSprite2D" to="StateMachine/PlayerDeath" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Melee/HorizontalAttackArea" to="StateMachine/PlayerAttack" method="_on_horizontal_attack_area_area_entered"]
 [connection signal="area_entered" from="Melee/VerticalAttackArea" to="StateMachine/PlayerAttack" method="_on_vertical_attack_area_area_entered"]
 [connection signal="area_entered" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_entered"]
 [connection signal="area_exited" from="Melee/Parry/ParryArea" to="Melee/MeleeAttack" method="_on_parry_area_area_exited"]
 [connection signal="timeout" from="Melee/Parry/ParryTimer" to="Melee/MeleeAttack" method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerMove/WalkSoundTimer" to="StateMachine/PlayerMove" method="_on_walk_sound_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerAttack/Timers/SecondAttackWindow" to="StateMachine/PlayerAttack" method="_on_second_attack_window_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerAttack/Timers/AttackMovementTimer" to="StateMachine/PlayerAttack" method="_on_attack_movement_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerStagger/StaggerTimer" to="StateMachine/PlayerStagger" method="_on_stagger_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerShootRecoil/ShootRecoilTimer" to="StateMachine/PlayerShootRecoil" method="_on_shoot_recoil_timer_timeout"]
 [connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
-[connection signal="area_entered" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_entered"]
-[connection signal="area_exited" from="MagnetManager/PushArea" to="MagnetManager" method="_on_push_area_area_exited"]

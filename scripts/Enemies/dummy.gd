@@ -10,9 +10,9 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	hurtbox.connect("damage_received", on_damage_received)
-	TargetManager.register_enemy(self)
+	#TargetManager.register_enemy(self)
 
-func on_damage_received(_push_force: float):
+func on_damage_received(_push_force: float, damge: float):
 	sprite.stop()
 	sprite.play("hit")
 	RandomizePitch.play(enemy_hit_audio_player)

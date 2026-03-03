@@ -1,6 +1,6 @@
 extends Node
 
-@onready var camera: Camera2D = get_node("/root/Game/Player/Camera2D")
+@onready var camera: Camera2D = get_node("/root/Game/Camera2D")
 
 
 var shake_intensity: float = 0.0
@@ -14,6 +14,9 @@ var shake_time_speed: float = 20.0
 var noise =  FastNoiseLite.new()
 
 func _physics_process(delta: float) -> void:
+	if not camera:
+		return
+		
 	if active_shake_time > 0:
 		shake_time += delta * shake_time_speed
 		active_shake_time -= delta
@@ -26,7 +29,8 @@ func _physics_process(delta: float) -> void:
 		shake_intensity = max(shake_intensity - shake_time_decay * delta, 0)
 	else:
 		camera.offset = lerp(camera.offset, Vector2.ZERO, 10.5 * delta)
-	
+
+# usually using 4 and 0.5
 func screen_shake(intensity: int, time: float):
 	randomize()
 	

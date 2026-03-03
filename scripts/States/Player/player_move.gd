@@ -2,9 +2,15 @@ extends State
 class_name PlayerMove
 
 @onready var player: Player = $"../.."
+@onready var walk_sound: AudioStreamPlayer2D = $WalkSound
+@onready var walk_sound_timer: Timer = $WalkSoundTimer
 
 func enter():
-	pass
+	walk_sound.play()
+	walk_sound_timer.start()
+
+func exit():
+	walk_sound_timer.stop()
 
 func update(_delta: float):
 	var player_direction =  player.player_direction
@@ -19,18 +25,11 @@ func update(_delta: float):
 			sprite.play("run_side")
 			sprite.flip_h = player_direction.x < 0
 
-			if player_direction.x < 0:
-				player.magnet_manager.change_area_positions("left")
-			else:
-				player.magnet_manager.change_area_positions("right")
-
 		elif player_direction.y < 0:
 			sprite.play("run_back")
-			player.magnet_manager.change_area_positions("top")
 
 		else:
 			sprite.play("run_front")
-			player.magnet_manager.change_area_positions("down")
 
 func physics_update(_delta: float):
 
@@ -42,3 +41,7 @@ func can_attack() -> bool:
 
 func can_shoot() -> bool:
 	return true
+
+func _on_walk_sound_timer_timeout() -> void:
+	var pitches = [1.8, 2.0, 2.2]
+	RandomizePitch.play(walk_sound, pitches)

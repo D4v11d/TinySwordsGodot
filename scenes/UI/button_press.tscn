@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm3pjpc3g1vg0"]
+
+[ext_resource type="Texture2D" uid="uid://54e0n2v0q5bk" path="res://assets/UI/controls/PC/A-unpressed.png" id="1_3o5fd"]
+
+[node name="ButtonPress" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(557, 322)
+texture = ExtResource("1_3o5fd")

@@ -7,7 +7,7 @@ class_name Bullet extends CharacterBody2D
 var is_moving := false
 var direction = Vector2.ZERO
 var speed := 1000
-var damage := 20
+var damage := 40
 
 var is_charged := false
 var knockback_power := 300.0
@@ -43,7 +43,8 @@ func hit_something(enemy) -> void:
 func on_enemy_hit(enemy):
 	var knockback_direction = (enemy.position - self.global_position).normalized()
 	var knockback_force = knockback_direction * knockback_power
-	enemy.recieve_damage(50) #knockback_force
+	enemy.recieve_damage(50, damage) #knockback_force
+	ScreenShake.screen_shake(4, 0.4)
 
 # process ends when bullet stops exploding.
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -57,9 +58,3 @@ func _on_destroy_timer_timeout() -> void:
 func _on_bullet_area_area_entered(area: Area2D) -> void:
 	if area is EnemyHurtbox or area is Breakable:
 		hit_something(area)
-
-
-func _on_explode_area_area_entered(area: Area2D) -> void:
-	if area is EnemyHurtbox or area is Breakable:
-		if enemy_hit_by_bullet != area:
-			area.recieve_damage()

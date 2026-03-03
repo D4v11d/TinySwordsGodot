@@ -1,10 +1,12 @@
-[gd_scene load_steps=47 format=4 uid="uid://cmrcv8kjnjvbi"]
+[gd_scene load_steps=81 format=4 uid="uid://cmrcv8kjnjvbi"]
 
 [ext_resource type="PackedScene" uid="uid://bm8rf6dty5bjs" path="res://scenes/player.tscn" id="1_emstv"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fblw1"]
 [ext_resource type="Script" path="res://scripts/Map/TilemapLayerManager.gd" id="2_1k0hj"]
 [ext_resource type="Texture2D" uid="uid://b1ngdgs4jb8fu" path="res://assets/Terrain/Ground/Tilemap_Flat.png" id="3_gqj05"]
 [ext_resource type="Texture2D" uid="uid://bm8md4c247nav" path="res://assets/Terrain/Bridge/Bridge_All.png" id="3_iwxnj"]
 [ext_resource type="Texture2D" uid="uid://bvkqknkwp0fio" path="res://assets/Terrain/Water/Foam/Foam.png" id="3_x3gax"]
+[ext_resource type="Texture2D" uid="uid://dpb4nh57gswxe" path="res://assets/UI/controls/PC-White/keyboard_escape.png" id="4_ar216"]
 [ext_resource type="Texture2D" uid="uid://dmmhq0rbuqvmc" path="res://assets/Terrain/Ground/Tilemap_Elevation.png" id="4_tkcuj"]
 [ext_resource type="PackedScene" uid="uid://vs8jknxcnulq" path="res://scenes/grapple_point.tscn" id="5_pmldd"]
 [ext_resource type="Script" path="res://scripts/Map/LayerSwitchManager.gd" id="6_lpd67"]
@@ -12,12 +14,78 @@
 [ext_resource type="Texture2D" uid="uid://c5ckac04rvbqf" path="res://assets/Terrain/Water/Water.png" id="8_nw1k3"]
 [ext_resource type="Texture2D" uid="uid://clbr16smvhxb6" path="res://assets/Tilemap/TX Tileset Grass.png" id="8_t51df"]
 [ext_resource type="Texture2D" uid="uid://b87xk7ip2bruh" path="res://assets/Tilemap/TX Tileset Wall.png" id="9_6j3lv"]
+[ext_resource type="Script" path="res://scripts/UI/controls_panel.gd" id="10_i1cpi"]
+[ext_resource type="PackedScene" uid="uid://c8ch2gqle3fbx" path="res://scenes/PlayerHUD/player_health.tscn" id="11_ts3ad"]
 [ext_resource type="PackedScene" uid="uid://cv8ohxpbogrkh" path="res://scenes/dummy.tscn" id="12_bjpus"]
-[ext_resource type="PackedScene" uid="uid://ckoyufyci8cv5" path="res://scenes/enemy_dino.tscn" id="13_3anlc"]
+[ext_resource type="Texture2D" uid="uid://rr5bg1ythgjp" path="res://assets/UI/panel-000.png" id="12_v21qe"]
+[ext_resource type="Texture2D" uid="uid://xqpntg7lsvs2" path="res://assets/UI/controls/PC-White/keyboard.png" id="13_73nyx"]
 [ext_resource type="PackedScene" uid="uid://v71j4ehmglmu" path="res://scenes/PlayerHUD/magnet_meter.tscn" id="13_m85j5"]
+[ext_resource type="Texture2D" uid="uid://c6ldcp1ndpd31" path="res://assets/UI/controls/PC-White/keyboard_a.png" id="13_nfbjv"]
 [ext_resource type="PackedScene" uid="uid://cav3e0qx2vkso" path="res://scenes/PlayerHUD/bullet_meter.tscn" id="13_tfe3k"]
+[ext_resource type="Texture2D" uid="uid://c7x55p3s00u1s" path="res://assets/UI/controls/PC-White/mouse.png" id="14_36eun"]
+[ext_resource type="FontFile" uid="uid://c3ofxktmjmv05" path="res://assets/Fonts/m5x7.ttf" id="14_588gu"]
+[ext_resource type="Texture2D" uid="uid://jx6ass8ed3ly" path="res://assets/UI/controls/PC-White/keyboard_s.png" id="14_o31af"]
 [ext_resource type="Texture2D" uid="uid://cdr7wayalhrbx" path="res://assets/Characters/Robot/Unit-0-front.png" id="15_axbmf"]
-[ext_resource type="PackedScene" uid="uid://2ykcy4ais31n" path="res://scenes/crate.tscn" id="18_3tw55"]
+[ext_resource type="Texture2D" uid="uid://cs5si5vyckhph" path="res://assets/UI/controls/PlayStation/controller_playstation5.png" id="15_jw7y7"]
+[ext_resource type="Texture2D" uid="uid://24dfxs2alvli" path="res://assets/UI/controls/PC-White/keyboard_d.png" id="15_tc8f5"]
+[ext_resource type="Texture2D" uid="uid://cax55dt0ymwrg" path="res://assets/UI/controls/PC-White/keyboard_w.png" id="16_0s8er"]
+[ext_resource type="Script" path="res://scripts/Effects/stage_text_animation.gd" id="16_pmgtn"]
+[ext_resource type="Texture2D" uid="uid://blvmwmd6pxv5" path="res://assets/UI/controls/PC-White/mouse_move.png" id="17_j8twq"]
+[ext_resource type="Texture2D" uid="uid://bobtcwgq47y56" path="res://assets/UI/white-square.png" id="18_31tbb"]
+[ext_resource type="Texture2D" uid="uid://i0lkeaqvp6xy" path="res://assets/UI/controls/PC-White/mouse_left.png" id="18_jqsd5"]
+[ext_resource type="AudioStream" uid="uid://co8jq5bso4gr3" path="res://assets/SFX/music/Fight1.wav" id="19_6q0m4"]
+[ext_resource type="PackedScene" uid="uid://cm3pjpc3g1vg0" path="res://scenes/UI/button_press.tscn" id="19_h27m3"]
+[ext_resource type="Texture2D" uid="uid://6nsjutsah4ew" path="res://assets/UI/controls/PC-White/mouse_right.png" id="19_t1gy3"]
+[ext_resource type="Texture2D" uid="uid://tyrmmvblmq7b" path="res://assets/UI/controls/PC-White/keyboard_shift_icon.png" id="20_x7leu"]
+[ext_resource type="Texture2D" uid="uid://b8q6a2veepjqb" path="res://assets/UI/controls/PC-White/keyboard_r.png" id="21_ne6w1"]
+[ext_resource type="Texture2D" uid="uid://8wt4sll0gj5v" path="res://assets/UI/controls/PC-White/keyboard_tab.png" id="22_8haer"]
+[ext_resource type="Texture2D" uid="uid://d1o1v5ky37n40" path="res://assets/UI/controls/PlayStation/playstation_stick_l.png" id="23_ucqww"]
+[ext_resource type="Texture2D" uid="uid://bc0urkucjb586" path="res://assets/UI/controls/PlayStation/playstation_stick_r.png" id="24_de4yi"]
+[ext_resource type="Texture2D" uid="uid://bl4wk0iqg08il" path="res://assets/UI/controls/Xbox/xbox_button_x.png" id="25_ueii7"]
+[ext_resource type="Texture2D" uid="uid://8moqr735l802" path="res://assets/UI/controls/Xbox/xbox_rt.png" id="26_ej86k"]
+[ext_resource type="Texture2D" uid="uid://dxrfj76lm4j8q" path="res://assets/UI/controls/Xbox/xbox_lb.png" id="27_s1ug0"]
+[ext_resource type="Texture2D" uid="uid://dungxmhxnxwdx" path="res://assets/UI/controls/Xbox/xbox_lt.png" id="28_atm5i"]
+[ext_resource type="Texture2D" uid="uid://djwhvh3thku8v" path="res://assets/UI/controls/Xbox/xbox_rb.png" id="29_m5skp"]
+[ext_resource type="Script" path="res://scripts/Enemies/enemy_hitbox.gd" id="32_64iax"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4nyp"]
+texture = ExtResource("12_v21qe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bwjua"]
+texture = ExtResource("12_v21qe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0, 0, 0, 0.854902)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqjh5"]
+texture = ExtResource("12_v21qe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0, 0.359386, 0.683516, 0.596078)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jrveu"]
+texture = ExtResource("12_v21qe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0, 0.360784, 0.682353, 0.596078)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2w7jg"]
+texture = ExtResource("12_v21qe")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0, 0.360784, 0.682353, 0.596078)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhqsk"]
 texture = ExtResource("8_nw1k3")
@@ -746,9 +814,669 @@ radius = 276.586
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_fblw1")
+metadata/_edit_horizontal_guides_ = [465.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DataContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 513.0
+offset_right = 250.0
+offset_bottom = 772.0
+
+[node name="height" type="Label" parent="CanvasLayer/DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Current height: 0
+"
+
+[node name="state" type="Label" parent="CanvasLayer/DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "land"
+
+[node name="floor" type="Label" parent="CanvasLayer/DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="zpos" type="Label" parent="CanvasLayer/DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="elevation" type="Label" parent="CanvasLayer/DataContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Current elevation: 0"
+
+[node name="PlayerHUDContainer" type="BoxContainer" parent="CanvasLayer"]
+offset_right = 1150.0
+offset_bottom = 139.0
+alignment = 1
+
+[node name="PlayerHealth" parent="CanvasLayer/PlayerHUDContainer" instance=ExtResource("11_ts3ad")]
+position = Vector2(49, 33)
+scale = Vector2(8, 8)
+
+[node name="BulletMeter" parent="CanvasLayer/PlayerHUDContainer" instance=ExtResource("13_tfe3k")]
+position = Vector2(32, 102)
+scale = Vector2(5, 5)
+
+[node name="PlayerHUDContainer2" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1150.0
+offset_bottom = 139.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="ESCControls" type="Node2D" parent="CanvasLayer/PlayerHUDContainer2"]
+position = Vector2(8, 12)
+
+[node name="KeyboardEscape" type="Sprite2D" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
+position = Vector2(959, 26)
+texture = ExtResource("4_ar216")
+
+[node name="ControlsText" type="Label" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
+offset_left = 996.0
+offset_top = 3.0
+offset_right = 1125.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "Controls"
+
+[node name="MagnetMeter" parent="CanvasLayer" instance=ExtResource("13_m85j5")]
+visible = false
+
+[node name="StageContainer" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -51.0
+offset_right = 170.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StageLabel" type="Label" parent="CanvasLayer/StageContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 128
+text = "Stage 1"
+script = ExtResource("16_pmgtn")
+fade_time = 1.0
+stay_time = 2.0
+
+[node name="FinishGameBackground" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -752.0
+offset_top = -360.0
+offset_right = -752.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DarkBackground" type="Sprite2D" parent="CanvasLayer/FinishGameBackground"]
+modulate = Color(0.140447, 0.140447, 0.140447, 0.431373)
+texture_filter = 1
+position = Vector2(705, 417)
+scale = Vector2(2, 1.168)
+texture = ExtResource("18_31tbb")
+
+[node name="PlayAgainButton" type="Button" parent="CanvasLayer/FinishGameBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 605.5
+offset_top = 300.5
+offset_right = 898.5
+offset_bottom = 419.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_u4nyp")
+action_mode = 0
+
+[node name="PlayAgainText" type="Label" parent="CanvasLayer/FinishGameBackground/PlayAgainButton"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 28.0
+offset_right = 271.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Play again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathText" type="Label" parent="CanvasLayer/FinishGameBackground/PlayAgainButton"]
+layout_mode = 0
+offset_left = 103.5
+offset_top = 5.5
+offset_right = 190.5
+offset_bottom = 43.5
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.513753, 1.11904e-06, 1.92523e-07, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "Death"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinText" type="Label" parent="CanvasLayer/FinishGameBackground/PlayAgainButton"]
+visible = false
+layout_mode = 0
+offset_left = 84.5
+offset_top = 3.5
+offset_right = 210.5
+offset_bottom = 41.5
+theme_override_colors/font_color = Color(0.976471, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.784314, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "You win!"
+
+[node name="ControlsPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.0
+offset_top = 69.0
+offset_right = -68.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_bwjua")
+script = ExtResource("10_i1cpi")
+
+[node name="PCIcon" type="Control" parent="CanvasLayer/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -760.0
+offset_top = 322.0
+offset_right = -720.0
+offset_bottom = 362.0
+grow_horizontal = 2
+
+[node name="Select" type="Label" parent="CanvasLayer/ControlsPanel/PCIcon"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -5.0
+offset_right = 206.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/ControlsPanel/PCIcon"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 37.0
+offset_right = 231.0
+offset_bottom = 186.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_rqjh5")
+
+[node name="Keyboard" type="Sprite2D" parent="CanvasLayer/ControlsPanel/PCIcon"]
+texture_filter = 1
+position = Vector2(111, 100)
+scale = Vector2(2, 2)
+texture = ExtResource("13_73nyx")
+
+[node name="Mouse" type="Sprite2D" parent="CanvasLayer/ControlsPanel/PCIcon"]
+texture_filter = 1
+position = Vector2(187, 149)
+texture = ExtResource("14_36eun")
+
+[node name="JoystickIcon" type="Control" parent="CanvasLayer/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -757.0
+offset_top = 512.0
+offset_right = -717.0
+offset_bottom = 552.0
+grow_horizontal = 2
+
+[node name="Or" type="Label" parent="CanvasLayer/ControlsPanel/JoystickIcon"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -4.0
+offset_right = 204.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "or"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/ControlsPanel/JoystickIcon"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 34.0
+offset_right = 229.0
+offset_bottom = 178.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_rqjh5")
+
+[node name="Keyboard" type="Sprite2D" parent="CanvasLayer/ControlsPanel/JoystickIcon"]
+texture_filter = 1
+position = Vector2(126, 113)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("15_jw7y7")
+
+[node name="Controls" type="Control" parent="CanvasLayer/ControlsPanel"]
+anchors_preset = 0
+offset_left = 178.0
+offset_top = -19.0
+offset_right = 218.0
+offset_bottom = 21.0
+
+[node name="ControlsTitle2" type="Label" parent="CanvasLayer/ControlsPanel/Controls"]
+layout_mode = 0
+offset_left = 642.0
+offset_top = 69.0
+offset_right = 912.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 96
+text = "Controls:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background1" type="Panel" parent="CanvasLayer/ControlsPanel/Controls"]
+layout_mode = 2
+offset_left = 285.0
+offset_top = 160.0
+offset_right = 737.0
+offset_bottom = 774.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jrveu")
+
+[node name="Background2" type="Panel" parent="CanvasLayer/ControlsPanel/Controls"]
+layout_mode = 2
+offset_left = 779.0
+offset_top = 160.0
+offset_right = 1231.0
+offset_bottom = 774.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jrveu")
+
+[node name="PCControls" type="Node2D" parent="CanvasLayer/ControlsPanel/Controls"]
+visible = false
+
+[node name="PC1" type="VBoxContainer" parent="CanvasLayer/ControlsPanel/Controls/PCControls"]
+custom_minimum_size = Vector2(20, 50)
+offset_left = 382.0
+offset_top = 211.0
+offset_right = 623.0
+offset_bottom = 727.0
+
+[node name="Control" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 173.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Move:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="W" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control" instance=ExtResource("19_h27m3")]
+position = Vector2(223, 24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_0s8er")
+
+[node name="A" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control" instance=ExtResource("19_h27m3")]
+position = Vector2(192, 52)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_nfbjv")
+
+[node name="S" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control" instance=ExtResource("19_h27m3")]
+position = Vector2(222, 52)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_o31af")
+
+[node name="D" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control" instance=ExtResource("19_h27m3")]
+position = Vector2(251, 52)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_tc8f5")
+
+[node name="Control2" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control2"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Aim:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control2" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("17_j8twq")
+
+[node name="Control3" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control3"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Attack:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control3" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("18_jqsd5")
+
+[node name="Control4" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control4"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Shoot:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control4" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("19_t1gy3")
+
+[node name="Control5" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control5"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Parry:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC1/Control5" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("20_x7leu")
+
+[node name="PC2" type="VBoxContainer" parent="CanvasLayer/ControlsPanel/Controls/PCControls"]
+custom_minimum_size = Vector2(20, 50)
+offset_left = 794.0
+offset_top = 295.0
+offset_right = 834.0
+offset_bottom = 445.0
+
+[node name="Control6" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2"]
+custom_minimum_size = Vector2(20, 86.76)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2/Control6"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 242.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Target
+lock:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2/Control6" instance=ExtResource("19_h27m3")]
+position = Vector2(297, 80)
+texture = ExtResource("21_ne6w1")
+
+[node name="Control7" type="Control" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2"]
+custom_minimum_size = Vector2(20, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2/Control7"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 104.0
+offset_right = 244.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Target
+switch:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/PCControls/PC2/Control7" instance=ExtResource("19_h27m3")]
+position = Vector2(296, 164)
+texture = ExtResource("22_8haer")
+
+[node name="JoystickControls" type="Node2D" parent="CanvasLayer/ControlsPanel/Controls"]
+
+[node name="JoystickControls1" type="VBoxContainer" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls"]
+custom_minimum_size = Vector2(20, 50)
+offset_left = 382.0
+offset_top = 211.0
+offset_right = 623.0
+offset_bottom = 727.0
+
+[node name="Control" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 173.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Move:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress5" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control" instance=ExtResource("19_h27m3")]
+position = Vector2(226, 38)
+texture = ExtResource("23_ucqww")
+
+[node name="Control2" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control2"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Aim:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control2" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("24_de4yi")
+
+[node name="Control3" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control3"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Attack:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control3" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("25_ueii7")
+
+[node name="Control4" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control4"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Shoot:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control4" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("26_ej86k")
+
+[node name="Control5" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control5"]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 168.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Parry:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls1/Control5" instance=ExtResource("19_h27m3")]
+position = Vector2(225, 34)
+texture = ExtResource("27_s1ug0")
+
+[node name="JoystickControls2" type="VBoxContainer" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls"]
+custom_minimum_size = Vector2(20, 50)
+offset_left = 794.0
+offset_top = 295.0
+offset_right = 834.0
+offset_bottom = 445.0
+
+[node name="Control6" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2"]
+custom_minimum_size = Vector2(20, 86.76)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2/Control6"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 242.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Target
+lock:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2/Control6" instance=ExtResource("19_h27m3")]
+position = Vector2(297, 80)
+texture = ExtResource("28_atm5i")
+
+[node name="Control7" type="Control" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2"]
+custom_minimum_size = Vector2(20, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2/Control7"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 104.0
+offset_right = 244.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 64
+text = "Target
+switch:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPress" parent="CanvasLayer/ControlsPanel/Controls/JoystickControls/JoystickControls2/Control7" instance=ExtResource("19_h27m3")]
+position = Vector2(296, 164)
+texture = ExtResource("29_m5skp")
+
+[node name="Play" type="Button" parent="CanvasLayer/ControlsPanel"]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 769.0
+offset_right = 1057.0
+offset_bottom = 877.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_2w7jg")
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Play"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 96
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("32_64iax")
 
 [node name="Elevation0" type="Node2D" parent="Map"]
 z_index = -1
@@ -775,7 +1503,7 @@ y_sort_enabled = true
 
 [node name="Tilemap" type="TileMapLayer" parent="Map/Elevation1"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD3/wIAAQAAAAAAAAD3/wMAAQAAAAEAAAD3/wQAAQAAAAIAAAD3/wUAAQAAAAMAAAD4/wIAAQABAAAAAAD4/wMAAQABAAEAAAD4/wQAAQABAAIAAAD4/wUAAQABAAMAAAD5/wIAAQACAAAAAAD5/wMAAQACAAEAAAD5/wQAAQACAAIAAAD5/wUAAQACAAMAAAACAAMAAQAAAAEAAAACAAQAAQAAAAIAAAACAAUAAQAAAAMAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAIAAAADAAUAAQABAAMAAAAEAAIAAQACAAEAAAAEAAMAAQACAAEAAAAEAAQAAQACAAIAAAAEAAUAAQACAAMAAAACAAIAAQAAAAEAAADz//L/AQAAAAAAAADz//P/AQADAAMAAAD0//L/AQABAAAAAAD0//P/AQADAAMAAAD1//L/AQACAAAAAAD1//P/AQADAAMAAAD4//H/AQADAAMAAAD5//H/AQADAAMAAAD6//H/AQADAAMAAAD4//D/AQABAAAAAAD5//D/AQABAAAAAAD6//D/AQACAAAAAAD3//H/AQADAAMAAAD3//D/AQAAAAAAAACu/+j/AQABAAMAAACv/+j/AQABAAMAAACw/+j/AQABAAMAAACx/+j/AQABAAMAAACy/+j/AQABAAMAAACz/+j/AQABAAMAAAC0/+j/AQABAAMAAAC1/+j/AQABAAMAAACu/+f/AQABAAAAAAC1/+f/AQABAAAAAACv/+f/AQABAAAAAACw/+f/AQABAAAAAACx/+f/AQABAAAAAACy/+f/AQABAAAAAACz/+f/AQABAAAAAAC0/+f/AQABAAAAAACt/+f/AQAAAAAAAACt/+j/AQADAAEAAACt/+n/AQADAAEAAACt/+r/AQADAAEAAACt/+v/AQADAAEAAACt/+z/AQADAAEAAACt/+3/AQADAAEAAACt/+7/AQADAAEAAACt/+//AQADAAEAAACt//D/AQADAAEAAACt//H/AQADAAEAAACt//L/AQAAAAMAAACu//H/AQABAAQAAACv//H/AQABAAAAAACw//H/AQABAAAAAACx//H/AQABAAAAAACy//H/AQABAAAAAACz//H/AQABAAAAAAC0//H/AQABAAAAAAC1//H/AQABAAAAAACu//L/AQABAAMAAACv//L/AQABAAMAAACw//L/AQABAAMAAACx//L/AQABAAMAAACy//L/AQABAAMAAACz//L/AQABAAMAAAC0//L/AQABAAMAAAC1//L/AQABAAMAAAC2/+j/AQABAAMAAAC3/+j/AQABAAMAAAC4/+j/AQABAAMAAAC5/+j/AQABAAMAAAC6/+j/AQABAAMAAAC7/+j/AQABAAMAAAC8/+j/AQABAAMAAAC9/+j/AQABAAMAAAC2/+f/AQABAAAAAAC3/+f/AQABAAAAAAC4/+f/AQABAAAAAAC5/+f/AQABAAAAAAC6/+f/AQABAAAAAAC7/+f/AQABAAAAAAC8/+f/AQABAAAAAAC9/+f/AQABAAAAAAC+/+n/AQADAAEAAAC+/+r/AQADAAEAAAC+/+v/AQADAAEAAAC+/+z/AQADAAEAAAC+/+3/AQADAAEAAAC+/+7/AQADAAEAAAC+/+//AQADAAEAAAC+//D/AQADAAEAAAC+//H/AQADAAEAAAC+/+j/AQADAAEAAAC+/+f/AQACAAAAAAC+//L/AQACAAMAAAC9//L/AQABAAMAAAC8//L/AQABAAMAAAC7//L/AQABAAMAAAC6//L/AQABAAMAAAC5//L/AQABAAMAAAC4//L/AQABAAMAAAC3//L/AQABAAMAAAC2//L/AQABAAMAAAC3//H/AQABAAAAAAC4//H/AQABAAAAAAC2//H/AQABAAAAAAC5//H/AQABAAAAAAC6//H/AQABAAAAAAC7//H/AQABAAAAAAC8//H/AQABAAAAAAC9//H/AQABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD3/wIAAQAAAAAAAAD3/wMAAQAAAAEAAAD3/wQAAQAAAAIAAAD3/wUAAQAAAAMAAAD4/wIAAQABAAAAAAD4/wMAAQABAAEAAAD4/wQAAQABAAIAAAD4/wUAAQABAAMAAAD5/wIAAQACAAAAAAD5/wMAAQACAAEAAAD5/wQAAQACAAIAAAD5/wUAAQACAAMAAAACAAMAAQAAAAEAAAACAAQAAQAAAAIAAAACAAUAAQAAAAMAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAIAAAADAAUAAQABAAMAAAAEAAIAAQACAAEAAAAEAAMAAQACAAEAAAAEAAQAAQACAAIAAAAEAAUAAQACAAMAAAACAAIAAQAAAAEAAADz//L/AQAAAAAAAADz//P/AQADAAMAAAD0//L/AQABAAAAAAD0//P/AQADAAMAAAD1//L/AQACAAAAAAD1//P/AQADAAMAAAD4//H/AQADAAMAAAD5//H/AQADAAMAAAD6//H/AQADAAMAAAD4//D/AQABAAAAAAD5//D/AQABAAAAAAD6//D/AQACAAAAAAD3//H/AQADAAMAAAD3//D/AQAAAAAAAACu/+j/AQABAAMAAACv/+j/AQABAAMAAACw/+j/AQABAAMAAACx/+j/AQABAAMAAACy/+j/AQABAAMAAACz/+j/AQABAAMAAAC0/+j/AQABAAMAAAC1/+j/AQABAAMAAACu/+f/AQABAAAAAAC1/+f/AQABAAAAAACv/+f/AQABAAAAAACw/+f/AQABAAAAAACx/+f/AQABAAAAAACy/+f/AQABAAAAAACz/+f/AQABAAAAAAC0/+f/AQABAAAAAACt/+f/AQAAAAAAAACt/+j/AQADAAEAAACt/+n/AQADAAEAAACt/+r/AQADAAEAAACt/+v/AQADAAEAAACt/+z/AQADAAEAAACt/+3/AQADAAEAAACt/+7/AQADAAEAAACt/+//AQADAAEAAACt//D/AQADAAEAAAC2/+j/AQABAAMAAAC3/+j/AQABAAMAAAC4/+j/AQABAAMAAAC5/+j/AQABAAMAAAC6/+j/AQABAAMAAAC7/+j/AQABAAMAAAC8/+j/AQABAAMAAAC9/+j/AQABAAMAAAC2/+f/AQABAAAAAAC3/+f/AQABAAAAAAC4/+f/AQABAAAAAAC5/+f/AQABAAAAAAC6/+f/AQABAAAAAAC7/+f/AQABAAAAAAC8/+f/AQABAAAAAAC9/+f/AQABAAAAAAC+/+n/AQADAAEAAAC+/+r/AQADAAEAAAC+/+v/AQADAAEAAAC+/+z/AQADAAEAAAC+/+3/AQADAAEAAAC+/+7/AQADAAEAAAC+/+//AQADAAEAAAC+//D/AQADAAEAAAC+/+j/AQADAAEAAAC+/+f/AQACAAAAAACt//H/AQADAAIAAAC+//H/AQADAAIAAACt//L/AQAAAAUAAACu//L/AQABAAUAAACv//L/AQABAAUAAACw//L/AQABAAUAAACx//L/AQABAAUAAACy//L/AQABAAUAAACz//L/AQABAAUAAAC0//L/AQABAAUAAAC1//L/AQABAAUAAAC2//L/AQABAAUAAAC3//L/AQABAAUAAAC4//L/AQABAAUAAAC5//L/AQABAAUAAAC6//L/AQABAAUAAAC7//L/AQABAAUAAAC8//L/AQABAAUAAAC9//L/AQABAAUAAAC+//L/AQACAAUAAAA=")
 tile_set = SubResource("TileSet_7d6ob")
 script = ExtResource("2_1k0hj")
 
@@ -802,60 +1530,15 @@ tile_set = SubResource("TileSet_cv36t")
 tile_map_data = PackedByteArray("AACO/woAAQAGAAcAAACP/woAAQAGAAIAAACQ/woAAQAHAAIAAACE/woAAQAFAAIAAACF/woAAQAGAAIAAACG/woAAQAGAAcAAACH/woAAQAHAAIAAACI/woAAQAGAAIAAACM/woAAQAFAAIAAACN/woAAQAGAAIAAACO/wkAAQAGAAYAAACP/wkAAQAGAAEAAACQ/wkAAQAHAAEAAACM/wkAAQAFAAEAAACN/wkAAQAGAAEAAACE/wkAAQAFAAEAAACF/wkAAQAGAAEAAACG/wkAAQAGAAYAAACH/wkAAQAGAAEAAACI/wkAAQAHAAEAAACR/wkAAQAIAAEAAACR/woAAQAIAAIAAACR/wsAAQAIAAIAAACR/wwAAQAIAAMAAACR/w0AAQAIAAIAAACR/w4AAQAIAAIAAACR/w8AAQAIAAIAAACR/xAAAQAIAAIAAACD/xEAAQAEAAMAAACD/wkAAQAEAAEAAACD/woAAQAEAAIAAACD/wsAAQAEAAMAAACD/wwAAQAEAAIAAACD/w0AAQAEAAMAAACD/w4AAQAEAAIAAACD/w8AAQAEAAMAAACD/xAAAQAEAAIAAACD/xIAAQAEAAIAAACD/xMAAQAEAAMAAACD/xUAAQAEAAQAAACD/xQAAQAEAAMAAACE/xUAAQAFAAQAAACF/xUAAQAGAAQAAACG/xUAAQAHAAQAAACI/xUAAQAGAAQAAACJ/xUAAQAHAAQAAACK/xUAAQAHAAQAAACH/xUAAQAFAAQAAACL/xUAAQAFAAQAAACM/xUAAQAGAAQAAACN/xUAAQAHAAQAAACO/xUAAQAFAAQAAACP/xUAAQAGAAQAAACQ/xUAAQAHAAQAAACR/xUAAQAIAAQAAACR/xIAAQAIAAIAAACR/xMAAQAIAAIAAACR/xQAAQAIAAIAAACR/xEAAQAIAAIAAAA=")
 tile_set = SubResource("TileSet_jbnim")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-4736, -1200)
+zoom = Vector2(1.35, 1.35)
+position_smoothing_enabled = true
+
 [node name="Player" parent="." node_paths=PackedStringArray("tilemaps") instance=ExtResource("1_emstv")]
 position = Vector2(-4706, -1101)
 tilemaps = [NodePath("../Map/Elevation0/Water"), NodePath("../Map/Elevation0/Tilemap"), NodePath("../Map/Elevation1/Tilemap"), NodePath("../Map/Elevation2/Tilemap")]
 infinite_bullets = false
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-20, -15)
-zoom = Vector2(1.35, 1.35)
-position_smoothing_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 513.0
-offset_right = 250.0
-offset_bottom = 772.0
-
-[node name="height" type="Label" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Current height: 0
-"
-
-[node name="state" type="Label" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "land"
-
-[node name="floor" type="Label" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="zpos" type="Label" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0"
-
-[node name="elevation" type="Label" parent="CanvasLayer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Current elevation: 0"
-
-[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer"]
-offset_right = 282.0
-offset_bottom = 150.0
-
-[node name="BulletMeter" parent="CanvasLayer/BoxContainer" instance=ExtResource("13_tfe3k")]
-position = Vector2(36, 57)
-scale = Vector2(6, 6)
-
-[node name="MagnetMeter" parent="CanvasLayer" instance=ExtResource("13_m85j5")]
-visible = false
 
 [node name="LayerSwitchManager" type="Node2D" parent="."]
 script = ExtResource("6_lpd67")
@@ -875,7 +1558,7 @@ shape = SubResource("RectangleShape2D_pqbfj")
 
 [node name="GrapplePoint2" parent="GrapplePoints" instance=ExtResource("5_pmldd")]
 z_index = 2
-position = Vector2(256, 186)
+position = Vector2(256, 162)
 height = 1
 
 [node name="Area2D" type="Area2D" parent="GrapplePoints/GrapplePoint2"]
@@ -900,18 +1583,21 @@ shape = SubResource("RectangleShape2D_ud3dt")
 [node name="RespawnPosition" type="Marker2D" parent="."]
 position = Vector2(-106, 114)
 
+[node name="EnemySpawnPositions" type="Node2D" parent="."]
+position = Vector2(-4519, -1120)
+
+[node name="Pos1" type="Marker2D" parent="EnemySpawnPositions"]
+position = Vector2(-613, -262)
+
+[node name="Pos2" type="Marker2D" parent="EnemySpawnPositions"]
+position = Vector2(190, 144)
+
+[node name="Pos3" type="Marker2D" parent="EnemySpawnPositions"]
+position = Vector2(170, -265)
+
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-4519, -1120)
-
-[node name="EnemyDino" parent="Enemies" instance=ExtResource("13_3anlc")]
-position = Vector2(-662, -242)
-should_follow = true
-
-[node name="Dummy" parent="Enemies" instance=ExtResource("12_bjpus")]
-y_sort_enabled = true
-position = Vector2(4154, 883)
-scale = Vector2(2.5, 2.5)
 
 [node name="Unit-0-front" type="Sprite2D" parent="."]
 visible = false
@@ -937,11 +1623,17 @@ autostart = true
 z_index = 1
 y_sort_enabled = true
 
-[node name="Crate" parent="BreakableObjects" instance=ExtResource("18_3tw55")]
-position = Vector2(-4631, -1382)
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_6q0m4")
+volume_db = -12.0
+autoplay = true
 
-[node name="Crate2" parent="BreakableObjects" instance=ExtResource("18_3tw55")]
-position = Vector2(-4782, -1418)
+[node name="Dummy" parent="." instance=ExtResource("12_bjpus")]
+y_sort_enabled = true
+position = Vector2(-431, -255)
+scale = Vector2(2.5, 2.5)
 
-[node name="Crate3" parent="BreakableObjects" instance=ExtResource("18_3tw55")]
-position = Vector2(-4428, -1152)
+[connection signal="button_down" from="CanvasLayer/FinishGameBackground/PlayAgainButton" to="." method="_on_play_again_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/ControlsPanel/PCIcon/Button" to="." method="select_PC_controls"]
+[connection signal="button_down" from="CanvasLayer/ControlsPanel/JoystickIcon/Button" to="." method="select_joystick_controls"]
+[connection signal="button_down" from="CanvasLayer/ControlsPanel/Play" to="." method="start_game"]

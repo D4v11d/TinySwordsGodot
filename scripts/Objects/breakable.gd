@@ -9,6 +9,7 @@ signal destroyed
 @onready var shadow: Sprite2D = $"../Shadow"
 
 var enemies_touching: Array[EnemyHurtbox] = []
+var crate_damage = 20
 
 func _ready() -> void:
 	set_physics_process(true)
@@ -20,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 
 		for enemy in enemies_touching:
 			var push_force = 50.0
-			enemy.recieve_damage(push_force)
+			enemy.recieve_damage(push_force, crate_damage)
 			
 			# makes sure to hit only once
 			enemies_touching.erase(enemy)
