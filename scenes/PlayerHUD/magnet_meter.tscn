@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cntv4w5vkqlkk" path="res://assets/UI/bars/bar_shadow_square_large.png" id="1_16ult"]
 [ext_resource type="Texture2D" uid="uid://k8g6oloac6cw" path="res://assets/UI/bars/bar_square_gloss_large.png" id="2_1ye48"]
-[ext_resource type="Script" path="res://scripts/PlayerHUD/magnet_meter.gd" id="3_gho2g"]
+[ext_resource type="Script" uid="uid://4y7rs0t5ha0r" path="res://scripts/PlayerHUD/magnet_meter.gd" id="3_gho2g"]
 
 [node name="MagnetMeter" type="TextureProgressBar"]
 texture_filter = 1

@@ -1,12 +1,12 @@
 [gd_scene load_steps=31 format=3 uid="uid://cv8ohxpbogrkh"]
 
-[ext_resource type="Script" path="res://scripts/Enemies/dummy.gd" id="1_4d34s"]
+[ext_resource type="Script" uid="uid://c6itbpx5xrlxq" path="res://scripts/Enemies/dummy.gd" id="1_4d34s"]
 [ext_resource type="Texture2D" uid="uid://sgbkmmnel0ye" path="res://assets/Characters/Enemies/Dummy/Training Dummy Sprite Sheet.png" id="1_a0h0f"]
 [ext_resource type="Shader" uid="uid://qclbbv2g10qa" path="res://shaders/hit_flash.tres" id="1_tf4gv"]
-[ext_resource type="Script" path="res://scripts/Enemies/hurtbox.gd" id="2_qcy4h"]
+[ext_resource type="Script" uid="uid://bi88bopkwvkno" path="res://scripts/Enemies/hurtbox.gd" id="2_qcy4h"]
 [ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="5_h12g8"]
 [ext_resource type="Texture2D" uid="uid://cwak2kurm4qmj" path="res://assets/UI/ArrowUP.png" id="6_1el4l"]
-[ext_resource type="Script" path="res://scripts/Effects/enemy_target_animation.gd" id="7_g5vwi"]
+[ext_resource type="Script" uid="uid://qe6s5ojine1" path="res://scripts/Effects/enemy_target_animation.gd" id="7_g5vwi"]
 [ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/melee/hit2.wav" id="7_vo7v0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yepqy"]

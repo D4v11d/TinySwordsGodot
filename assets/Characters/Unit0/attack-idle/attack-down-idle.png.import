@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgu6hy0e15pq"
-path="res://.godot/imported/crosshair_color_c.png-bc99b5079f185b00d0e77f02524c5ce9.ctex"
+uid="uid://b4qpo43ixhvsi"
+path="res://.godot/imported/attack-down-idle.png-d6cc70d168f1dd86c8dd4ba792d2bb06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/crosshair_color_c.png"
-dest_files=["res://.godot/imported/crosshair_color_c.png-bc99b5079f185b00d0e77f02524c5ce9.ctex"]
+source_file="res://assets/Characters/Unit0/attack-idle/attack-down-idle.png"
+dest_files=["res://.godot/imported/attack-down-idle.png-d6cc70d168f1dd86c8dd4ba792d2bb06.ctex"]
 
 [params]
 

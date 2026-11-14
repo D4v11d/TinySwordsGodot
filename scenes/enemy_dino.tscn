@@ -1,30 +1,30 @@
 [gd_scene load_steps=71 format=3 uid="uid://ckoyufyci8cv5"]
 
-[ext_resource type="Script" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
+[ext_resource type="Script" uid="uid://belb12y88mgw0" path="res://scripts/Enemies/enemy_dino.gd" id="1_0q518"]
 [ext_resource type="Texture2D" uid="uid://dqqptu1b3jyk" path="res://assets/Characters/Enemies/Dino/DinoSprites - mort.png" id="1_ccebb"]
-[ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="2_guxbk"]
+[ext_resource type="Script" uid="uid://ddb6as3lxty77" path="res://scripts/States/state_machine.gd" id="2_guxbk"]
 [ext_resource type="Texture2D" uid="uid://c7avulqemdfs4" path="res://assets/FX/DinoChargeIndicator.png" id="2_tbc7n"]
 [ext_resource type="Shader" uid="uid://qclbbv2g10qa" path="res://shaders/hit_flash.tres" id="2_v512t"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_idle.gd" id="3_p2b42"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_follow.gd" id="5_38b8y"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_knockback.gd" id="6_b3xtx"]
-[ext_resource type="Script" path="res://scripts/Enemies/hurtbox.gd" id="6_i2r66"]
+[ext_resource type="Script" uid="uid://jy238g1jlnxh" path="res://scripts/States/Enemy/enemy_idle.gd" id="3_p2b42"]
+[ext_resource type="Script" uid="uid://dupfevq6drvrv" path="res://scripts/States/Enemy/enemy_follow.gd" id="5_38b8y"]
+[ext_resource type="Script" uid="uid://cttxx233shm7y" path="res://scripts/States/Enemy/enemy_knockback.gd" id="6_b3xtx"]
+[ext_resource type="Script" uid="uid://bi88bopkwvkno" path="res://scripts/Enemies/hurtbox.gd" id="6_i2r66"]
 [ext_resource type="AudioStream" uid="uid://d313hpyajdhe2" path="res://assets/SFX/Walk.wav" id="7_0ojh2"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_charge.gd" id="7_v6aoy"]
-[ext_resource type="Script" path="res://scripts/Enemies/enemy_hitbox.gd" id="8_2gind"]
-[ext_resource type="Script" path="res://scripts/Effects/hitstop.gd" id="9_c78xm"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_stunned.gd" id="9_jhdv4"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_wind_up.gd" id="10_030b5"]
+[ext_resource type="Script" uid="uid://dsamcquds0s8m" path="res://scripts/States/Enemy/enemy_charge.gd" id="7_v6aoy"]
+[ext_resource type="Script" uid="uid://80i11jjfhr8p" path="res://scripts/Enemies/enemy_hitbox.gd" id="8_2gind"]
+[ext_resource type="Script" uid="uid://1c7fv5h1qa03" path="res://scripts/Effects/hitstop.gd" id="9_c78xm"]
+[ext_resource type="Script" uid="uid://dvgt80o1327c1" path="res://scripts/States/Enemy/enemy_stunned.gd" id="9_jhdv4"]
+[ext_resource type="Script" uid="uid://2aaqmfju2h4m" path="res://scripts/States/Enemy/enemy_wind_up.gd" id="10_030b5"]
 [ext_resource type="PackedScene" uid="uid://yfsfw562cn1s" path="res://scenes/shared_components/health_bar.tscn" id="10_jwwg1"]
 [ext_resource type="AudioStream" uid="uid://bwb1c57wvsrr1" path="res://assets/SFX/enemy/snd_LeaperJump.wav" id="10_uomhs"]
-[ext_resource type="Script" path="res://scripts/States/Enemy/enemy_death.gd" id="11_loo18"]
+[ext_resource type="Script" uid="uid://dvriyat07sxcg" path="res://scripts/States/Enemy/enemy_death.gd" id="11_loo18"]
 [ext_resource type="AudioStream" uid="uid://deu4lfhc11xc3" path="res://assets/SFX/snd_DirkDeath.wav" id="12_3bkt7"]
 [ext_resource type="Texture2D" uid="uid://cjs57fbcbgdqr" path="res://assets/UI/tilemap_packed.png" id="12_i6xh3"]
 [ext_resource type="Texture2D" uid="uid://cwak2kurm4qmj" path="res://assets/UI/ArrowUP.png" id="13_pt122"]
 [ext_resource type="Texture2D" uid="uid://dyou5f1uy5hhy" path="res://assets/FX/ImpactMedium1.png" id="15_7mwqu"]
 [ext_resource type="AudioStream" uid="uid://bs33ylaxnq6i8" path="res://assets/SFX/melee/snd_ShieldHit_v2.wav" id="16_evhrq"]
 [ext_resource type="Texture2D" uid="uid://fbwd3r3oqr35" path="res://assets/FX/stun-animation.png" id="17_hupej"]
-[ext_resource type="Script" path="res://scripts/Effects/enemy_target_animation.gd" id="17_ppm41"]
+[ext_resource type="Script" uid="uid://qe6s5ojine1" path="res://scripts/Effects/enemy_target_animation.gd" id="17_ppm41"]
 [ext_resource type="AudioStream" uid="uid://cek36xwax7sbg" path="res://assets/SFX/melee/hit2.wav" id="20_5ehnm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p107t"]
@@ -308,8 +308,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixqv5"]
 _data = {
-"RESET": SubResource("Animation_v8kyc"),
-"flash": SubResource("Animation_yb1u5")
+&"RESET": SubResource("Animation_v8kyc"),
+&"flash": SubResource("Animation_yb1u5")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0b36"]
@@ -407,10 +407,10 @@ animations = [{
 
 [node name="EnemyDino" type="CharacterBody2D" groups=["enemies"]]
 y_sort_enabled = true
-scale = Vector2(3, 3)
 collision_layer = 2
 script = ExtResource("1_0q518")
 should_follow = true
+base_speed = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -542,7 +542,7 @@ levitation_duration = 1.0
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ixqv5")
+&"": SubResource("AnimationLibrary_ixqv5")
 }
 
 [node name="VFXAnimation" type="AnimatedSprite2D" parent="."]

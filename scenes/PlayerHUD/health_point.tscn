@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cy22jul5g4ggj"]
 
-[ext_resource type="Script" path="res://scripts/PlayerHUD/resource_point.gd" id="1_nys8v"]
+[ext_resource type="Script" uid="uid://v3vugyybd8dj" path="res://scripts/PlayerHUD/resource_point.gd" id="1_nys8v"]
 [ext_resource type="Texture2D" uid="uid://b7mptalnc3g0b" path="res://assets/UI/bars/health-point-animation.png" id="2_sv32u"]
 [ext_resource type="Texture2D" uid="uid://dlthqohrbip5t" path="res://assets/UI/bars/health-point-empty.png" id="3_2wh5c"]
 

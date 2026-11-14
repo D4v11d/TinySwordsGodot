@@ -19,6 +19,9 @@ var current_attack_phase = AttackPhase.NONE
 @onready var sword_swing_audio: AudioStreamPlayer2D = $"../../Melee/SwordSwingAudioPlayer"
 @onready var sword_swing_heavy_audio: AudioStreamPlayer2D = $"../../Melee/SwordSwingHeavy"
 
+@export var basic_attack_move_distance = 100
+@export var final_attack_move_distance = 200
+
 enum AttackPhase {
 	NONE,
 	ATTACK1,
@@ -104,10 +107,10 @@ func handle_attack(animation: String):
 	
 	if current_attack_phase == AttackPhase.ATTACK3:
 		sword_swing_heavy_audio.play()
-		move_distance = 600
+		move_distance = final_attack_move_distance
 	else:
 		RandomizePitch.play(sword_swing_audio)
-		move_distance = 500
+		move_distance = basic_attack_move_distance
 		
 	player.velocity = target_direction.normalized() * move_distance
 	attack_movement_timer.start()
@@ -139,7 +142,7 @@ func on_frame_changed():
 
 func handle_combo_by_frame():
 	if sprite.animation.begins_with("attack1"):
-		if sprite.frame > 3:
+		if sprite.frame > 4:
 			combo_window_open = true
 		
 		if combo_window_open and next_attack_queued:
@@ -148,7 +151,7 @@ func handle_combo_by_frame():
 		return
 	
 	if sprite.animation.begins_with("attack2"):
-		if sprite.frame > 4:
+		if sprite.frame > 3:
 			combo_window_open = true
 		
 		if combo_window_open and next_attack_queued:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn8v5ah4h8i02"
-path="res://.godot/imported/Circle_Crosshair5.png-d3fedd00aa15da3b25ffec5ce15fd8c0.ctex"
+uid="uid://bbnp0ho85yqq"
+path="res://.godot/imported/attack-up.png-fa85ce2157da92714ee9bceff33783a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Circle_Crosshair5.png"
-dest_files=["res://.godot/imported/Circle_Crosshair5.png-d3fedd00aa15da3b25ffec5ce15fd8c0.ctex"]
+source_file="res://assets/Characters/Unit0/attack/attack-up.png"
+dest_files=["res://.godot/imported/attack-up.png-fa85ce2157da92714ee9bceff33783a1.ctex"]
 
 [params]
 

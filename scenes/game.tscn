@@ -1,20 +1,21 @@
-[gd_scene load_steps=81 format=4 uid="uid://cmrcv8kjnjvbi"]
+[gd_scene load_steps=84 format=4 uid="uid://cmrcv8kjnjvbi"]
 
 [ext_resource type="PackedScene" uid="uid://bm8rf6dty5bjs" path="res://scenes/player.tscn" id="1_emstv"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fblw1"]
-[ext_resource type="Script" path="res://scripts/Map/TilemapLayerManager.gd" id="2_1k0hj"]
+[ext_resource type="Script" uid="uid://b0nkiyp6dufr4" path="res://scripts/game_manager.gd" id="1_fblw1"]
+[ext_resource type="Script" uid="uid://2p774ddc3wgx" path="res://scripts/Map/TilemapLayerManager.gd" id="2_1k0hj"]
 [ext_resource type="Texture2D" uid="uid://b1ngdgs4jb8fu" path="res://assets/Terrain/Ground/Tilemap_Flat.png" id="3_gqj05"]
 [ext_resource type="Texture2D" uid="uid://bm8md4c247nav" path="res://assets/Terrain/Bridge/Bridge_All.png" id="3_iwxnj"]
 [ext_resource type="Texture2D" uid="uid://bvkqknkwp0fio" path="res://assets/Terrain/Water/Foam/Foam.png" id="3_x3gax"]
 [ext_resource type="Texture2D" uid="uid://dpb4nh57gswxe" path="res://assets/UI/controls/PC-White/keyboard_escape.png" id="4_ar216"]
 [ext_resource type="Texture2D" uid="uid://dmmhq0rbuqvmc" path="res://assets/Terrain/Ground/Tilemap_Elevation.png" id="4_tkcuj"]
 [ext_resource type="PackedScene" uid="uid://vs8jknxcnulq" path="res://scenes/grapple_point.tscn" id="5_pmldd"]
-[ext_resource type="Script" path="res://scripts/Map/LayerSwitchManager.gd" id="6_lpd67"]
+[ext_resource type="Texture2D" uid="uid://lok2n0p7vchc" path="res://assets/UI/controls/Xbox/xbox_button_menu.png" id="6_djwtw"]
+[ext_resource type="Script" uid="uid://cl3ccxht6gs2b" path="res://scripts/Map/LayerSwitchManager.gd" id="6_lpd67"]
 [ext_resource type="Texture2D" uid="uid://c56a5q8xatifj" path="res://assets/Terrain/Water/Rocks/Rocks_04.png" id="7_rgmru"]
 [ext_resource type="Texture2D" uid="uid://c5ckac04rvbqf" path="res://assets/Terrain/Water/Water.png" id="8_nw1k3"]
 [ext_resource type="Texture2D" uid="uid://clbr16smvhxb6" path="res://assets/Tilemap/TX Tileset Grass.png" id="8_t51df"]
 [ext_resource type="Texture2D" uid="uid://b87xk7ip2bruh" path="res://assets/Tilemap/TX Tileset Wall.png" id="9_6j3lv"]
-[ext_resource type="Script" path="res://scripts/UI/controls_panel.gd" id="10_i1cpi"]
+[ext_resource type="Script" uid="uid://bnytcwy4ag3pn" path="res://scripts/UI/controls_panel.gd" id="10_i1cpi"]
 [ext_resource type="PackedScene" uid="uid://c8ch2gqle3fbx" path="res://scenes/PlayerHUD/player_health.tscn" id="11_ts3ad"]
 [ext_resource type="PackedScene" uid="uid://cv8ohxpbogrkh" path="res://scenes/dummy.tscn" id="12_bjpus"]
 [ext_resource type="Texture2D" uid="uid://rr5bg1ythgjp" path="res://assets/UI/panel-000.png" id="12_v21qe"]
@@ -29,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cs5si5vyckhph" path="res://assets/UI/controls/PlayStation/controller_playstation5.png" id="15_jw7y7"]
 [ext_resource type="Texture2D" uid="uid://24dfxs2alvli" path="res://assets/UI/controls/PC-White/keyboard_d.png" id="15_tc8f5"]
 [ext_resource type="Texture2D" uid="uid://cax55dt0ymwrg" path="res://assets/UI/controls/PC-White/keyboard_w.png" id="16_0s8er"]
-[ext_resource type="Script" path="res://scripts/Effects/stage_text_animation.gd" id="16_pmgtn"]
+[ext_resource type="Script" uid="uid://cwevlrot417ri" path="res://scripts/Effects/stage_text_animation.gd" id="16_pmgtn"]
 [ext_resource type="Texture2D" uid="uid://blvmwmd6pxv5" path="res://assets/UI/controls/PC-White/mouse_move.png" id="17_j8twq"]
 [ext_resource type="Texture2D" uid="uid://bobtcwgq47y56" path="res://assets/UI/white-square.png" id="18_31tbb"]
 [ext_resource type="Texture2D" uid="uid://i0lkeaqvp6xy" path="res://assets/UI/controls/PC-White/mouse_left.png" id="18_jqsd5"]
@@ -46,7 +47,9 @@
 [ext_resource type="Texture2D" uid="uid://dxrfj76lm4j8q" path="res://assets/UI/controls/Xbox/xbox_lb.png" id="27_s1ug0"]
 [ext_resource type="Texture2D" uid="uid://dungxmhxnxwdx" path="res://assets/UI/controls/Xbox/xbox_lt.png" id="28_atm5i"]
 [ext_resource type="Texture2D" uid="uid://djwhvh3thku8v" path="res://assets/UI/controls/Xbox/xbox_rb.png" id="29_m5skp"]
-[ext_resource type="Script" path="res://scripts/Enemies/enemy_hitbox.gd" id="32_64iax"]
+[ext_resource type="Script" uid="uid://80i11jjfhr8p" path="res://scripts/Enemies/enemy_hitbox.gd" id="32_64iax"]
+[ext_resource type="Texture2D" uid="uid://r7u802ms8qvb" path="res://assets/Tilemap/TX Plant.png" id="41_xp5k3"]
+[ext_resource type="Script" uid="uid://7of7u51tg6yf" path="res://scripts/UI/mouse_cursor_manager.gd" id="49_jteo0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u4nyp"]
 texture = ExtResource("12_v21qe")
@@ -362,6 +365,710 @@ sources/7 = SubResource("TileSetAtlasSource_bap3b")
 sources/8 = SubResource("TileSetAtlasSource_pu581")
 sources/9 = SubResource("TileSetAtlasSource_lvt27")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_845r1"]
+texture = ExtResource("41_xp5k3")
+4:0/0 = 0
+5:0/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+20:1/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+19:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+20:9/0 = 0
+21:9/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+18:11/0 = 0
+19:11/0 = 0
+22:11/0 = 0
+23:11/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+16:12/0 = 0
+17:12/0 = 0
+18:12/0 = 0
+19:12/0 = 0
+20:12/0 = 0
+21:12/0 = 0
+22:12/0 = 0
+23:12/0 = 0
+24:12/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+16:13/0 = 0
+17:13/0 = 0
+18:13/0 = 0
+19:13/0 = 0
+21:13/0 = 0
+22:13/0 = 0
+23:13/0 = 0
+24:13/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+18:14/0 = 0
+19:14/0 = 0
+22:14/0 = 0
+0:24/0 = 0
+1:24/0 = 0
+2:24/0 = 0
+3:24/0 = 0
+4:24/0 = 0
+5:24/0 = 0
+6:24/0 = 0
+7:24/0 = 0
+0:25/0 = 0
+1:25/0 = 0
+2:25/0 = 0
+3:25/0 = 0
+4:25/0 = 0
+5:25/0 = 0
+6:25/0 = 0
+7:25/0 = 0
+0:26/0 = 0
+1:26/0 = 0
+2:26/0 = 0
+3:26/0 = 0
+4:26/0 = 0
+5:26/0 = 0
+6:26/0 = 0
+7:26/0 = 0
+0:27/0 = 0
+1:27/0 = 0
+2:27/0 = 0
+3:27/0 = 0
+4:27/0 = 0
+5:27/0 = 0
+6:27/0 = 0
+7:27/0 = 0
+0:28/0 = 0
+1:28/0 = 0
+2:28/0 = 0
+3:28/0 = 0
+4:28/0 = 0
+5:28/0 = 0
+6:28/0 = 0
+7:28/0 = 0
+0:29/0 = 0
+1:29/0 = 0
+2:29/0 = 0
+3:29/0 = 0
+4:29/0 = 0
+5:29/0 = 0
+6:29/0 = 0
+7:29/0 = 0
+0:30/0 = 0
+1:30/0 = 0
+2:30/0 = 0
+3:30/0 = 0
+4:30/0 = 0
+5:30/0 = 0
+7:30/0 = 0
+0:31/0 = 0
+1:31/0 = 0
+2:31/0 = 0
+3:31/0 = 0
+4:31/0 = 0
+5:31/0 = 0
+6:31/0 = 0
+7:31/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j5jh"]
+texture = ExtResource("8_t51df")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l112l"]
+texture = ExtResource("9_6j3lv")
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+18:2/0 = 0
+21:2/0 = 0
+24:2/0 = 0
+25:2/0 = 0
+26:2/0 = 0
+27:2/0 = 0
+28:2/0 = 0
+29:2/0 = 0
+2:3/0 = 0
+7:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+18:3/0 = 0
+21:3/0 = 0
+2:4/0 = 0
+7:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+18:4/0 = 0
+21:4/0 = 0
+24:4/0 = 0
+25:4/0 = 0
+26:4/0 = 0
+27:4/0 = 0
+2:5/0 = 0
+7:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+18:5/0 = 0
+21:5/0 = 0
+24:5/0 = 0
+27:5/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+9:6/0 = 0
+16:6/0 = 0
+18:6/0 = 0
+21:6/0 = 0
+24:6/0 = 0
+25:6/0 = 0
+26:6/0 = 0
+27:6/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+9:7/0 = 0
+16:7/0 = 0
+18:7/0 = 0
+21:7/0 = 0
+24:7/0 = 0
+25:7/0 = 0
+26:7/0 = 0
+27:7/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+24:8/0 = 0
+25:8/0 = 0
+26:8/0 = 0
+27:8/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+24:9/0 = 0
+25:9/0 = 0
+26:9/0 = 0
+27:9/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+8:18/0 = 0
+9:18/0 = 0
+10:18/0 = 0
+11:18/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+8:19/0 = 0
+9:19/0 = 0
+10:19/0 = 0
+11:19/0 = 0
+2:20/0 = 0
+3:20/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+8:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+11:20/0 = 0
+2:21/0 = 0
+3:21/0 = 0
+4:21/0 = 0
+5:21/0 = 0
+8:21/0 = 0
+9:21/0 = 0
+10:21/0 = 0
+11:21/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_n01e8"]
+sources/0 = SubResource("TileSetAtlasSource_845r1")
+sources/1 = SubResource("TileSetAtlasSource_5j5jh")
+sources/2 = SubResource("TileSetAtlasSource_l112l")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_radp2"]
 texture = ExtResource("4_tkcuj")
 texture_region_size = Vector2i(64, 64)
@@ -659,147 +1366,6 @@ custom_data_layer_1/name = "is_wall"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_dbtm7")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pxf2k"]
-texture = ExtResource("8_t51df")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_cv36t"]
-tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_pxf2k")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6xry6"]
-texture = ExtResource("9_6j3lv")
-texture_region_size = Vector2i(32, 32)
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-1:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-12:2/0 = 0
-13:2/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-12:3/0 = 0
-13:3/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-6:6/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-6:7/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-4:10/0 = 0
-5:10/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_jbnim"]
-tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_6xry6")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqbfj"]
 size = Vector2(51.5, 91)
 
@@ -810,7 +1376,7 @@ size = Vector2(92.5, 182)
 size = Vector2(176, 40.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omg1m"]
-radius = 276.586
+radius = 140.929
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -877,8 +1443,21 @@ alignment = 1
 position = Vector2(8, 12)
 
 [node name="KeyboardEscape" type="Sprite2D" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
-position = Vector2(959, 26)
+position = Vector2(884, 23)
 texture = ExtResource("4_ar216")
+
+[node name="Slash" type="Label" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
+offset_left = 916.0
+offset_top = 3.0
+offset_right = 928.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 48
+text = "/"
+
+[node name="KeyboardEscape2" type="Sprite2D" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
+position = Vector2(958, 23)
+texture = ExtResource("6_djwtw")
 
 [node name="ControlsText" type="Label" parent="CanvasLayer/PlayerHUDContainer2/ESCControls"]
 offset_left = 996.0
@@ -1464,17 +2043,49 @@ offset_right = 1057.0
 offset_bottom = 877.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_2w7jg")
 
+[node name="XboxButtonMenu" type="Sprite2D" parent="CanvasLayer/ControlsPanel/Play"]
+texture_filter = 1
+position = Vector2(50, 53)
+texture = ExtResource("6_djwtw")
+
 [node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Play"]
 layout_mode = 0
-offset_right = 249.0
-offset_bottom = 102.0
+offset_left = 85.0
+offset_top = 11.0
+offset_right = 245.0
+offset_bottom = 92.0
 theme_override_fonts/font = ExtResource("14_588gu")
 theme_override_font_sizes/font_size = 96
 text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="CanvasLayer/ControlsPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Exit" type="Button" parent="CanvasLayer/ControlsPanel"]
+visible = false
+layout_mode = 0
+offset_left = 805.0
+offset_top = 769.0
+offset_right = 1057.0
+offset_bottom = 877.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_2w7jg")
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsPanel/Exit"]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("14_588gu")
+theme_override_font_sizes/font_size = 96
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Map" type="Node2D" parent="."]
+visible = false
 y_sort_enabled = true
 script = ExtResource("32_64iax")
 
@@ -1498,6 +2109,10 @@ script = ExtResource("2_1k0hj")
 tile_map_data = PackedByteArray("AAACAAYABwABAAIAAAADAAYABwABAAIAAAAEAAYABwABAAIAAAD3/wYABwABAAIAAAD4/wYABwABAAIAAAD5/wYABwABAAIAAAAFAAUABwABAAIAAAAGAAUABwAAAAEAAAAIAAUABwACAAEAAAD1/wEABwABAAIAAAD2/wEABwABAAIAAAD3/wEABwABAAIAAAD4/wEABwABAAIAAAD5/wEABwABAAIAAAD6/wEABwABAAIAAAD7/wEABwABAAIAAAD8/wEABwABAAIAAAD9/wEABwABAAIAAAACAPz/BwABAAIAAAADAPz/BwABAAIAAAAEAPz/BwABAAIAAAAFAPz/BwABAAIAAAAGAPz/BwABAAIAAAD0//j/BwAAAAEAAAD0//n/BwAAAAEAAAD0//r/BwAAAAEAAAD0//v/BwAAAAEAAAD0//z/BwAAAAEAAAD0//3/BwAAAAEAAAD0//7/BwAAAAEAAAD0////BwAAAAEAAAD0/wAABwAAAAEAAAD1//f/BwABAAAAAAD2//f/BwABAAAAAAD3//f/BwABAAAAAAD4//f/BwABAAAAAAD5//f/BwABAAAAAAD6//f/BwABAAAAAAD7//f/BwABAAAAAAD8//f/BwABAAAAAAD9//f/BwABAAAAAAD+//j/BwACAAEAAAD+//n/BwACAAEAAAD+//r/BwACAAEAAAD+//v/BwACAAEAAAD+//z/BwACAAEAAAD+//3/BwACAAEAAAD+//7/BwACAAEAAAD+////BwACAAEAAAD+/wAABwACAAEAAAABAPv/BwAAAAEAAAABAPr/BwAAAAEAAAABAPn/BwAAAAEAAAAHAPv/BwACAAEAAAAHAPr/BwACAAEAAAAHAPn/BwACAAEAAAAHAPj/BwACAAEAAAABAPj/BwAAAAEAAAAJAAQABwACAAEAAAAJAAMABwACAAEAAAAJAAIABwACAAEAAAAJAAEABwACAAEAAAAJAAAABwACAAEAAAAJAP//BwACAAEAAAAJAP7/BwACAAEAAAAJAP3/BwACAAEAAAABAAUABwAAAAEAAAABAAQABwAAAAEAAAABAAMABwAAAAEAAAABAAIABwAAAAEAAAABAAEABwAAAAEAAAABAAAABwAAAAEAAAABAP//BwAAAAEAAAABAP7/BwAAAAEAAAABAP3/BwAAAAEAAAD2/wUABwAAAAEAAAD2/wQABwAAAAEAAAD2/wMABwAAAAEAAAD6/wUABwACAAEAAAD6/wQABwACAAEAAAD6/wMABwACAAEAAAAHAAkACAAAAAMAAAAHAAQACAAAAAEAAAAGAAYABwAAAAEAAAAGAAcABwAAAAEAAAAGAAgABwAAAAEAAAAIAAgABwACAAEAAAAIAAcABwACAAEAAAAIAAYABwACAAEAAAAJAAgABwABAAAAAAAKAAgABwABAAAAAAALAAgABwABAAAAAAAMAAgABwABAAAAAAANAAgABwABAAAAAAANAAcABwAAAAEAAAANAAYABwAAAAEAAAANAAUABwAAAAEAAAANAAQABwAAAAEAAAANAAMABwAAAAEAAAANAAIABwAAAAEAAAANAAEABwAAAAEAAAANAAAABwAAAAEAAAANAP//BwAAAAEAAAANAP7/BwAAAAEAAAANAP3/BwAAAAEAAAANAPz/BwAAAAEAAAANAPv/BwAAAAEAAAANAPr/BwAAAAEAAAANAPn/BwAAAAEAAAANAPj/BwAAAAEAAAANAPf/BwAAAAEAAAANAPb/BwAAAAEAAAANAPX/BwABAAIAAAAMAPX/BwABAAIAAAALAPX/BwABAAIAAAAKAPX/BwABAAIAAAAJAPX/BwABAAIAAAAIAPX/BwABAAIAAAAHAPX/BwABAAIAAAAGAPX/BwABAAIAAAAFAPX/BwABAAIAAAAEAPX/BwABAAIAAAADAPX/BwABAAIAAAACAPX/BwABAAIAAAABAPX/BwABAAIAAAAAAPX/BwABAAIAAAD///X/BwABAAIAAAD+//X/BwABAAIAAAD9//X/BwABAAIAAAD8//X/BwABAAIAAAD7//X/BwABAAIAAAD6//X/BwABAAIAAAD5//X/BwABAAIAAAD4//X/BwABAAIAAAD3//X/BwABAAIAAAD2//X/BwABAAIAAAD1//X/BwABAAIAAAD0//X/BwABAAIAAADz//X/BwABAAIAAADy//X/BwABAAIAAADx//X/BwABAAIAAADw//X/BwABAAIAAADv//X/BwABAAIAAADv//b/BwACAAEAAADv//f/BwACAAEAAADv//j/BwACAAEAAADv//n/BwACAAEAAADv//r/BwACAAEAAADv//v/BwACAAEAAADv//z/BwACAAEAAADv//3/BwACAAEAAADv//7/BwACAAEAAADv////BwACAAEAAADv/wAABwACAAEAAADv/wEABwACAAEAAADv/wIABwACAAEAAADv/wMABwACAAEAAADv/wQABwACAAEAAADv/wUABwACAAEAAADv/wYABwACAAEAAADv/wcABwACAAEAAADv/wgABwABAAAAAADw/wgABwABAAAAAADx/wgABwABAAAAAADy/wgABwABAAAAAADz/wgABwABAAAAAAD0/wgABwABAAAAAAD1/wgABwABAAAAAAD2/wgABwABAAAAAAD3/wgABwABAAAAAAD4/wgABwABAAAAAAD5/wgABwABAAAAAAD6/wgABwABAAAAAAD7/wgABwABAAAAAAD8/wgABwABAAAAAAD9/wgABwABAAAAAAD+/wgABwABAAAAAAD//wgABwABAAAAAAAAAAgABwABAAAAAAABAAgABwABAAAAAAACAAgABwABAAAAAAADAAgABwABAAAAAAAEAAgABwABAAAAAAAFAAgABwABAAAAAAA=")
 tile_set = SubResource("TileSet_v0pw5")
 
+[node name="TileMapLayer" type="TileMapLayer" parent="Map/Elevation0"]
+texture_filter = 1
+tile_set = SubResource("TileSet_n01e8")
+
 [node name="Elevation1" type="Node2D" parent="Map"]
 y_sort_enabled = true
 
@@ -1520,25 +2135,15 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAOAPj/AAACAAAAAAAGAPj/AAAAAAAAAAAHAPj/AAABAAAAAAAIAPj/AAABAAAAAAAJAPj/AAABAAAAAAAKAPj/AAABAAAAAAALAPj/AAABAAAAAAAMAPj/AAABAAAAAAANAPj/AAABAAAAAAA=")
 tile_set = SubResource("TileSet_w2od4")
 
-[node name="Map2" type="Node2D" parent="."]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="Map2"]
-tile_map_data = PackedByteArray("AACF/woAAQAAAAAAAACG/woAAQAAAAAAAACH/woAAQAAAAAAAACI/woAAQAAAAAAAACJ/woAAQABAAQAAACK/woAAQABAAQAAACL/woAAQABAAQAAACM/woAAQAAAAAAAACN/woAAQAAAAAAAACO/woAAQAAAAAAAACP/woAAQAAAAAAAACQ/woAAQAHAAcAAACQ/wsAAQAAAAAAAACQ/wwAAQAGAAYAAACQ/w0AAQAAAAAAAACQ/w4AAQAAAAAAAACQ/w8AAQAAAAAAAACQ/xAAAQAAAAAAAACQ/xEAAQABAAIAAACQ/xIAAQABAAIAAACQ/xMAAQABAAIAAACP/xMAAQACAAIAAACP/xQAAQABAAIAAACO/xQAAQABAAIAAACN/xQAAQABAAIAAACM/xQAAQABAAIAAACL/xQAAQABAAYAAACK/xQAAQABAAcAAACJ/xQAAQAAAAcAAACI/xQAAQABAAIAAACH/xQAAQABAAIAAACG/xQAAQABAAIAAACF/xQAAQABAAIAAACE/xMAAQABAAIAAACE/xIAAQABAAIAAACE/xEAAQAAAAAAAACE/xAAAQAAAAAAAACE/w8AAQAAAAAAAACE/w4AAQAAAAAAAACE/w0AAQAAAAAAAACE/wwAAQAAAAAAAACE/wsAAQAAAAAAAACE/woAAQAGAAcAAACF/wsAAQABAAIAAACF/wwAAQAHAAYAAACF/w0AAQABAAIAAACF/w4AAQABAAIAAACF/w8AAQABAAIAAACF/xAAAQABAAIAAACF/xEAAQABAAIAAACF/xIAAQACAAIAAACF/xMAAQACAAIAAACG/xMAAQACAAIAAACH/xMAAQACAAIAAACI/xMAAQAHAAMAAACJ/xMAAQAAAAYAAACK/xMAAQAAAAYAAACL/xMAAQABAAYAAACM/xMAAQACAAIAAACN/xMAAQACAAIAAACO/xMAAQACAAIAAACG/wsAAQABAAIAAACH/wsAAQABAAIAAACI/wsAAQABAAIAAACJ/wsAAQABAAQAAACK/wsAAQABAAQAAACL/wsAAQABAAQAAACM/wsAAQABAAIAAACN/wsAAQABAAIAAACO/wsAAQABAAIAAACP/wsAAQABAAIAAACP/wwAAQABAAIAAACO/wwAAQAHAAYAAACN/wwAAQABAAIAAACM/wwAAQABAAIAAACL/wwAAQABAAUAAACK/wwAAQABAAQAAACJ/wwAAQABAAQAAACI/wwAAQABAAIAAACH/wwAAQABAAIAAACG/wwAAQABAAIAAACG/w0AAQAGAAYAAACH/w0AAQABAAIAAACI/w0AAQABAAIAAACJ/w0AAQABAAQAAACK/w0AAQABAAUAAACL/w0AAQABAAQAAACM/w0AAQABAAIAAACN/w0AAQABAAIAAACO/w0AAQAHAAMAAACP/w0AAQABAAIAAACP/w4AAQABAAIAAACO/w4AAQAAAAIAAACN/w4AAQAAAAIAAACM/w4AAQAAAAIAAACL/w4AAQABAAQAAACK/w4AAQABAAQAAACJ/w4AAQABAAQAAACI/w4AAQABAAIAAACH/w4AAQABAAIAAACG/w4AAQAFAAMAAACG/w8AAQABAAIAAACH/w8AAQABAAIAAACI/w8AAQABAAIAAACJ/w8AAQABAAUAAACK/w8AAQABAAUAAACL/w8AAQABAAQAAACM/w8AAQAHAAMAAACN/w8AAQAHAAMAAACO/w8AAQABAAIAAACP/w8AAQAGAAYAAACO/xAAAQAAAAIAAACN/xAAAQABAAIAAACM/xAAAQABAAIAAACL/xAAAQAAAAQAAACK/xAAAQAAAAQAAACJ/xAAAQABAAQAAACI/xAAAQABAAIAAACH/xAAAQABAAIAAACG/xAAAQAGAAYAAACG/xEAAQABAAIAAACH/xEAAQAGAAIAAACI/xEAAQACAAIAAACJ/xEAAQABAAYAAACK/xEAAQAAAAYAAACL/xEAAQABAAUAAACM/xEAAQAAAAIAAACN/xEAAQAAAAIAAACO/xEAAQABAAIAAACP/xAAAQAGAAUAAACP/xEAAQABAAIAAACP/xIAAQABAAIAAACO/xIAAQABAAIAAACN/xIAAQAEAAMAAACM/xIAAQABAAIAAACL/xIAAQABAAQAAACK/xIAAQAAAAYAAACJ/xIAAQABAAYAAACI/xIAAQACAAIAAACH/xIAAQACAAIAAACG/xIAAQAEAAIAAACE/xQAAQABAAIAAACQ/xQAAQABAAIAAAA=")
-tile_set = SubResource("TileSet_cv36t")
-
-[node name="TileMapLayer2" type="TileMapLayer" parent="Map2"]
-tile_map_data = PackedByteArray("AACO/woAAQAGAAcAAACP/woAAQAGAAIAAACQ/woAAQAHAAIAAACE/woAAQAFAAIAAACF/woAAQAGAAIAAACG/woAAQAGAAcAAACH/woAAQAHAAIAAACI/woAAQAGAAIAAACM/woAAQAFAAIAAACN/woAAQAGAAIAAACO/wkAAQAGAAYAAACP/wkAAQAGAAEAAACQ/wkAAQAHAAEAAACM/wkAAQAFAAEAAACN/wkAAQAGAAEAAACE/wkAAQAFAAEAAACF/wkAAQAGAAEAAACG/wkAAQAGAAYAAACH/wkAAQAGAAEAAACI/wkAAQAHAAEAAACR/wkAAQAIAAEAAACR/woAAQAIAAIAAACR/wsAAQAIAAIAAACR/wwAAQAIAAMAAACR/w0AAQAIAAIAAACR/w4AAQAIAAIAAACR/w8AAQAIAAIAAACR/xAAAQAIAAIAAACD/xEAAQAEAAMAAACD/wkAAQAEAAEAAACD/woAAQAEAAIAAACD/wsAAQAEAAMAAACD/wwAAQAEAAIAAACD/w0AAQAEAAMAAACD/w4AAQAEAAIAAACD/w8AAQAEAAMAAACD/xAAAQAEAAIAAACD/xIAAQAEAAIAAACD/xMAAQAEAAMAAACD/xUAAQAEAAQAAACD/xQAAQAEAAMAAACE/xUAAQAFAAQAAACF/xUAAQAGAAQAAACG/xUAAQAHAAQAAACI/xUAAQAGAAQAAACJ/xUAAQAHAAQAAACK/xUAAQAHAAQAAACH/xUAAQAFAAQAAACL/xUAAQAFAAQAAACM/xUAAQAGAAQAAACN/xUAAQAHAAQAAACO/xUAAQAFAAQAAACP/xUAAQAGAAQAAACQ/xUAAQAHAAQAAACR/xUAAQAIAAQAAACR/xIAAQAIAAIAAACR/xMAAQAIAAIAAACR/xQAAQAIAAIAAACR/xEAAQAIAAIAAAA=")
-tile_set = SubResource("TileSet_jbnim")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-4736, -1200)
-zoom = Vector2(1.35, 1.35)
-position_smoothing_enabled = true
-
 [node name="Player" parent="." node_paths=PackedStringArray("tilemaps") instance=ExtResource("1_emstv")]
-position = Vector2(-4706, -1101)
+position = Vector2(-4784, -1063)
 tilemaps = [NodePath("../Map/Elevation0/Water"), NodePath("../Map/Elevation0/Tilemap"), NodePath("../Map/Elevation1/Tilemap"), NodePath("../Map/Elevation2/Tilemap")]
 infinite_bullets = false
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0.000322104, -1)
+zoom = Vector2(4.6, 4.6)
+position_smoothing_enabled = true
 
 [node name="LayerSwitchManager" type="Node2D" parent="."]
 script = ExtResource("6_lpd67")
@@ -1587,13 +2192,13 @@ position = Vector2(-106, 114)
 position = Vector2(-4519, -1120)
 
 [node name="Pos1" type="Marker2D" parent="EnemySpawnPositions"]
-position = Vector2(-613, -262)
+position = Vector2(-374, -3)
 
 [node name="Pos2" type="Marker2D" parent="EnemySpawnPositions"]
-position = Vector2(190, 144)
+position = Vector2(-153, 114)
 
 [node name="Pos3" type="Marker2D" parent="EnemySpawnPositions"]
-position = Vector2(170, -265)
+position = Vector2(-370, 116)
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1612,7 +2217,7 @@ scale = Vector2(0.992753, 1)
 [node name="Area2D" type="Area2D" parent="EnemySpawner"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawner/Area2D"]
-position = Vector2(-4790.72, -1206)
+position = Vector2(-4817.92, -1067)
 shape = SubResource("CircleShape2D_omg1m")
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
@@ -1633,7 +2238,12 @@ y_sort_enabled = true
 position = Vector2(-431, -255)
 scale = Vector2(2.5, 2.5)
 
+[node name="MouseCursorManager" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("49_jteo0")
+
 [connection signal="button_down" from="CanvasLayer/FinishGameBackground/PlayAgainButton" to="." method="_on_play_again_button_button_down"]
 [connection signal="button_down" from="CanvasLayer/ControlsPanel/PCIcon/Button" to="." method="select_PC_controls"]
 [connection signal="button_down" from="CanvasLayer/ControlsPanel/JoystickIcon/Button" to="." method="select_joystick_controls"]
 [connection signal="button_down" from="CanvasLayer/ControlsPanel/Play" to="." method="start_game"]
+[connection signal="button_down" from="CanvasLayer/ControlsPanel/Exit" to="CanvasLayer/ControlsPanel" method="exit_game"]

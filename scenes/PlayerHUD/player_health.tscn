@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8ch2gqle3fbx"]
 
-[ext_resource type="Script" path="res://scripts/PlayerHUD/resource_meter.gd" id="1_a2xgl"]
+[ext_resource type="Script" uid="uid://cdumivq6bgeul" path="res://scripts/PlayerHUD/resource_meter.gd" id="1_a2xgl"]
 [ext_resource type="PackedScene" uid="uid://cy22jul5g4ggj" path="res://scenes/PlayerHUD/health_point.tscn" id="2_45jmp"]
 
 [node name="PlayerHealth" type="Node2D" node_paths=PackedStringArray("resource_points")]

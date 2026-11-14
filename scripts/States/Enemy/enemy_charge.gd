@@ -8,9 +8,10 @@ class_name EnemyCharge
 @onready var dino_charge_indicator: Sprite2D = $"../../DinoChargeIndicator"
 @onready var start_charge_sound: AudioStreamPlayer2D = $StartChargeSound
 
+@export var run_speed := 150
+
 var player: CharacterBody2D
 var charge_direction: Vector2
-var run_speed := 650.0
 
 func enter():
 	start_charge_sound.play()

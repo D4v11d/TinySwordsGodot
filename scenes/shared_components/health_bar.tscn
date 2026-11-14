@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://yfsfw562cn1s"]
 
-[ext_resource type="Script" path="res://scripts/Common/health_bar.gd" id="1_3aonx"]
+[ext_resource type="Script" uid="uid://hcobrjnebe0x" path="res://scripts/Common/health_bar.gd" id="1_3aonx"]
 [ext_resource type="Texture2D" uid="uid://d3d3incayrn7n" path="res://assets/FX/EnemyHealth/enemy-health-bar.png" id="1_hn4bh"]
 [ext_resource type="Texture2D" uid="uid://bs4b7c1rmo1jv" path="res://assets/FX/EnemyHealth/enemy-health-bar-damage.png" id="2_uyokf"]
 [ext_resource type="Texture2D" uid="uid://brfcogoqi4xj4" path="res://assets/FX/EnemyHealth/enemy-health-bar-progress.png" id="2_v37q0"]

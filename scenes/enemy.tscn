@@ -1,10 +1,10 @@
 [gd_scene load_steps=31 format=3 uid="uid://d0h0dn6utlxey"]
 
-[ext_resource type="Script" path="res://scripts/Enemies/enemy.gd" id="1_eon01"]
+[ext_resource type="Script" uid="uid://cbke8e45rxwiy" path="res://scripts/Enemies/enemy.gd" id="1_eon01"]
 [ext_resource type="Texture2D" uid="uid://dd4nqefnhnr8a" path="res://assets/TinySwordsAssets/Goblins/Troops/Torch/Red/Torch_Red.png" id="1_m35cg"]
 [ext_resource type="PackedScene" uid="uid://yfsfw562cn1s" path="res://scenes/shared_components/health_bar.tscn" id="3_icort"]
 [ext_resource type="PackedScene" uid="uid://cvw8oqujjw12p" path="res://scenes/shared_components/combat.tscn" id="4_jolrj"]
-[ext_resource type="Script" path="res://scripts/States/state_machine.gd" id="5_5ewm6"]
+[ext_resource type="Script" uid="uid://ddb6as3lxty77" path="res://scripts/States/state_machine.gd" id="5_5ewm6"]
 [ext_resource type="Texture2D" uid="uid://d068nf64vx0ke" path="res://assets/UI/02.png" id="6_mfo7p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6n4q"]

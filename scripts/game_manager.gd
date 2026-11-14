@@ -86,6 +86,10 @@ func spawn_enemy(position: Vector2) -> void:
 	var enemy_instance: Node2D = ENEMY_DINO_SCENE.instantiate()
 	enemy_instance.position = position
 	enemies.add_child(enemy_instance)
+
+func _input(event):
+	if event.is_action_pressed("select") and finish_game_background.visible:
+		_on_play_again_button_button_down()
 	
 func handle_show_death_menu():
 	win_text.visible = false

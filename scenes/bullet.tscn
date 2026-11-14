@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ws2faqxapar3"]
 
 [ext_resource type="Texture2D" uid="uid://d261lu6ga4w8v" path="res://assets/Other/Retro Impact Effect Pack 2 C.png" id="1_abj1t"]
-[ext_resource type="Script" path="res://scripts/Player/Shooting/bullet.gd" id="1_gy1f5"]
+[ext_resource type="Script" uid="uid://dhxyew85a03yp" path="res://scripts/Player/Shooting/bullet.gd" id="1_gy1f5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqv0w"]
 atlas = ExtResource("1_abj1t")
@@ -54,7 +54,9 @@ radius = 8.06226
 radius = 35.0143
 
 [node name="Bullet" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_gy1f5")
+speed = 500
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

@@ -5,8 +5,8 @@
 
 [node name="ShootingBar" type="TextureProgressBar"]
 texture_filter = 1
-offset_right = 3.0
-offset_bottom = 16.0
+offset_right = 5.0
+offset_bottom = 18.0
 scale = Vector2(1.72, 1.96)
 value = 50.0
 fill_mode = 3

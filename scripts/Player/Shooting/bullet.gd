@@ -6,7 +6,7 @@ class_name Bullet extends CharacterBody2D
 
 var is_moving := false
 var direction = Vector2.ZERO
-var speed := 1000
+@export var speed := 1000
 var damage := 40
 
 var is_charged := false

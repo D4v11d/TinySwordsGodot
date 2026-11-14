@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dg4ya2lb7t2gl"]
 
 [ext_resource type="Texture2D" uid="uid://dtwhijenc3d61" path="res://assets/Health/EnemyHPBackground.png" id="1_bhysk"]
-[ext_resource type="Script" path="res://scripts/Enemies/Health/enemy_health_bar.gd" id="1_yxxa6"]
+[ext_resource type="Script" uid="uid://dmy2o63tvhobi" path="res://scripts/Enemies/Health/enemy_health_bar.gd" id="1_yxxa6"]
 [ext_resource type="PackedScene" uid="uid://2a8o1jd4h1u5" path="res://scenes/EnemyHealth/enemy_health_point.tscn" id="3_iu3yf"]
 
 [node name="EnemyHealthBar" type="Control"]

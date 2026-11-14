@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb6ybosj7bead"]
 
 [ext_resource type="Texture2D" uid="uid://dhtngesj4yiix" path="res://assets/Other/Rope-Sprite.png" id="1_55g4c"]
-[ext_resource type="Script" path="res://scripts/GrapplingHook/rope.gd" id="2_leo0t"]
+[ext_resource type="Script" uid="uid://c01mjt6myel7q" path="res://scripts/GrapplingHook/rope.gd" id="2_leo0t"]
 
 [node name="Rope" type="Sprite2D"]
 texture_filter = 1

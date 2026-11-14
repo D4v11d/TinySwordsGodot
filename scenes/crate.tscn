@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://2ykcy4ais31n"]
 
 [ext_resource type="Texture2D" uid="uid://dy05gpo42wm74" path="res://assets/Objects/Destructible Objects Sprite Sheet.png" id="1_c3xrk"]
-[ext_resource type="Script" path="res://scripts/Objects/crate.gd" id="1_d22jw"]
-[ext_resource type="Script" path="res://scripts/Objects/breakable.gd" id="1_gllg2"]
+[ext_resource type="Script" uid="uid://xihsl1w3p0c" path="res://scripts/Objects/crate.gd" id="1_d22jw"]
+[ext_resource type="Script" uid="uid://b33qgfvhyd51d" path="res://scripts/Objects/breakable.gd" id="1_gllg2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktblu"]
 atlas = ExtResource("1_c3xrk")
@@ -107,9 +107,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i4lxq"]
 _data = {
-"RESET": SubResource("Animation_agyt3"),
-"levitate": SubResource("Animation_7utwl"),
-"lift": SubResource("Animation_dref0")
+&"RESET": SubResource("Animation_agyt3"),
+&"levitate": SubResource("Animation_7utwl"),
+&"lift": SubResource("Animation_dref0")
 }
 
 [node name="Crate" type="RigidBody2D"]
@@ -153,7 +153,7 @@ debug_color = Color(0.85809, 0.32529, 0.435231, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_i4lxq")
+&"": SubResource("AnimationLibrary_i4lxq")
 }
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="Hurtbox" method="_on_animated_sprite_2d_animation_finished"]
